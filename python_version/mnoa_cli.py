@@ -1,15 +1,18 @@
 import pandas as pd
 from collections import defaultdict
 
-INPUT_FILE = "Top200KeystrokeDisambiguationAnalysis-2.xlsx"
-SHEET_NAME = "2022 224 Generic+ComboBrand"
+# File setup
+INPUT_FILE = "Test1.xlsx"
+SHEET_NAME = "Sheet1"
 OUTPUT_CSV = "mnoa_output.csv"
+PREPROCESSED_CSV = "preprocessed_names.csv"
 
 def preprocess_names(name_series):
     cleaned = (
         name_series.astype(str)
         .str.strip()
         .str.lower()
+        .str.replace(r"\s+", " ", regex=True)  
         .dropna()
         .loc[lambda s: ~s.str.contains(r"\?")]
         .drop_duplicates()
@@ -72,6 +75,12 @@ def keystroke_disambiguation(names):
 if __name__ == "__main__":
     print("🔄 Loading medication names...")
     names = load_med_names(INPUT_FILE)
+
+    print("🧪 Preview of first 20 preprocessed names:")
+    print(names[:20])
+
+    print(f"💾 Saving full preprocessed list to {PREPROCESSED_CSV}")
+    pd.Series(names).to_csv(PREPROCESSED_CSV, index=False)
 
     print("⚙️  Running keystroke disambiguation analysis...")
     df = keystroke_disambiguation(names)
