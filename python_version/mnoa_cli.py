@@ -6,6 +6,7 @@ INPUT_FILE = "Test1.xlsx"
 SHEET_NAME = "Sheet1"
 OUTPUT_CSV = "mnoa_output.csv"
 PREPROCESSED_NAMES_CSV = "preprocessed_names.csv"
+PREFIX_DETAIL_CSV = "prefix_resolution_rounds.csv"  # NEW CSV for per-round prefix resolution detail
 
 def preprocess_names(name_series):
     """
@@ -41,12 +42,14 @@ def keystroke_disambiguation(names):
     - Builds a map of names sharing same prefix.
     - If a prefix maps to one name, it's disambiguated.
     - Tracks possible misses and keystroke power (KP).
+    - Additionally records per-prefix disambiguation results to a separate CSV.
     """
     total_names = len(names)
     max_len = max(len(n) for n in names)
     resolved_set = set()
     search_space = names.copy()
     results = []
+    prefix_details = []  # NEW: store rows for prefix_resolution_rounds.csv
     previous_misses = None
 
     for k in range(1, max_len + 1):
@@ -61,11 +64,23 @@ def keystroke_disambiguation(names):
         disambiguated = []
         unresolved = []
 
-        for group in prefix_map.values():
+        for prefix, group in prefix_map.items():
             if len(group) == 1:
                 disambiguated.append(group[0])
+                prefix_details.append({
+                    "round": k,
+                    "prefix": prefix,
+                    "disambiguated": group[0],
+                    "unresolved": ""
+                })
             else:
                 unresolved.extend(group)
+                prefix_details.append({
+                    "round": k,
+                    "prefix": prefix,
+                    "disambiguated": "",
+                    "unresolved": ", ".join(group)
+                })
 
         possible_misses = sum(len(group) - 1 for group in prefix_map.values() if len(group) > 1)
         if k == 1:
@@ -97,6 +112,9 @@ def keystroke_disambiguation(names):
             "KPraw": KPraw,
             "%KP": percent_KP
         })
+
+    # Save the prefix resolution breakdown
+    pd.DataFrame(prefix_details).to_csv(PREFIX_DETAIL_CSV, index=False)
 
     return pd.DataFrame(results)
 
