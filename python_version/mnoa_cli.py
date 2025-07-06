@@ -1,13 +1,15 @@
-import pandas as pd
 from collections import defaultdict
+import pandas as pd
 import re
 
+# Constants
 INPUT_FILE = "Test1.xlsx"
 SHEET_NAME = "Sheet1"
 OUTPUT_CSV = "mnoa_output.csv"
 PREPROCESSED_NAMES_CSV = "preprocessed_names.csv"
-PREFIX_DETAIL_CSV = "prefix_resolution_rounds.csv"  # NEW CSV for per-round prefix resolution detail
+PREFIX_DETAIL_CSV = "prefix_resolution_rounds.csv"
 
+# Preprocessing function
 def preprocess_names(name_series):
     """
     Cleans and normalizes medication names according to MNOA preprocessing rules:
@@ -28,6 +30,7 @@ def preprocess_names(name_series):
     )
     return cleaned.tolist()
 
+# Load data function
 def load_med_names(path):
     """
     Loads the Excel input and applies preprocessing to the first column of Sheet1.
@@ -35,6 +38,7 @@ def load_med_names(path):
     df = pd.read_excel(path, sheet_name=SHEET_NAME, engine="openpyxl")
     return preprocess_names(df.iloc[:, 0])
 
+# Main disambiguation algorithm
 def keystroke_disambiguation(names):
     """
     MNOA core algorithm:
@@ -49,7 +53,7 @@ def keystroke_disambiguation(names):
     resolved_set = set()
     search_space = names.copy()
     results = []
-    prefix_details = []  # NEW: store rows for prefix_resolution_rounds.csv
+    prefix_details = []  # store rows for prefix_resolution_rounds.csv
     previous_misses = None
 
     for k in range(1, max_len + 1):
@@ -113,11 +117,10 @@ def keystroke_disambiguation(names):
             "%KP": percent_KP
         })
 
-    # Save the prefix resolution breakdown
     pd.DataFrame(prefix_details).to_csv(PREFIX_DETAIL_CSV, index=False)
-
     return pd.DataFrame(results)
 
+# Run if script is executed directly
 if __name__ == "__main__":
     print("🔄 Loading medication names...")
     names = load_med_names(INPUT_FILE)
