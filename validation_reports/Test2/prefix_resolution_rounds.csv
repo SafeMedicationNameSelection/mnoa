@@ -1,0 +1,662 @@
+round,prefix,disambiguated,unresolved
+1,!,,"!albuterol, !albuterol ipratropium, !amlodipine, !amlodipine benazepril, !amoxicillin clavulanate, !atorvastatin, !atorvastatin ezetimibe, !bupropion, !escitalopram, !furosemide, !gabapentin, !hydrochlorothiazide, !levothyroxine, !lisinopril, !lisinopril hydrochlorothiazide, !losartan, !metformin, !metformin glyburide, !montelukast, !omeprazole, !rosuvastatin, !sertraline, !simvastatin, !tamsulosin"
+1,(,,"(albuterol ipratropium), (albuterol), (amlodipine benazepril), (amlodipine), (amoxicillin clavulanate), (atorvastatin ezetimibe), (atorvastatin), (bupropion), (escitalopram), (furosemide), (gabapentin), (hydrochlorothiazide), (levothyroxine), (lisinopril hydrochlorothiazide), (lisinopril), (losartan), (metformin glyburide), (metformin), (montelukast), (omeprazole), (rosuvastatin), (sertraline), (simvastatin), (tamsulosin)"
+1,[,,"[albuterol], [amlodipine], [atorvastatin], [bupropion], [escitalopram], [furosemide], [gabapentin], [hydrochlorothiazide], [levothyroxine], [lisinopril], [losartan], [metformin], [montelukast], [omeprazole], [rosuvastatin], [sertraline], [simvastatin], [tamsulosin]"
+1,a,,"albuterol, albuterol 10mg, albuterol ipratropium, albuterol ipratropium 500mg, albuterol xr, albuterol-er, albuterol-ipratropium, albuterol/extended, albuterol/ipratropium, albuterol123, albuterol@2025, albuterol\xr, albuterol_er, albuterol_ipratropium, albuterol|xr, amlodipine, amlodipine 10mg, amlodipine benazepril, amlodipine benazepril 500mg, amlodipine xr, amlodipine-benazepril, amlodipine-er, amlodipine/benazepril, amlodipine/extended, amlodipine123, amlodipine@2025, amlodipine\xr, amlodipine_benazepril, amlodipine_er, amlodipine|xr, amoxicillin clavulanate, amoxicillin clavulanate 500mg, amoxicillin-clavulanate, amoxicillin/clavulanate, amoxicillin_clavulanate, atorvastatin, atorvastatin 10mg, atorvastatin ezetimibe, atorvastatin ezetimibe 500mg, atorvastatin xr, atorvastatin-er, atorvastatin-ezetimibe, atorvastatin/extended, atorvastatin/ezetimibe, atorvastatin123, atorvastatin@2025, atorvastatin\xr, atorvastatin_er, atorvastatin_ezetimibe, atorvastatin|xr"
+1,b,,"bupropion, bupropion 10mg, bupropion xr, bupropion-er, bupropion/extended, bupropion123, bupropion@2025, bupropion\xr, bupropion_er, bupropion|xr"
+1,e,,"escitalopram, escitalopram 10mg, escitalopram xr, escitalopram-er, escitalopram/extended, escitalopram123, escitalopram@2025, escitalopram\xr, escitalopram_er, escitalopram|xr"
+1,f,,"furosemide, furosemide 10mg, furosemide xr, furosemide-er, furosemide/extended, furosemide123, furosemide@2025, furosemide\xr, furosemide_er, furosemide|xr"
+1,g,,"gabapentin, gabapentin 10mg, gabapentin xr, gabapentin-er, gabapentin/extended, gabapentin123, gabapentin@2025, gabapentin\xr, gabapentin_er, gabapentin|xr"
+1,h,,"hydrochlorothiazide, hydrochlorothiazide 10mg, hydrochlorothiazide xr, hydrochlorothiazide-er, hydrochlorothiazide/extended, hydrochlorothiazide123, hydrochlorothiazide@2025, hydrochlorothiazide\xr, hydrochlorothiazide_er, hydrochlorothiazide|xr"
+1,l,,"levothyroxine, levothyroxine 10mg, levothyroxine xr, levothyroxine-er, levothyroxine/extended, levothyroxine123, levothyroxine@2025, levothyroxine\xr, levothyroxine_er, levothyroxine|xr, lisinopril, lisinopril 10mg, lisinopril hydrochlorothiazide, lisinopril hydrochlorothiazide 500mg, lisinopril xr, lisinopril-er, lisinopril-hydrochlorothiazide, lisinopril/extended, lisinopril/hydrochlorothiazide, lisinopril123, lisinopril@2025, lisinopril\xr, lisinopril_er, lisinopril_hydrochlorothiazide, lisinopril|xr, losartan, losartan 10mg, losartan xr, losartan-er, losartan/extended, losartan123, losartan@2025, losartan\xr, losartan_er, losartan|xr"
+1,m,,"metformin, metformin 10mg, metformin glyburide, metformin glyburide 500mg, metformin xr, metformin-er, metformin-glyburide, metformin/extended, metformin/glyburide, metformin123, metformin@2025, metformin\xr, metformin_er, metformin_glyburide, metformin|xr, montelukast, montelukast 10mg, montelukast xr, montelukast-er, montelukast/extended, montelukast123, montelukast@2025, montelukast\xr, montelukast_er, montelukast|xr"
+1,o,,"omeprazole, omeprazole 10mg, omeprazole xr, omeprazole-er, omeprazole/extended, omeprazole123, omeprazole@2025, omeprazole\xr, omeprazole_er, omeprazole|xr"
+1,r,,"rosuvastatin, rosuvastatin 10mg, rosuvastatin xr, rosuvastatin-er, rosuvastatin/extended, rosuvastatin123, rosuvastatin@2025, rosuvastatin\xr, rosuvastatin_er, rosuvastatin|xr"
+1,s,,"sertraline, sertraline 10mg, sertraline xr, sertraline-er, sertraline/extended, sertraline123, sertraline@2025, sertraline\xr, sertraline_er, sertraline|xr, simvastatin, simvastatin 10mg, simvastatin xr, simvastatin-er, simvastatin/extended, simvastatin123, simvastatin@2025, simvastatin\xr, simvastatin_er, simvastatin|xr"
+1,t,,"tamsulosin, tamsulosin 10mg, tamsulosin xr, tamsulosin-er, tamsulosin/extended, tamsulosin123, tamsulosin@2025, tamsulosin\xr, tamsulosin_er, tamsulosin|xr"
+1,{,,"{albuterol}, {amlodipine}, {atorvastatin}, {bupropion}, {escitalopram}, {furosemide}, {gabapentin}, {hydrochlorothiazide}, {levothyroxine}, {lisinopril}, {losartan}, {metformin}, {montelukast}, {omeprazole}, {rosuvastatin}, {sertraline}, {simvastatin}, {tamsulosin}"
+2,(m,,"(metformin glyburide), (montelukast), (metformin)"
+2,hy,,"hydrochlorothiazide123, hydrochlorothiazide/extended, hydrochlorothiazide\xr, hydrochlorothiazide|xr, hydrochlorothiazide, hydrochlorothiazide 10mg, hydrochlorothiazide_er, hydrochlorothiazide xr, hydrochlorothiazide-er, hydrochlorothiazide@2025"
+2,al,,"albuterol@2025, albuterol/extended, albuterol123, albuterol xr, albuterol-ipratropium, albuterol ipratropium, albuterol\xr, albuterol|xr, albuterol 10mg, albuterol, albuterol_er, albuterol-er, albuterol/ipratropium, albuterol_ipratropium, albuterol ipratropium 500mg"
+2,!l,,"!losartan, !lisinopril, !levothyroxine, !lisinopril hydrochlorothiazide"
+2,[l,,"[losartan], [lisinopril], [levothyroxine]"
+2,am,,"amlodipine/benazepril, amlodipine, amlodipine\xr, amoxicillin clavulanate 500mg, amlodipine_benazepril, amlodipine benazepril 500mg, amoxicillin_clavulanate, amlodipine123, amlodipine_er, amlodipine-er, amoxicillin/clavulanate, amlodipine xr, amoxicillin clavulanate, amlodipine benazepril, amlodipine 10mg, amlodipine|xr, amlodipine@2025, amoxicillin-clavulanate, amlodipine-benazepril, amlodipine/extended"
+2,mo,,"montelukast/extended, montelukast, montelukast\xr, montelukast-er, montelukast123, montelukast_er, montelukast|xr, montelukast@2025, montelukast 10mg, montelukast xr"
+2,!s,,"!simvastatin, !sertraline"
+2,(l,,"(levothyroxine), (lisinopril hydrochlorothiazide), (losartan), (lisinopril)"
+2,li,,"lisinopril xr, lisinopril hydrochlorothiazide, lisinopril hydrochlorothiazide 500mg, lisinopril-er, lisinopril_er, lisinopril@2025, lisinopril123, lisinopril-hydrochlorothiazide, lisinopril_hydrochlorothiazide, lisinopril, lisinopril\xr, lisinopril|xr, lisinopril/extended, lisinopril/hydrochlorothiazide, lisinopril 10mg"
+2,ga,,"gabapentin/extended, gabapentin_er, gabapentin-er, gabapentin xr, gabapentin@2025, gabapentin123, gabapentin, gabapentin|xr, gabapentin\xr, gabapentin 10mg"
+2,se,,"sertraline xr, sertraline/extended, sertraline, sertraline@2025, sertraline|xr, sertraline_er, sertraline-er, sertraline\xr, sertraline123, sertraline 10mg"
+2,le,,"levothyroxine xr, levothyroxine 10mg, levothyroxine, levothyroxine123, levothyroxine-er, levothyroxine/extended, levothyroxine\xr, levothyroxine|xr, levothyroxine@2025, levothyroxine_er"
+2,{f,{furosemide},
+2,me,,"metformin_glyburide, metformin\xr, metformin/glyburide, metformin_er, metformin-glyburide, metformin 10mg, metformin, metformin glyburide 500mg, metformin-er, metformin|xr, metformin123, metformin/extended, metformin xr, metformin glyburide, metformin@2025"
+2,ta,,"tamsulosin-er, tamsulosin\xr, tamsulosin/extended, tamsulosin_er, tamsulosin xr, tamsulosin, tamsulosin@2025, tamsulosin123, tamsulosin|xr, tamsulosin 10mg"
+2,(b,(bupropion),
+2,lo,,"losartan\xr, losartan_er, losartan|xr, losartan 10mg, losartan, losartan/extended, losartan-er, losartan123, losartan@2025, losartan xr"
+2,es,,"escitalopram, escitalopram123, escitalopram\xr, escitalopram 10mg, escitalopram_er, escitalopram/extended, escitalopram@2025, escitalopram xr, escitalopram|xr, escitalopram-er"
+2,(a,,"(atorvastatin ezetimibe), (albuterol), (albuterol ipratropium), (amlodipine), (amoxicillin clavulanate), (atorvastatin), (amlodipine benazepril)"
+2,[a,,"[amlodipine], [albuterol], [atorvastatin]"
+2,[m,,"[montelukast], [metformin]"
+2,ro,,"rosuvastatin 10mg, rosuvastatin/extended, rosuvastatin, rosuvastatin-er, rosuvastatin\xr, rosuvastatin@2025, rosuvastatin xr, rosuvastatin123, rosuvastatin|xr, rosuvastatin_er"
+2,bu,,"bupropion 10mg, bupropion/extended, bupropion_er, bupropion xr, bupropion\xr, bupropion@2025, bupropion123, bupropion-er, bupropion, bupropion|xr"
+2,at,,"atorvastatin_ezetimibe, atorvastatin_er, atorvastatin@2025, atorvastatin 10mg, atorvastatin\xr, atorvastatin/ezetimibe, atorvastatin ezetimibe 500mg, atorvastatin123, atorvastatin-ezetimibe, atorvastatin, atorvastatin/extended, atorvastatin xr, atorvastatin-er, atorvastatin ezetimibe, atorvastatin|xr"
+2,[f,[furosemide],
+2,(f,(furosemide),
+2,(o,(omeprazole),
+2,(g,(gabapentin),
+2,om,,"omeprazole123, omeprazole xr, omeprazole_er, omeprazole, omeprazole\xr, omeprazole|xr, omeprazole/extended, omeprazole 10mg, omeprazole@2025, omeprazole-er"
+2,!m,,"!metformin, !metformin glyburide, !montelukast"
+2,fu,,"furosemide_er, furosemide xr, furosemide 10mg, furosemide/extended, furosemide-er, furosemide|xr, furosemide\xr, furosemide, furosemide123, furosemide@2025"
+2,(e,(escitalopram),
+2,{l,,"{levothyroxine}, {lisinopril}, {losartan}"
+2,{r,{rosuvastatin},
+2,[b,[bupropion],
+2,!o,!omeprazole,
+2,si,,"simvastatin 10mg, simvastatin@2025, simvastatin-er, simvastatin123, simvastatin\xr, simvastatin/extended, simvastatin, simvastatin|xr, simvastatin_er, simvastatin xr"
+2,{t,{tamsulosin},
+2,{a,,"{amlodipine}, {atorvastatin}, {albuterol}"
+2,!a,,"!amoxicillin clavulanate, !albuterol, !amlodipine, !atorvastatin, !albuterol ipratropium, !atorvastatin ezetimibe, !amlodipine benazepril"
+2,(t,(tamsulosin),
+2,{m,,"{metformin}, {montelukast}"
+2,(h,(hydrochlorothiazide),
+2,[s,,"[simvastatin], [sertraline]"
+2,{e,{escitalopram},
+2,!e,!escitalopram,
+2,!g,!gabapentin,
+2,[e,[escitalopram],
+2,[r,[rosuvastatin],
+2,[g,[gabapentin],
+2,{s,,"{simvastatin}, {sertraline}"
+2,[o,[omeprazole],
+2,!r,!rosuvastatin,
+2,[h,[hydrochlorothiazide],
+2,{o,{omeprazole},
+2,[t,[tamsulosin],
+2,(s,,"(sertraline), (simvastatin)"
+2,{b,{bupropion},
+2,(r,(rosuvastatin),
+2,!h,!hydrochlorothiazide,
+2,{g,{gabapentin},
+2,!t,!tamsulosin,
+2,!b,!bupropion,
+2,{h,{hydrochlorothiazide},
+2,!f,!furosemide,
+3,(me,,"(metformin glyburide), (metformin)"
+3,hyd,,"hydrochlorothiazide123, hydrochlorothiazide/extended, hydrochlorothiazide\xr, hydrochlorothiazide|xr, hydrochlorothiazide, hydrochlorothiazide 10mg, hydrochlorothiazide_er, hydrochlorothiazide xr, hydrochlorothiazide-er, hydrochlorothiazide@2025"
+3,alb,,"albuterol@2025, albuterol/extended, albuterol123, albuterol xr, albuterol-ipratropium, albuterol ipratropium, albuterol\xr, albuterol|xr, albuterol 10mg, albuterol, albuterol_er, albuterol-er, albuterol/ipratropium, albuterol_ipratropium, albuterol ipratropium 500mg"
+3,!lo,!losartan,
+3,[lo,[losartan],
+3,aml,,"amlodipine/benazepril, amlodipine, amlodipine\xr, amlodipine_benazepril, amlodipine benazepril 500mg, amlodipine123, amlodipine_er, amlodipine-er, amlodipine xr, amlodipine benazepril, amlodipine 10mg, amlodipine|xr, amlodipine@2025, amlodipine-benazepril, amlodipine/extended"
+3,mon,,"montelukast/extended, montelukast, montelukast\xr, montelukast-er, montelukast123, montelukast_er, montelukast|xr, montelukast@2025, montelukast 10mg, montelukast xr"
+3,!si,!simvastatin,
+3,(le,(levothyroxine),
+3,lis,,"lisinopril xr, lisinopril hydrochlorothiazide, lisinopril hydrochlorothiazide 500mg, lisinopril-er, lisinopril_er, lisinopril@2025, lisinopril123, lisinopril-hydrochlorothiazide, lisinopril_hydrochlorothiazide, lisinopril, lisinopril\xr, lisinopril|xr, lisinopril/extended, lisinopril/hydrochlorothiazide, lisinopril 10mg"
+3,gab,,"gabapentin/extended, gabapentin_er, gabapentin-er, gabapentin xr, gabapentin@2025, gabapentin123, gabapentin, gabapentin|xr, gabapentin\xr, gabapentin 10mg"
+3,(mo,(montelukast),
+3,ser,,"sertraline xr, sertraline/extended, sertraline, sertraline@2025, sertraline|xr, sertraline_er, sertraline-er, sertraline\xr, sertraline123, sertraline 10mg"
+3,lev,,"levothyroxine xr, levothyroxine 10mg, levothyroxine, levothyroxine123, levothyroxine-er, levothyroxine/extended, levothyroxine\xr, levothyroxine|xr, levothyroxine@2025, levothyroxine_er"
+3,met,,"metformin_glyburide, metformin\xr, metformin/glyburide, metformin_er, metformin-glyburide, metformin 10mg, metformin, metformin glyburide 500mg, metformin-er, metformin|xr, metformin123, metformin/extended, metformin xr, metformin glyburide, metformin@2025"
+3,tam,,"tamsulosin-er, tamsulosin\xr, tamsulosin/extended, tamsulosin_er, tamsulosin xr, tamsulosin, tamsulosin@2025, tamsulosin123, tamsulosin|xr, tamsulosin 10mg"
+3,los,,"losartan\xr, losartan_er, losartan|xr, losartan 10mg, losartan, losartan/extended, losartan-er, losartan123, losartan@2025, losartan xr"
+3,esc,,"escitalopram, escitalopram123, escitalopram\xr, escitalopram 10mg, escitalopram_er, escitalopram/extended, escitalopram@2025, escitalopram xr, escitalopram|xr, escitalopram-er"
+3,(at,,"(atorvastatin ezetimibe), (atorvastatin)"
+3,[am,[amlodipine],
+3,[mo,[montelukast],
+3,ros,,"rosuvastatin 10mg, rosuvastatin/extended, rosuvastatin, rosuvastatin-er, rosuvastatin\xr, rosuvastatin@2025, rosuvastatin xr, rosuvastatin123, rosuvastatin|xr, rosuvastatin_er"
+3,bup,,"bupropion 10mg, bupropion/extended, bupropion_er, bupropion xr, bupropion\xr, bupropion@2025, bupropion123, bupropion-er, bupropion, bupropion|xr"
+3,(li,,"(lisinopril hydrochlorothiazide), (lisinopril)"
+3,ato,,"atorvastatin_ezetimibe, atorvastatin_er, atorvastatin@2025, atorvastatin 10mg, atorvastatin\xr, atorvastatin/ezetimibe, atorvastatin ezetimibe 500mg, atorvastatin123, atorvastatin-ezetimibe, atorvastatin, atorvastatin/extended, atorvastatin xr, atorvastatin-er, atorvastatin ezetimibe, atorvastatin|xr"
+3,[li,[lisinopril],
+3,ome,,"omeprazole123, omeprazole xr, omeprazole_er, omeprazole, omeprazole\xr, omeprazole|xr, omeprazole/extended, omeprazole 10mg, omeprazole@2025, omeprazole-er"
+3,!me,,"!metformin, !metformin glyburide"
+3,fur,,"furosemide_er, furosemide xr, furosemide 10mg, furosemide/extended, furosemide-er, furosemide|xr, furosemide\xr, furosemide, furosemide123, furosemide@2025"
+3,amo,,"amoxicillin clavulanate 500mg, amoxicillin_clavulanate, amoxicillin/clavulanate, amoxicillin clavulanate, amoxicillin-clavulanate"
+3,(al,,"(albuterol), (albuterol ipratropium)"
+3,{le,{levothyroxine},
+3,{li,{lisinopril},
+3,sim,,"simvastatin 10mg, simvastatin@2025, simvastatin-er, simvastatin123, simvastatin\xr, simvastatin/extended, simvastatin, simvastatin|xr, simvastatin_er, simvastatin xr"
+3,{am,{amlodipine},
+3,!am,,"!amoxicillin clavulanate, !amlodipine, !amlodipine benazepril"
+3,{me,{metformin},
+3,!al,,"!albuterol, !albuterol ipratropium"
+3,[al,[albuterol],
+3,[si,[simvastatin],
+3,[le,[levothyroxine],
+3,!se,!sertraline,
+3,!mo,!montelukast,
+3,{at,{atorvastatin},
+3,!at,,"!atorvastatin, !atorvastatin ezetimibe"
+3,{si,{simvastatin},
+3,!li,,"!lisinopril, !lisinopril hydrochlorothiazide"
+3,[at,[atorvastatin],
+3,(am,,"(amlodipine), (amoxicillin clavulanate), (amlodipine benazepril)"
+3,{mo,{montelukast},
+3,{lo,{losartan},
+3,(lo,(losartan),
+3,(se,(sertraline),
+3,(si,(simvastatin),
+3,[se,[sertraline],
+3,[me,[metformin],
+3,{se,{sertraline},
+3,{al,{albuterol},
+3,!le,!levothyroxine,
+4,(met,,"(metformin glyburide), (metformin)"
+4,hydr,,"hydrochlorothiazide123, hydrochlorothiazide/extended, hydrochlorothiazide\xr, hydrochlorothiazide|xr, hydrochlorothiazide, hydrochlorothiazide 10mg, hydrochlorothiazide_er, hydrochlorothiazide xr, hydrochlorothiazide-er, hydrochlorothiazide@2025"
+4,albu,,"albuterol@2025, albuterol/extended, albuterol123, albuterol xr, albuterol-ipratropium, albuterol ipratropium, albuterol\xr, albuterol|xr, albuterol 10mg, albuterol, albuterol_er, albuterol-er, albuterol/ipratropium, albuterol_ipratropium, albuterol ipratropium 500mg"
+4,amlo,,"amlodipine/benazepril, amlodipine, amlodipine\xr, amlodipine_benazepril, amlodipine benazepril 500mg, amlodipine123, amlodipine_er, amlodipine-er, amlodipine xr, amlodipine benazepril, amlodipine 10mg, amlodipine|xr, amlodipine@2025, amlodipine-benazepril, amlodipine/extended"
+4,mont,,"montelukast/extended, montelukast, montelukast\xr, montelukast-er, montelukast123, montelukast_er, montelukast|xr, montelukast@2025, montelukast 10mg, montelukast xr"
+4,lisi,,"lisinopril xr, lisinopril hydrochlorothiazide, lisinopril hydrochlorothiazide 500mg, lisinopril-er, lisinopril_er, lisinopril@2025, lisinopril123, lisinopril-hydrochlorothiazide, lisinopril_hydrochlorothiazide, lisinopril, lisinopril\xr, lisinopril|xr, lisinopril/extended, lisinopril/hydrochlorothiazide, lisinopril 10mg"
+4,gaba,,"gabapentin/extended, gabapentin_er, gabapentin-er, gabapentin xr, gabapentin@2025, gabapentin123, gabapentin, gabapentin|xr, gabapentin\xr, gabapentin 10mg"
+4,sert,,"sertraline xr, sertraline/extended, sertraline, sertraline@2025, sertraline|xr, sertraline_er, sertraline-er, sertraline\xr, sertraline123, sertraline 10mg"
+4,levo,,"levothyroxine xr, levothyroxine 10mg, levothyroxine, levothyroxine123, levothyroxine-er, levothyroxine/extended, levothyroxine\xr, levothyroxine|xr, levothyroxine@2025, levothyroxine_er"
+4,metf,,"metformin_glyburide, metformin\xr, metformin/glyburide, metformin_er, metformin-glyburide, metformin 10mg, metformin, metformin glyburide 500mg, metformin-er, metformin|xr, metformin123, metformin/extended, metformin xr, metformin glyburide, metformin@2025"
+4,tams,,"tamsulosin-er, tamsulosin\xr, tamsulosin/extended, tamsulosin_er, tamsulosin xr, tamsulosin, tamsulosin@2025, tamsulosin123, tamsulosin|xr, tamsulosin 10mg"
+4,losa,,"losartan\xr, losartan_er, losartan|xr, losartan 10mg, losartan, losartan/extended, losartan-er, losartan123, losartan@2025, losartan xr"
+4,esci,,"escitalopram, escitalopram123, escitalopram\xr, escitalopram 10mg, escitalopram_er, escitalopram/extended, escitalopram@2025, escitalopram xr, escitalopram|xr, escitalopram-er"
+4,(ato,,"(atorvastatin ezetimibe), (atorvastatin)"
+4,rosu,,"rosuvastatin 10mg, rosuvastatin/extended, rosuvastatin, rosuvastatin-er, rosuvastatin\xr, rosuvastatin@2025, rosuvastatin xr, rosuvastatin123, rosuvastatin|xr, rosuvastatin_er"
+4,bupr,,"bupropion 10mg, bupropion/extended, bupropion_er, bupropion xr, bupropion\xr, bupropion@2025, bupropion123, bupropion-er, bupropion, bupropion|xr"
+4,(lis,,"(lisinopril hydrochlorothiazide), (lisinopril)"
+4,ator,,"atorvastatin_ezetimibe, atorvastatin_er, atorvastatin@2025, atorvastatin 10mg, atorvastatin\xr, atorvastatin/ezetimibe, atorvastatin ezetimibe 500mg, atorvastatin123, atorvastatin-ezetimibe, atorvastatin, atorvastatin/extended, atorvastatin xr, atorvastatin-er, atorvastatin ezetimibe, atorvastatin|xr"
+4,omep,,"omeprazole123, omeprazole xr, omeprazole_er, omeprazole, omeprazole\xr, omeprazole|xr, omeprazole/extended, omeprazole 10mg, omeprazole@2025, omeprazole-er"
+4,!met,,"!metformin, !metformin glyburide"
+4,furo,,"furosemide_er, furosemide xr, furosemide 10mg, furosemide/extended, furosemide-er, furosemide|xr, furosemide\xr, furosemide, furosemide123, furosemide@2025"
+4,amox,,"amoxicillin clavulanate 500mg, amoxicillin_clavulanate, amoxicillin/clavulanate, amoxicillin clavulanate, amoxicillin-clavulanate"
+4,(alb,,"(albuterol), (albuterol ipratropium)"
+4,simv,,"simvastatin 10mg, simvastatin@2025, simvastatin-er, simvastatin123, simvastatin\xr, simvastatin/extended, simvastatin, simvastatin|xr, simvastatin_er, simvastatin xr"
+4,!amo,!amoxicillin clavulanate,
+4,!alb,,"!albuterol, !albuterol ipratropium"
+4,!aml,,"!amlodipine, !amlodipine benazepril"
+4,!ato,,"!atorvastatin, !atorvastatin ezetimibe"
+4,!lis,,"!lisinopril, !lisinopril hydrochlorothiazide"
+4,(aml,,"(amlodipine), (amlodipine benazepril)"
+4,(amo,(amoxicillin clavulanate),
+5,lisin,,"lisinopril123, lisinopril xr, lisinopril-hydrochlorothiazide, lisinopril hydrochlorothiazide, lisinopril hydrochlorothiazide 500mg, lisinopril-er, lisinopril_er, lisinopril_hydrochlorothiazide, lisinopril, lisinopril@2025, lisinopril\xr, lisinopril|xr, lisinopril/extended, lisinopril/hydrochlorothiazide, lisinopril 10mg"
+5,(metf,,"(metformin glyburide), (metformin)"
+5,atorv,,"atorvastatin/extended, atorvastatin_ezetimibe, atorvastatin_er, atorvastatin xr, atorvastatin@2025, atorvastatin 10mg, atorvastatin-er, atorvastatin\xr, atorvastatin ezetimibe, atorvastatin/ezetimibe, atorvastatin ezetimibe 500mg, atorvastatin123, atorvastatin-ezetimibe, atorvastatin|xr, atorvastatin"
+5,sertr,,"sertraline_er, sertraline xr, sertraline-er, sertraline/extended, sertraline\xr, sertraline123, sertraline, sertraline 10mg, sertraline@2025, sertraline|xr"
+5,hydro,,"hydrochlorothiazide123, hydrochlorothiazide_er, hydrochlorothiazide/extended, hydrochlorothiazide xr, hydrochlorothiazide\xr, hydrochlorothiazide|xr, hydrochlorothiazide, hydrochlorothiazide-er, hydrochlorothiazide 10mg, hydrochlorothiazide@2025"
+5,!ator,,"!atorvastatin ezetimibe, !atorvastatin"
+5,furos,,"furosemide-er, furosemide|xr, furosemide\xr, furosemide_er, furosemide, furosemide123, furosemide xr, furosemide 10mg, furosemide@2025, furosemide/extended"
+5,metfo,,"metformin-er, metformin|xr, metformin123, metformin_glyburide, metformin/extended, metformin\xr, metformin/glyburide, metformin_er, metformin-glyburide, metformin xr, metformin glyburide, metformin 10mg, metformin, metformin@2025, metformin glyburide 500mg"
+5,albut,,"albuterol@2025, albuterol-er, albuterol/ipratropium, albuterol/extended, albuterol123, albuterol xr, albuterol-ipratropium, albuterol ipratropium, albuterol\xr, albuterol_ipratropium, albuterol|xr, albuterol 10mg, albuterol, albuterol ipratropium 500mg, albuterol_er"
+5,escit,,"escitalopram/extended, escitalopram@2025, escitalopram, escitalopram123, escitalopram|xr, escitalopram\xr, escitalopram 10mg, escitalopram_er, escitalopram-er, escitalopram xr"
+5,levot,,"levothyroxine-er, levothyroxine xr, levothyroxine/extended, levothyroxine\xr, levothyroxine 10mg, levothyroxine|xr, levothyroxine, levothyroxine@2025, levothyroxine_er, levothyroxine123"
+5,amlod,,"amlodipine/benazepril, amlodipine xr, amlodipine, amlodipine\xr, amlodipine benazepril, amlodipine 10mg, amlodipine|xr, amlodipine_benazepril, amlodipine benazepril 500mg, amlodipine123, amlodipine_er, amlodipine@2025, amlodipine-benazepril, amlodipine/extended, amlodipine-er"
+5,monte,,"montelukast/extended, montelukast123, montelukast_er, montelukast|xr, montelukast, montelukast@2025, montelukast 10mg, montelukast xr, montelukast\xr, montelukast-er"
+5,(amlo,,"(amlodipine), (amlodipine benazepril)"
+5,losar,,"losartan-er, losartan\xr, losartan123, losartan_er, losartan@2025, losartan xr, losartan|xr, losartan 10mg, losartan, losartan/extended"
+5,gabap,,"gabapentin/extended, gabapentin_er, gabapentin@2025, gabapentin-er, gabapentin123, gabapentin, gabapentin xr, gabapentin|xr, gabapentin\xr, gabapentin 10mg"
+5,rosuv,,"rosuvastatin123, rosuvastatin 10mg, rosuvastatin/extended, rosuvastatin, rosuvastatin|xr, rosuvastatin-er, rosuvastatin_er, rosuvastatin\xr, rosuvastatin@2025, rosuvastatin xr"
+5,bupro,,"bupropion123, bupropion 10mg, bupropion-er, bupropion/extended, bupropion, bupropion_er, bupropion xr, bupropion\xr, bupropion|xr, bupropion@2025"
+5,tamsu,,"tamsulosin-er, tamsulosin\xr, tamsulosin/extended, tamsulosin_er, tamsulosin, tamsulosin@2025, tamsulosin123, tamsulosin|xr, tamsulosin 10mg, tamsulosin xr"
+5,(ator,,"(atorvastatin ezetimibe), (atorvastatin)"
+5,simva,,"simvastatin\xr, simvastatin/extended, simvastatin 10mg, simvastatin, simvastatin|xr, simvastatin_er, simvastatin@2025, simvastatin-er, simvastatin123, simvastatin xr"
+5,omepr,,"omeprazole\xr, omeprazole123, omeprazole xr, omeprazole|xr, omeprazole-er, omeprazole/extended, omeprazole_er, omeprazole 10mg, omeprazole, omeprazole@2025"
+5,(lisi,,"(lisinopril hydrochlorothiazide), (lisinopril)"
+5,amoxi,,"amoxicillin clavulanate, amoxicillin clavulanate 500mg, amoxicillin_clavulanate, amoxicillin-clavulanate, amoxicillin/clavulanate"
+5,!metf,,"!metformin, !metformin glyburide"
+5,(albu,,"(albuterol), (albuterol ipratropium)"
+5,!albu,,"!albuterol, !albuterol ipratropium"
+5,!amlo,,"!amlodipine benazepril, !amlodipine"
+5,!lisi,,"!lisinopril, !lisinopril hydrochlorothiazide"
+6,lisino,,"lisinopril123, lisinopril xr, lisinopril-hydrochlorothiazide, lisinopril hydrochlorothiazide, lisinopril hydrochlorothiazide 500mg, lisinopril-er, lisinopril_er, lisinopril_hydrochlorothiazide, lisinopril, lisinopril@2025, lisinopril\xr, lisinopril|xr, lisinopril/extended, lisinopril/hydrochlorothiazide, lisinopril 10mg"
+6,(metfo,,"(metformin glyburide), (metformin)"
+6,sertra,,"sertraline_er, sertraline xr, sertraline-er, sertraline/extended, sertraline\xr, sertraline123, sertraline, sertraline 10mg, sertraline@2025, sertraline|xr"
+6,atorva,,"atorvastatin/extended, atorvastatin_ezetimibe, atorvastatin_er, atorvastatin xr, atorvastatin@2025, atorvastatin 10mg, atorvastatin-er, atorvastatin\xr, atorvastatin ezetimibe, atorvastatin/ezetimibe, atorvastatin ezetimibe 500mg, atorvastatin123, atorvastatin-ezetimibe, atorvastatin|xr, atorvastatin"
+6,hydroc,,"hydrochlorothiazide123, hydrochlorothiazide_er, hydrochlorothiazide/extended, hydrochlorothiazide xr, hydrochlorothiazide\xr, hydrochlorothiazide|xr, hydrochlorothiazide, hydrochlorothiazide-er, hydrochlorothiazide 10mg, hydrochlorothiazide@2025"
+6,!atorv,,"!atorvastatin ezetimibe, !atorvastatin"
+6,furose,,"furosemide-er, furosemide|xr, furosemide\xr, furosemide_er, furosemide, furosemide123, furosemide xr, furosemide 10mg, furosemide@2025, furosemide/extended"
+6,metfor,,"metformin-er, metformin|xr, metformin123, metformin_glyburide, metformin/extended, metformin\xr, metformin/glyburide, metformin_er, metformin-glyburide, metformin xr, metformin glyburide, metformin 10mg, metformin, metformin@2025, metformin glyburide 500mg"
+6,albute,,"albuterol@2025, albuterol-er, albuterol/ipratropium, albuterol/extended, albuterol123, albuterol xr, albuterol-ipratropium, albuterol ipratropium, albuterol\xr, albuterol_ipratropium, albuterol|xr, albuterol 10mg, albuterol, albuterol ipratropium 500mg, albuterol_er"
+6,escita,,"escitalopram/extended, escitalopram@2025, escitalopram, escitalopram123, escitalopram xr, escitalopram|xr, escitalopram\xr, escitalopram 10mg, escitalopram_er, escitalopram-er"
+6,levoth,,"levothyroxine-er, levothyroxine xr, levothyroxine/extended, levothyroxine\xr, levothyroxine 10mg, levothyroxine|xr, levothyroxine, levothyroxine@2025, levothyroxine_er, levothyroxine123"
+6,amlodi,,"amlodipine/benazepril, amlodipine xr, amlodipine, amlodipine\xr, amlodipine benazepril, amlodipine 10mg, amlodipine|xr, amlodipine_benazepril, amlodipine benazepril 500mg, amlodipine123, amlodipine_er, amlodipine@2025, amlodipine-benazepril, amlodipine/extended, amlodipine-er"
+6,montel,,"montelukast/extended, montelukast123, montelukast_er, montelukast|xr, montelukast, montelukast@2025, montelukast 10mg, montelukast xr, montelukast\xr, montelukast-er"
+6,(amlod,,"(amlodipine), (amlodipine benazepril)"
+6,losart,,"losartan-er, losartan\xr, losartan123, losartan_er, losartan@2025, losartan xr, losartan|xr, losartan 10mg, losartan, losartan/extended"
+6,gabape,,"gabapentin/extended, gabapentin_er, gabapentin@2025, gabapentin-er, gabapentin123, gabapentin, gabapentin xr, gabapentin|xr, gabapentin\xr, gabapentin 10mg"
+6,rosuva,,"rosuvastatin123, rosuvastatin 10mg, rosuvastatin/extended, rosuvastatin, rosuvastatin|xr, rosuvastatin-er, rosuvastatin_er, rosuvastatin\xr, rosuvastatin@2025, rosuvastatin xr"
+6,buprop,,"bupropion123, bupropion 10mg, bupropion-er, bupropion/extended, bupropion, bupropion_er, bupropion xr, bupropion\xr, bupropion|xr, bupropion@2025"
+6,tamsul,,"tamsulosin-er, tamsulosin\xr, tamsulosin/extended, tamsulosin_er, tamsulosin, tamsulosin@2025, tamsulosin123, tamsulosin|xr, tamsulosin 10mg, tamsulosin xr"
+6,(atorv,,"(atorvastatin ezetimibe), (atorvastatin)"
+6,simvas,,"simvastatin\xr, simvastatin/extended, simvastatin 10mg, simvastatin, simvastatin|xr, simvastatin_er, simvastatin@2025, simvastatin-er, simvastatin123, simvastatin xr"
+6,omepra,,"omeprazole\xr, omeprazole123, omeprazole xr, omeprazole|xr, omeprazole/extended, omeprazole_er, omeprazole 10mg, omeprazole, omeprazole@2025, omeprazole-er"
+6,(lisin,,"(lisinopril hydrochlorothiazide), (lisinopril)"
+6,amoxic,,"amoxicillin clavulanate, amoxicillin clavulanate 500mg, amoxicillin_clavulanate, amoxicillin-clavulanate, amoxicillin/clavulanate"
+6,!metfo,,"!metformin, !metformin glyburide"
+6,(albut,,"(albuterol), (albuterol ipratropium)"
+6,!albut,,"!albuterol, !albuterol ipratropium"
+6,!amlod,,"!amlodipine benazepril, !amlodipine"
+6,!lisin,,"!lisinopril, !lisinopril hydrochlorothiazide"
+7,lisinop,,"lisinopril123, lisinopril xr, lisinopril-hydrochlorothiazide, lisinopril hydrochlorothiazide, lisinopril hydrochlorothiazide 500mg, lisinopril-er, lisinopril_er, lisinopril_hydrochlorothiazide, lisinopril, lisinopril@2025, lisinopril\xr, lisinopril|xr, lisinopril/extended, lisinopril/hydrochlorothiazide, lisinopril 10mg"
+7,(metfor,,"(metformin glyburide), (metformin)"
+7,sertral,,"sertraline_er, sertraline xr, sertraline-er, sertraline/extended, sertraline\xr, sertraline123, sertraline, sertraline 10mg, sertraline@2025, sertraline|xr"
+7,atorvas,,"atorvastatin/extended, atorvastatin_ezetimibe, atorvastatin_er, atorvastatin xr, atorvastatin@2025, atorvastatin 10mg, atorvastatin-er, atorvastatin\xr, atorvastatin ezetimibe, atorvastatin/ezetimibe, atorvastatin ezetimibe 500mg, atorvastatin123, atorvastatin-ezetimibe, atorvastatin|xr, atorvastatin"
+7,hydroch,,"hydrochlorothiazide123, hydrochlorothiazide_er, hydrochlorothiazide/extended, hydrochlorothiazide xr, hydrochlorothiazide\xr, hydrochlorothiazide|xr, hydrochlorothiazide, hydrochlorothiazide-er, hydrochlorothiazide 10mg, hydrochlorothiazide@2025"
+7,!atorva,,"!atorvastatin ezetimibe, !atorvastatin"
+7,furosem,,"furosemide-er, furosemide|xr, furosemide\xr, furosemide_er, furosemide, furosemide123, furosemide xr, furosemide 10mg, furosemide@2025, furosemide/extended"
+7,metform,,"metformin-er, metformin|xr, metformin123, metformin_glyburide, metformin/extended, metformin\xr, metformin/glyburide, metformin_er, metformin-glyburide, metformin xr, metformin glyburide, metformin 10mg, metformin, metformin@2025, metformin glyburide 500mg"
+7,albuter,,"albuterol@2025, albuterol-er, albuterol/ipratropium, albuterol/extended, albuterol123, albuterol xr, albuterol-ipratropium, albuterol ipratropium, albuterol\xr, albuterol_ipratropium, albuterol|xr, albuterol 10mg, albuterol, albuterol ipratropium 500mg, albuterol_er"
+7,escital,,"escitalopram/extended, escitalopram@2025, escitalopram, escitalopram123, escitalopram|xr, escitalopram\xr, escitalopram 10mg, escitalopram_er, escitalopram-er, escitalopram xr"
+7,levothy,,"levothyroxine-er, levothyroxine xr, levothyroxine/extended, levothyroxine\xr, levothyroxine 10mg, levothyroxine|xr, levothyroxine, levothyroxine@2025, levothyroxine_er, levothyroxine123"
+7,amlodip,,"amlodipine/benazepril, amlodipine xr, amlodipine, amlodipine\xr, amlodipine benazepril, amlodipine 10mg, amlodipine|xr, amlodipine_benazepril, amlodipine benazepril 500mg, amlodipine123, amlodipine_er, amlodipine@2025, amlodipine-benazepril, amlodipine/extended, amlodipine-er"
+7,montelu,,"montelukast/extended, montelukast123, montelukast_er, montelukast|xr, montelukast, montelukast@2025, montelukast 10mg, montelukast xr, montelukast\xr, montelukast-er"
+7,(amlodi,,"(amlodipine), (amlodipine benazepril)"
+7,losarta,,"losartan-er, losartan\xr, losartan123, losartan_er, losartan@2025, losartan xr, losartan|xr, losartan 10mg, losartan, losartan/extended"
+7,gabapen,,"gabapentin/extended, gabapentin_er, gabapentin@2025, gabapentin-er, gabapentin123, gabapentin, gabapentin xr, gabapentin|xr, gabapentin\xr, gabapentin 10mg"
+7,rosuvas,,"rosuvastatin123, rosuvastatin 10mg, rosuvastatin/extended, rosuvastatin, rosuvastatin|xr, rosuvastatin-er, rosuvastatin_er, rosuvastatin\xr, rosuvastatin@2025, rosuvastatin xr"
+7,bupropi,,"bupropion123, bupropion 10mg, bupropion-er, bupropion/extended, bupropion, bupropion_er, bupropion xr, bupropion\xr, bupropion|xr, bupropion@2025"
+7,tamsulo,,"tamsulosin-er, tamsulosin\xr, tamsulosin/extended, tamsulosin_er, tamsulosin, tamsulosin@2025, tamsulosin123, tamsulosin|xr, tamsulosin 10mg, tamsulosin xr"
+7,(atorva,,"(atorvastatin ezetimibe), (atorvastatin)"
+7,simvast,,"simvastatin\xr, simvastatin/extended, simvastatin 10mg, simvastatin, simvastatin|xr, simvastatin_er, simvastatin@2025, simvastatin-er, simvastatin123, simvastatin xr"
+7,omepraz,,"omeprazole\xr, omeprazole123, omeprazole xr, omeprazole|xr, omeprazole-er, omeprazole/extended, omeprazole_er, omeprazole 10mg, omeprazole, omeprazole@2025"
+7,(lisino,,"(lisinopril hydrochlorothiazide), (lisinopril)"
+7,amoxici,,"amoxicillin clavulanate, amoxicillin clavulanate 500mg, amoxicillin_clavulanate, amoxicillin-clavulanate, amoxicillin/clavulanate"
+7,!metfor,,"!metformin, !metformin glyburide"
+7,(albute,,"(albuterol), (albuterol ipratropium)"
+7,!albute,,"!albuterol, !albuterol ipratropium"
+7,!amlodi,,"!amlodipine benazepril, !amlodipine"
+7,!lisino,,"!lisinopril, !lisinopril hydrochlorothiazide"
+8,lisinopr,,"lisinopril123, lisinopril xr, lisinopril-hydrochlorothiazide, lisinopril hydrochlorothiazide, lisinopril hydrochlorothiazide 500mg, lisinopril-er, lisinopril_er, lisinopril_hydrochlorothiazide, lisinopril, lisinopril@2025, lisinopril\xr, lisinopril|xr, lisinopril/extended, lisinopril/hydrochlorothiazide, lisinopril 10mg"
+8,(metform,,"(metformin glyburide), (metformin)"
+8,sertrali,,"sertraline_er, sertraline xr, sertraline-er, sertraline/extended, sertraline\xr, sertraline123, sertraline, sertraline 10mg, sertraline@2025, sertraline|xr"
+8,atorvast,,"atorvastatin/extended, atorvastatin_ezetimibe, atorvastatin_er, atorvastatin xr, atorvastatin@2025, atorvastatin 10mg, atorvastatin-er, atorvastatin\xr, atorvastatin ezetimibe, atorvastatin/ezetimibe, atorvastatin ezetimibe 500mg, atorvastatin123, atorvastatin-ezetimibe, atorvastatin|xr, atorvastatin"
+8,hydrochl,,"hydrochlorothiazide123, hydrochlorothiazide_er, hydrochlorothiazide/extended, hydrochlorothiazide xr, hydrochlorothiazide\xr, hydrochlorothiazide|xr, hydrochlorothiazide, hydrochlorothiazide-er, hydrochlorothiazide 10mg, hydrochlorothiazide@2025"
+8,!atorvas,,"!atorvastatin ezetimibe, !atorvastatin"
+8,furosemi,,"furosemide-er, furosemide|xr, furosemide\xr, furosemide_er, furosemide, furosemide123, furosemide xr, furosemide 10mg, furosemide@2025, furosemide/extended"
+8,metformi,,"metformin-er, metformin|xr, metformin123, metformin_glyburide, metformin/extended, metformin\xr, metformin/glyburide, metformin_er, metformin-glyburide, metformin xr, metformin glyburide, metformin 10mg, metformin, metformin@2025, metformin glyburide 500mg"
+8,albutero,,"albuterol@2025, albuterol-er, albuterol/ipratropium, albuterol/extended, albuterol123, albuterol xr, albuterol-ipratropium, albuterol ipratropium, albuterol\xr, albuterol_ipratropium, albuterol|xr, albuterol 10mg, albuterol, albuterol ipratropium 500mg, albuterol_er"
+8,escitalo,,"escitalopram/extended, escitalopram@2025, escitalopram, escitalopram123, escitalopram xr, escitalopram|xr, escitalopram\xr, escitalopram 10mg, escitalopram_er, escitalopram-er"
+8,levothyr,,"levothyroxine-er, levothyroxine xr, levothyroxine/extended, levothyroxine\xr, levothyroxine 10mg, levothyroxine|xr, levothyroxine, levothyroxine@2025, levothyroxine_er, levothyroxine123"
+8,amlodipi,,"amlodipine/benazepril, amlodipine xr, amlodipine, amlodipine\xr, amlodipine benazepril, amlodipine 10mg, amlodipine|xr, amlodipine_benazepril, amlodipine benazepril 500mg, amlodipine123, amlodipine_er, amlodipine@2025, amlodipine-benazepril, amlodipine/extended, amlodipine-er"
+8,monteluk,,"montelukast/extended, montelukast123, montelukast_er, montelukast|xr, montelukast, montelukast@2025, montelukast 10mg, montelukast xr, montelukast\xr, montelukast-er"
+8,(amlodip,,"(amlodipine), (amlodipine benazepril)"
+8,losartan,,"losartan-er, losartan\xr, losartan123, losartan_er, losartan@2025, losartan xr, losartan|xr, losartan 10mg, losartan/extended"
+8,gabapent,,"gabapentin/extended, gabapentin_er, gabapentin@2025, gabapentin-er, gabapentin123, gabapentin, gabapentin xr, gabapentin|xr, gabapentin\xr, gabapentin 10mg"
+8,rosuvast,,"rosuvastatin123, rosuvastatin 10mg, rosuvastatin/extended, rosuvastatin, rosuvastatin|xr, rosuvastatin-er, rosuvastatin_er, rosuvastatin\xr, rosuvastatin@2025, rosuvastatin xr"
+8,bupropio,,"bupropion123, bupropion 10mg, bupropion-er, bupropion/extended, bupropion, bupropion_er, bupropion xr, bupropion\xr, bupropion|xr, bupropion@2025"
+8,tamsulos,,"tamsulosin-er, tamsulosin\xr, tamsulosin/extended, tamsulosin_er, tamsulosin, tamsulosin@2025, tamsulosin123, tamsulosin|xr, tamsulosin 10mg, tamsulosin xr"
+8,(atorvas,,"(atorvastatin ezetimibe), (atorvastatin)"
+8,simvasta,,"simvastatin\xr, simvastatin/extended, simvastatin 10mg, simvastatin, simvastatin|xr, simvastatin_er, simvastatin@2025, simvastatin-er, simvastatin123, simvastatin xr"
+8,omeprazo,,"omeprazole\xr, omeprazole123, omeprazole xr, omeprazole|xr, omeprazole/extended, omeprazole_er, omeprazole 10mg, omeprazole, omeprazole@2025, omeprazole-er"
+8,(lisinop,,"(lisinopril hydrochlorothiazide), (lisinopril)"
+8,amoxicil,,"amoxicillin clavulanate, amoxicillin clavulanate 500mg, amoxicillin_clavulanate, amoxicillin-clavulanate, amoxicillin/clavulanate"
+8,!metform,,"!metformin, !metformin glyburide"
+8,(albuter,,"(albuterol), (albuterol ipratropium)"
+8,!albuter,,"!albuterol, !albuterol ipratropium"
+8,!amlodip,,"!amlodipine benazepril, !amlodipine"
+8,!lisinop,,"!lisinopril, !lisinopril hydrochlorothiazide"
+9,lisinopri,,"lisinopril123, lisinopril xr, lisinopril-hydrochlorothiazide, lisinopril hydrochlorothiazide, lisinopril hydrochlorothiazide 500mg, lisinopril-er, lisinopril_er, lisinopril_hydrochlorothiazide, lisinopril, lisinopril@2025, lisinopril\xr, lisinopril|xr, lisinopril/extended, lisinopril/hydrochlorothiazide, lisinopril 10mg"
+9,(metformi,,"(metformin glyburide), (metformin)"
+9,sertralin,,"sertraline_er, sertraline xr, sertraline-er, sertraline/extended, sertraline\xr, sertraline123, sertraline, sertraline 10mg, sertraline@2025, sertraline|xr"
+9,atorvasta,,"atorvastatin/extended, atorvastatin_ezetimibe, atorvastatin_er, atorvastatin xr, atorvastatin@2025, atorvastatin 10mg, atorvastatin-er, atorvastatin\xr, atorvastatin ezetimibe, atorvastatin/ezetimibe, atorvastatin ezetimibe 500mg, atorvastatin123, atorvastatin-ezetimibe, atorvastatin|xr, atorvastatin"
+9,hydrochlo,,"hydrochlorothiazide123, hydrochlorothiazide_er, hydrochlorothiazide/extended, hydrochlorothiazide xr, hydrochlorothiazide\xr, hydrochlorothiazide|xr, hydrochlorothiazide, hydrochlorothiazide-er, hydrochlorothiazide 10mg, hydrochlorothiazide@2025"
+9,!atorvast,,"!atorvastatin ezetimibe, !atorvastatin"
+9,furosemid,,"furosemide-er, furosemide|xr, furosemide\xr, furosemide_er, furosemide, furosemide123, furosemide xr, furosemide 10mg, furosemide@2025, furosemide/extended"
+9,metformin,,"metformin-er, metformin|xr, metformin123, metformin_glyburide, metformin/extended, metformin\xr, metformin/glyburide, metformin_er, metformin-glyburide, metformin xr, metformin glyburide, metformin 10mg, metformin@2025, metformin glyburide 500mg"
+9,albuterol,,"albuterol@2025, albuterol-er, albuterol/ipratropium, albuterol/extended, albuterol123, albuterol xr, albuterol-ipratropium, albuterol ipratropium, albuterol\xr, albuterol_ipratropium, albuterol|xr, albuterol 10mg, albuterol ipratropium 500mg, albuterol_er"
+9,escitalop,,"escitalopram/extended, escitalopram@2025, escitalopram, escitalopram123, escitalopram|xr, escitalopram\xr, escitalopram 10mg, escitalopram_er, escitalopram-er, escitalopram xr"
+9,levothyro,,"levothyroxine-er, levothyroxine xr, levothyroxine/extended, levothyroxine\xr, levothyroxine 10mg, levothyroxine|xr, levothyroxine, levothyroxine@2025, levothyroxine_er, levothyroxine123"
+9,amlodipin,,"amlodipine/benazepril, amlodipine xr, amlodipine, amlodipine\xr, amlodipine benazepril, amlodipine 10mg, amlodipine|xr, amlodipine_benazepril, amlodipine benazepril 500mg, amlodipine123, amlodipine_er, amlodipine@2025, amlodipine-benazepril, amlodipine/extended, amlodipine-er"
+9,monteluka,,"montelukast/extended, montelukast123, montelukast_er, montelukast|xr, montelukast, montelukast@2025, montelukast 10mg, montelukast xr, montelukast\xr, montelukast-er"
+9,(amlodipi,,"(amlodipine), (amlodipine benazepril)"
+9,losartan-,losartan-er,
+9,gabapenti,,"gabapentin/extended, gabapentin_er, gabapentin@2025, gabapentin-er, gabapentin123, gabapentin, gabapentin xr, gabapentin|xr, gabapentin\xr, gabapentin 10mg"
+9,rosuvasta,,"rosuvastatin123, rosuvastatin 10mg, rosuvastatin/extended, rosuvastatin, rosuvastatin|xr, rosuvastatin-er, rosuvastatin_er, rosuvastatin\xr, rosuvastatin@2025, rosuvastatin xr"
+9,bupropion,,"bupropion123, bupropion 10mg, bupropion-er, bupropion/extended, bupropion_er, bupropion xr, bupropion\xr, bupropion|xr, bupropion@2025"
+9,tamsulosi,,"tamsulosin-er, tamsulosin\xr, tamsulosin/extended, tamsulosin_er, tamsulosin, tamsulosin@2025, tamsulosin123, tamsulosin|xr, tamsulosin 10mg, tamsulosin xr"
+9,losartan\,losartan\xr,
+9,(atorvast,,"(atorvastatin ezetimibe), (atorvastatin)"
+9,simvastat,,"simvastatin\xr, simvastatin/extended, simvastatin 10mg, simvastatin, simvastatin|xr, simvastatin_er, simvastatin@2025, simvastatin-er, simvastatin123, simvastatin xr"
+9,omeprazol,,"omeprazole\xr, omeprazole123, omeprazole xr, omeprazole|xr, omeprazole-er, omeprazole/extended, omeprazole_er, omeprazole 10mg, omeprazole, omeprazole@2025"
+9,(lisinopr,,"(lisinopril hydrochlorothiazide), (lisinopril)"
+9,amoxicill,,"amoxicillin clavulanate, amoxicillin clavulanate 500mg, amoxicillin_clavulanate, amoxicillin-clavulanate, amoxicillin/clavulanate"
+9,losartan1,losartan123,
+9,!metformi,,"!metformin, !metformin glyburide"
+9,(albutero,,"(albuterol), (albuterol ipratropium)"
+9,losartan_,losartan_er,
+9,losartan@,losartan@2025,
+9,!albutero,,"!albuterol, !albuterol ipratropium"
+9,losartan ,,"losartan xr, losartan 10mg"
+9,losartan|,losartan|xr,
+9,!amlodipi,,"!amlodipine benazepril, !amlodipine"
+9,losartan/,losartan/extended,
+9,!lisinopr,,"!lisinopril, !lisinopril hydrochlorothiazide"
+10,lisinopril,,"lisinopril123, lisinopril xr, lisinopril-hydrochlorothiazide, lisinopril hydrochlorothiazide, lisinopril hydrochlorothiazide 500mg, lisinopril-er, lisinopril_er, lisinopril_hydrochlorothiazide, lisinopril@2025, lisinopril\xr, lisinopril|xr, lisinopril/extended, lisinopril/hydrochlorothiazide, lisinopril 10mg"
+10,(metformin,,"(metformin glyburide), (metformin)"
+10,sertraline,,"sertraline_er, sertraline xr, sertraline-er, sertraline/extended, sertraline\xr, sertraline123, sertraline 10mg, sertraline@2025, sertraline|xr"
+10,atorvastat,,"atorvastatin/extended, atorvastatin_ezetimibe, atorvastatin_er, atorvastatin xr, atorvastatin@2025, atorvastatin 10mg, atorvastatin-er, atorvastatin\xr, atorvastatin ezetimibe, atorvastatin/ezetimibe, atorvastatin ezetimibe 500mg, atorvastatin123, atorvastatin-ezetimibe, atorvastatin|xr, atorvastatin"
+10,hydrochlor,,"hydrochlorothiazide123, hydrochlorothiazide_er, hydrochlorothiazide/extended, hydrochlorothiazide xr, hydrochlorothiazide\xr, hydrochlorothiazide|xr, hydrochlorothiazide, hydrochlorothiazide-er, hydrochlorothiazide 10mg, hydrochlorothiazide@2025"
+10,!atorvasta,,"!atorvastatin ezetimibe, !atorvastatin"
+10,furosemide,,"furosemide-er, furosemide|xr, furosemide\xr, furosemide_er, furosemide123, furosemide xr, furosemide 10mg, furosemide@2025, furosemide/extended"
+10,metformin-,,"metformin-er, metformin-glyburide"
+10,metformin|,metformin|xr,
+10,albuterol@,albuterol@2025,
+10,escitalopr,,"escitalopram/extended, escitalopram@2025, escitalopram, escitalopram123, escitalopram xr, escitalopram|xr, escitalopram\xr, escitalopram 10mg, escitalopram_er, escitalopram-er"
+10,levothyrox,,"levothyroxine-er, levothyroxine xr, levothyroxine/extended, levothyroxine\xr, levothyroxine 10mg, levothyroxine|xr, levothyroxine, levothyroxine@2025, levothyroxine_er, levothyroxine123"
+10,amlodipine,,"amlodipine/benazepril, amlodipine xr, amlodipine\xr, amlodipine benazepril, amlodipine 10mg, amlodipine|xr, amlodipine_benazepril, amlodipine benazepril 500mg, amlodipine123, amlodipine_er, amlodipine@2025, amlodipine-benazepril, amlodipine/extended, amlodipine-er"
+10,montelukas,,"montelukast/extended, montelukast123, montelukast_er, montelukast|xr, montelukast, montelukast@2025, montelukast 10mg, montelukast xr, montelukast\xr, montelukast-er"
+10,(amlodipin,,"(amlodipine), (amlodipine benazepril)"
+10,gabapentin,,"gabapentin/extended, gabapentin_er, gabapentin@2025, gabapentin-er, gabapentin123, gabapentin xr, gabapentin|xr, gabapentin\xr, gabapentin 10mg"
+10,rosuvastat,,"rosuvastatin123, rosuvastatin 10mg, rosuvastatin/extended, rosuvastatin, rosuvastatin|xr, rosuvastatin-er, rosuvastatin_er, rosuvastatin\xr, rosuvastatin@2025, rosuvastatin xr"
+10,metformin1,metformin123,
+10,albuterol-,,"albuterol-er, albuterol-ipratropium"
+10,metformin_,,"metformin_glyburide, metformin_er"
+10,bupropion1,bupropion123,
+10,tamsulosin,,"tamsulosin-er, tamsulosin\xr, tamsulosin/extended, tamsulosin_er, tamsulosin@2025, tamsulosin123, tamsulosin|xr, tamsulosin 10mg, tamsulosin xr"
+10,(atorvasta,,"(atorvastatin ezetimibe), (atorvastatin)"
+10,albuterol/,,"albuterol/ipratropium, albuterol/extended"
+10,simvastati,,"simvastatin\xr, simvastatin/extended, simvastatin 10mg, simvastatin, simvastatin|xr, simvastatin_er, simvastatin@2025, simvastatin-er, simvastatin123, simvastatin xr"
+10,omeprazole,,"omeprazole\xr, omeprazole123, omeprazole xr, omeprazole|xr, omeprazole/extended, omeprazole_er, omeprazole 10mg, omeprazole@2025, omeprazole-er"
+10,metformin/,,"metformin/extended, metformin/glyburide"
+10,bupropion ,,"bupropion 10mg, bupropion xr"
+10,(lisinopri,,"(lisinopril hydrochlorothiazide), (lisinopril)"
+10,metformin\,metformin\xr,
+10,bupropion-,bupropion-er,
+10,albuterol1,albuterol123,
+10,amoxicilli,,"amoxicillin clavulanate, amoxicillin clavulanate 500mg, amoxicillin_clavulanate, amoxicillin-clavulanate, amoxicillin/clavulanate"
+10,(albuterol,,"(albuterol), (albuterol ipratropium)"
+10,albuterol ,,"albuterol xr, albuterol ipratropium, albuterol 10mg, albuterol ipratropium 500mg"
+10,bupropion/,bupropion/extended,
+10,albuterol\,albuterol\xr,
+10,albuterol_,,"albuterol_ipratropium, albuterol_er"
+10,metformin ,,"metformin xr, metformin glyburide, metformin 10mg, metformin glyburide 500mg"
+10,!metformin,!metformin glyburide,
+10,albuterol|,albuterol|xr,
+10,bupropion_,bupropion_er,
+10,losartan x,losartan xr,
+10,metformin@,metformin@2025,
+10,losartan 1,losartan 10mg,
+10,!amlodipin,,"!amlodipine benazepril, !amlodipine"
+10,!lisinopri,,"!lisinopril, !lisinopril hydrochlorothiazide"
+10,bupropion\,bupropion\xr,
+10,bupropion|,bupropion|xr,
+10,!albuterol,!albuterol ipratropium,
+10,bupropion@,bupropion@2025,
+11,lisinopril1,lisinopril123,
+11,(metformin ,(metformin glyburide),
+11,sertraline_,sertraline_er,
+11,atorvastati,,"atorvastatin/extended, atorvastatin_ezetimibe, atorvastatin_er, atorvastatin xr, atorvastatin@2025, atorvastatin 10mg, atorvastatin-er, atorvastatin\xr, atorvastatin ezetimibe, atorvastatin/ezetimibe, atorvastatin ezetimibe 500mg, atorvastatin123, atorvastatin-ezetimibe, atorvastatin|xr, atorvastatin"
+11,hydrochloro,,"hydrochlorothiazide123, hydrochlorothiazide_er, hydrochlorothiazide/extended, hydrochlorothiazide xr, hydrochlorothiazide\xr, hydrochlorothiazide|xr, hydrochlorothiazide, hydrochlorothiazide-er, hydrochlorothiazide 10mg, hydrochlorothiazide@2025"
+11,!atorvastat,,"!atorvastatin ezetimibe, !atorvastatin"
+11,furosemide-,furosemide-er,
+11,metformin-e,metformin-er,
+11,escitalopra,,"escitalopram/extended, escitalopram@2025, escitalopram, escitalopram123, escitalopram|xr, escitalopram\xr, escitalopram 10mg, escitalopram_er, escitalopram-er, escitalopram xr"
+11,levothyroxi,,"levothyroxine-er, levothyroxine xr, levothyroxine/extended, levothyroxine\xr, levothyroxine 10mg, levothyroxine|xr, levothyroxine, levothyroxine@2025, levothyroxine_er, levothyroxine123"
+11,amlodipine/,,"amlodipine/benazepril, amlodipine/extended"
+11,montelukast,,"montelukast/extended, montelukast123, montelukast_er, montelukast|xr, montelukast@2025, montelukast 10mg, montelukast xr, montelukast\xr, montelukast-er"
+11,(amlodipine,,"(amlodipine), (amlodipine benazepril)"
+11,lisinopril ,,"lisinopril xr, lisinopril hydrochlorothiazide, lisinopril hydrochlorothiazide 500mg, lisinopril 10mg"
+11,lisinopril-,,"lisinopril-hydrochlorothiazide, lisinopril-er"
+11,gabapentin/,gabapentin/extended,
+11,rosuvastati,,"rosuvastatin123, rosuvastatin 10mg, rosuvastatin/extended, rosuvastatin, rosuvastatin|xr, rosuvastatin-er, rosuvastatin_er, rosuvastatin\xr, rosuvastatin@2025, rosuvastatin xr"
+11,sertraline ,,"sertraline xr, sertraline 10mg"
+11,albuterol-e,albuterol-er,
+11,metformin_g,metformin_glyburide,
+11,amlodipine ,,"amlodipine xr, amlodipine benazepril, amlodipine 10mg, amlodipine benazepril 500mg"
+11,furosemide|,furosemide|xr,
+11,tamsulosin-,tamsulosin-er,
+11,tamsulosin\,tamsulosin\xr,
+11,(atorvastat,,"(atorvastatin ezetimibe), (atorvastatin)"
+11,furosemide\,furosemide\xr,
+11,gabapentin_,gabapentin_er,
+11,albuterol/i,albuterol/ipratropium,
+11,simvastatin,,"simvastatin\xr, simvastatin/extended, simvastatin 10mg, simvastatin|xr, simvastatin_er, simvastatin@2025, simvastatin-er, simvastatin123, simvastatin xr"
+11,omeprazole\,omeprazole\xr,
+11,metformin/e,metformin/extended,
+11,bupropion 1,bupropion 10mg,
+11,(lisinopril,,"(lisinopril hydrochlorothiazide), (lisinopril)"
+11,sertraline-,sertraline-er,
+11,metformin/g,metformin/glyburide,
+11,albuterol/e,albuterol/extended,
+11,metformin_e,metformin_er,
+11,tamsulosin/,tamsulosin/extended,
+11,omeprazole1,omeprazole123,
+11,amoxicillin,,"amoxicillin clavulanate, amoxicillin clavulanate 500mg, amoxicillin_clavulanate, amoxicillin-clavulanate, amoxicillin/clavulanate"
+11,omeprazole ,,"omeprazole xr, omeprazole 10mg"
+11,furosemide_,furosemide_er,
+11,amlodipine\,amlodipine\xr,
+11,sertraline/,sertraline/extended,
+11,albuterol x,albuterol xr,
+11,gabapentin@,gabapentin@2025,
+11,albuterol-i,albuterol-ipratropium,
+11,albuterol i,,"albuterol ipratropium, albuterol ipratropium 500mg"
+11,tamsulosin_,tamsulosin_er,
+11,sertraline\,sertraline\xr,
+11,metformin-g,metformin-glyburide,
+11,omeprazole|,omeprazole|xr,
+11,albuterol_i,albuterol_ipratropium,
+11,metformin x,metformin xr,
+11,sertraline1,sertraline123,
+11,tamsulosin@,tamsulosin@2025,
+11,tamsulosin1,tamsulosin123,
+11,metformin g,,"metformin glyburide, metformin glyburide 500mg"
+11,gabapentin-,gabapentin-er,
+11,gabapentin1,gabapentin123,
+11,tamsulosin|,tamsulosin|xr,
+11,furosemide1,furosemide123,
+11,furosemide ,,"furosemide xr, furosemide 10mg"
+11,amlodipine|,amlodipine|xr,
+11,tamsulosin ,,"tamsulosin 10mg, tamsulosin xr"
+11,amlodipine_,,"amlodipine_benazepril, amlodipine_er"
+11,lisinopril_,,"lisinopril_er, lisinopril_hydrochlorothiazide"
+11,metformin 1,metformin 10mg,
+11,omeprazole-,omeprazole-er,
+11,omeprazole/,omeprazole/extended,
+11,amlodipine1,amlodipine123,
+11,sertraline@,sertraline@2025,
+11,bupropion x,bupropion xr,
+11,lisinopril@,lisinopril@2025,
+11,omeprazole_,omeprazole_er,
+11,sertraline|,sertraline|xr,
+11,albuterol 1,albuterol 10mg,
+11,gabapentin ,,"gabapentin xr, gabapentin 10mg"
+11,lisinopril\,lisinopril\xr,
+11,!amlodipine,!amlodipine benazepril,
+11,amlodipine@,amlodipine@2025,
+11,gabapentin|,gabapentin|xr,
+11,gabapentin\,gabapentin\xr,
+11,amlodipine-,,"amlodipine-benazepril, amlodipine-er"
+11,lisinopril|,lisinopril|xr,
+11,omeprazole@,omeprazole@2025,
+11,albuterol_e,albuterol_er,
+11,lisinopril/,,"lisinopril/extended, lisinopril/hydrochlorothiazide"
+11,!lisinopril,!lisinopril hydrochlorothiazide,
+11,furosemide@,furosemide@2025,
+11,(albuterol ,(albuterol ipratropium),
+11,furosemide/,furosemide/extended,
+12,atorvastatin,,"atorvastatin/extended, atorvastatin_ezetimibe, atorvastatin_er, atorvastatin xr, atorvastatin@2025, atorvastatin 10mg, atorvastatin-er, atorvastatin\xr, atorvastatin ezetimibe, atorvastatin/ezetimibe, atorvastatin ezetimibe 500mg, atorvastatin123, atorvastatin-ezetimibe, atorvastatin|xr"
+12,hydrochlorot,,"hydrochlorothiazide123, hydrochlorothiazide_er, hydrochlorothiazide/extended, hydrochlorothiazide xr, hydrochlorothiazide\xr, hydrochlorothiazide|xr, hydrochlorothiazide, hydrochlorothiazide-er, hydrochlorothiazide 10mg, hydrochlorothiazide@2025"
+12,!atorvastati,,"!atorvastatin ezetimibe, !atorvastatin"
+12,escitalopram,,"escitalopram/extended, escitalopram@2025, escitalopram123, escitalopram|xr, escitalopram\xr, escitalopram 10mg, escitalopram_er, escitalopram-er, escitalopram xr"
+12,levothyroxin,,"levothyroxine-er, levothyroxine xr, levothyroxine/extended, levothyroxine\xr, levothyroxine 10mg, levothyroxine|xr, levothyroxine, levothyroxine@2025, levothyroxine_er, levothyroxine123"
+12,amlodipine/b,amlodipine/benazepril,
+12,montelukast/,montelukast/extended,
+12,lisinopril x,lisinopril xr,
+12,lisinopril-h,lisinopril-hydrochlorothiazide,
+12,montelukast1,montelukast123,
+12,rosuvastatin,,"rosuvastatin123, rosuvastatin 10mg, rosuvastatin/extended, rosuvastatin|xr, rosuvastatin-er, rosuvastatin_er, rosuvastatin\xr, rosuvastatin@2025, rosuvastatin xr"
+12,sertraline x,sertraline xr,
+12,montelukast_,montelukast_er,
+12,amlodipine x,amlodipine xr,
+12,(atorvastati,,"(atorvastatin ezetimibe), (atorvastatin)"
+12,simvastatin\,simvastatin\xr,
+12,(lisinopril ,(lisinopril hydrochlorothiazide),
+12,montelukast|,montelukast|xr,
+12,lisinopril h,,"lisinopril hydrochlorothiazide, lisinopril hydrochlorothiazide 500mg"
+12,simvastatin/,simvastatin/extended,
+12,amoxicillin ,,"amoxicillin clavulanate, amoxicillin clavulanate 500mg"
+12,omeprazole x,omeprazole xr,
+12,albuterol ip,,"albuterol ipratropium, albuterol ipratropium 500mg"
+12,montelukast@,montelukast@2025,
+12,amlodipine b,,"amlodipine benazepril, amlodipine benazepril 500mg"
+12,montelukast ,,"montelukast 10mg, montelukast xr"
+12,simvastatin ,,"simvastatin 10mg, simvastatin xr"
+12,amlodipine 1,amlodipine 10mg,
+12,lisinopril-e,lisinopril-er,
+12,metformin gl,,"metformin glyburide, metformin glyburide 500mg"
+12,simvastatin|,simvastatin|xr,
+12,simvastatin_,simvastatin_er,
+12,furosemide x,furosemide xr,
+12,tamsulosin 1,tamsulosin 10mg,
+12,amlodipine_b,amlodipine_benazepril,
+12,lisinopril_e,lisinopril_er,
+12,amoxicillin_,amoxicillin_clavulanate,
+12,sertraline 1,sertraline 10mg,
+12,lisinopril_h,lisinopril_hydrochlorothiazide,
+12,furosemide 1,furosemide 10mg,
+12,simvastatin@,simvastatin@2025,
+12,simvastatin-,simvastatin-er,
+12,amlodipine_e,amlodipine_er,
+12,simvastatin1,simvastatin123,
+12,omeprazole 1,omeprazole 10mg,
+12,(amlodipine ,(amlodipine benazepril),
+12,gabapentin x,gabapentin xr,
+12,amoxicillin-,amoxicillin-clavulanate,
+12,tamsulosin x,tamsulosin xr,
+12,amlodipine-b,amlodipine-benazepril,
+12,amlodipine/e,amlodipine/extended,
+12,gabapentin 1,gabapentin 10mg,
+12,amlodipine-e,amlodipine-er,
+12,montelukast\,montelukast\xr,
+12,lisinopril/e,lisinopril/extended,
+12,lisinopril/h,lisinopril/hydrochlorothiazide,
+12,amoxicillin/,amoxicillin/clavulanate,
+12,montelukast-,montelukast-er,
+12,lisinopril 1,lisinopril 10mg,
+13,levothyroxine,,"levothyroxine 10mg, levothyroxine|xr, levothyroxine@2025, levothyroxine-er, levothyroxine_er, levothyroxine xr, levothyroxine123, levothyroxine/extended, levothyroxine\xr"
+13,atorvastatin/,,"atorvastatin/extended, atorvastatin/ezetimibe"
+13,hydrochloroth,,"hydrochlorothiazide xr, hydrochlorothiazide123, hydrochlorothiazide\xr, hydrochlorothiazide|xr, hydrochlorothiazide 10mg, hydrochlorothiazide_er, hydrochlorothiazide@2025, hydrochlorothiazide/extended, hydrochlorothiazide, hydrochlorothiazide-er"
+13,atorvastatin ,,"atorvastatin ezetimibe 500mg, atorvastatin xr, atorvastatin 10mg, atorvastatin ezetimibe"
+13,!atorvastatin,!atorvastatin ezetimibe,
+13,atorvastatin_,,"atorvastatin_er, atorvastatin_ezetimibe"
+13,montelukast x,montelukast xr,
+13,escitalopram/,escitalopram/extended,
+13,amoxicillin c,,"amoxicillin clavulanate, amoxicillin clavulanate 500mg"
+13,rosuvastatin-,rosuvastatin-er,
+13,escitalopram ,,"escitalopram 10mg, escitalopram xr"
+13,escitalopram_,escitalopram_er,
+13,atorvastatin@,atorvastatin@2025,
+13,escitalopram|,escitalopram|xr,
+13,atorvastatin1,atorvastatin123,
+13,escitalopram@,escitalopram@2025,
+13,rosuvastatin1,rosuvastatin123,
+13,atorvastatin\,atorvastatin\xr,
+13,simvastatin x,simvastatin xr,
+13,atorvastatin-,,"atorvastatin-ezetimibe, atorvastatin-er"
+13,amlodipine be,,"amlodipine benazepril 500mg, amlodipine benazepril"
+13,metformin gly,,"metformin glyburide 500mg, metformin glyburide"
+13,albuterol ipr,,"albuterol ipratropium 500mg, albuterol ipratropium"
+13,rosuvastatin_,rosuvastatin_er,
+13,rosuvastatin\,rosuvastatin\xr,
+13,atorvastatin|,atorvastatin|xr,
+13,rosuvastatin@,rosuvastatin@2025,
+13,montelukast 1,montelukast 10mg,
+13,rosuvastatin ,,"rosuvastatin xr, rosuvastatin 10mg"
+13,(atorvastatin,,"(atorvastatin ezetimibe), (atorvastatin)"
+13,escitalopram-,escitalopram-er,
+13,simvastatin 1,simvastatin 10mg,
+13,rosuvastatin/,rosuvastatin/extended,
+13,escitalopram\,escitalopram\xr,
+13,lisinopril hy,,"lisinopril hydrochlorothiazide, lisinopril hydrochlorothiazide 500mg"
+13,rosuvastatin|,rosuvastatin|xr,
+13,escitalopram1,escitalopram123,
+14,levothyroxine ,,"levothyroxine 10mg, levothyroxine xr"
+14,atorvastatin/e,,"atorvastatin/extended, atorvastatin/ezetimibe"
+14,hydrochlorothi,,"hydrochlorothiazide xr, hydrochlorothiazide123, hydrochlorothiazide\xr, hydrochlorothiazide|xr, hydrochlorothiazide 10mg, hydrochlorothiazide_er, hydrochlorothiazide@2025, hydrochlorothiazide/extended, hydrochlorothiazide, hydrochlorothiazide-er"
+14,levothyroxine|,levothyroxine|xr,
+14,atorvastatin e,,"atorvastatin ezetimibe 500mg, atorvastatin ezetimibe"
+14,atorvastatin_e,,"atorvastatin_er, atorvastatin_ezetimibe"
+14,levothyroxine@,levothyroxine@2025,
+14,amoxicillin cl,,"amoxicillin clavulanate, amoxicillin clavulanate 500mg"
+14,levothyroxine-,levothyroxine-er,
+14,atorvastatin x,atorvastatin xr,
+14,escitalopram 1,escitalopram 10mg,
+14,atorvastatin 1,atorvastatin 10mg,
+14,atorvastatin-e,,"atorvastatin-ezetimibe, atorvastatin-er"
+14,levothyroxine_,levothyroxine_er,
+14,amlodipine ben,,"amlodipine benazepril 500mg, amlodipine benazepril"
+14,metformin glyb,,"metformin glyburide 500mg, metformin glyburide"
+14,albuterol ipra,,"albuterol ipratropium 500mg, albuterol ipratropium"
+14,levothyroxine1,levothyroxine123,
+14,levothyroxine/,levothyroxine/extended,
+14,rosuvastatin x,rosuvastatin xr,
+14,(atorvastatin ,(atorvastatin ezetimibe),
+14,levothyroxine\,levothyroxine\xr,
+14,rosuvastatin 1,rosuvastatin 10mg,
+14,lisinopril hyd,,"lisinopril hydrochlorothiazide, lisinopril hydrochlorothiazide 500mg"
+14,escitalopram x,escitalopram xr,
+15,levothyroxine 1,levothyroxine 10mg,
+15,atorvastatin/ex,atorvastatin/extended,
+15,hydrochlorothia,,"hydrochlorothiazide xr, hydrochlorothiazide123, hydrochlorothiazide\xr, hydrochlorothiazide|xr, hydrochlorothiazide 10mg, hydrochlorothiazide_er, hydrochlorothiazide@2025, hydrochlorothiazide/extended, hydrochlorothiazide, hydrochlorothiazide-er"
+15,atorvastatin ez,,"atorvastatin ezetimibe 500mg, atorvastatin ezetimibe"
+15,amoxicillin cla,,"amoxicillin clavulanate, amoxicillin clavulanate 500mg"
+15,atorvastatin-ez,atorvastatin-ezetimibe,
+15,amlodipine bena,,"amlodipine benazepril 500mg, amlodipine benazepril"
+15,levothyroxine x,levothyroxine xr,
+15,metformin glybu,,"metformin glyburide 500mg, metformin glyburide"
+15,albuterol iprat,,"albuterol ipratropium 500mg, albuterol ipratropium"
+15,atorvastatin/ez,atorvastatin/ezetimibe,
+15,atorvastatin_ez,atorvastatin_ezetimibe,
+15,lisinopril hydr,,"lisinopril hydrochlorothiazide, lisinopril hydrochlorothiazide 500mg"
+16,hydrochlorothiaz,,"hydrochlorothiazide xr, hydrochlorothiazide/extended, hydrochlorothiazide123, hydrochlorothiazide\xr, hydrochlorothiazide, hydrochlorothiazide|xr, hydrochlorothiazide 10mg, hydrochlorothiazide-er, hydrochlorothiazide@2025, hydrochlorothiazide_er"
+16,atorvastatin eze,,"atorvastatin ezetimibe 500mg, atorvastatin ezetimibe"
+16,amlodipine benaz,,"amlodipine benazepril, amlodipine benazepril 500mg"
+16,amoxicillin clav,,"amoxicillin clavulanate, amoxicillin clavulanate 500mg"
+16,lisinopril hydro,,"lisinopril hydrochlorothiazide, lisinopril hydrochlorothiazide 500mg"
+16,metformin glybur,,"metformin glyburide, metformin glyburide 500mg"
+16,albuterol ipratr,,"albuterol ipratropium 500mg, albuterol ipratropium"
+17,hydrochlorothiazi,,"hydrochlorothiazide/extended, hydrochlorothiazide xr, hydrochlorothiazide123, hydrochlorothiazide\xr, hydrochlorothiazide, hydrochlorothiazide@2025, hydrochlorothiazide|xr, hydrochlorothiazide 10mg, hydrochlorothiazide-er, hydrochlorothiazide_er"
+17,atorvastatin ezet,,"atorvastatin ezetimibe 500mg, atorvastatin ezetimibe"
+17,amlodipine benaze,,"amlodipine benazepril, amlodipine benazepril 500mg"
+17,amoxicillin clavu,,"amoxicillin clavulanate, amoxicillin clavulanate 500mg"
+17,lisinopril hydroc,,"lisinopril hydrochlorothiazide, lisinopril hydrochlorothiazide 500mg"
+17,metformin glyburi,,"metformin glyburide, metformin glyburide 500mg"
+17,albuterol ipratro,,"albuterol ipratropium 500mg, albuterol ipratropium"
+18,hydrochlorothiazid,,"hydrochlorothiazide/extended, hydrochlorothiazide xr, hydrochlorothiazide123, hydrochlorothiazide\xr, hydrochlorothiazide, hydrochlorothiazide@2025, hydrochlorothiazide|xr, hydrochlorothiazide 10mg, hydrochlorothiazide-er, hydrochlorothiazide_er"
+18,atorvastatin ezeti,,"atorvastatin ezetimibe 500mg, atorvastatin ezetimibe"
+18,amlodipine benazep,,"amlodipine benazepril, amlodipine benazepril 500mg"
+18,amoxicillin clavul,,"amoxicillin clavulanate, amoxicillin clavulanate 500mg"
+18,lisinopril hydroch,,"lisinopril hydrochlorothiazide, lisinopril hydrochlorothiazide 500mg"
+18,metformin glyburid,,"metformin glyburide, metformin glyburide 500mg"
+18,albuterol ipratrop,,"albuterol ipratropium 500mg, albuterol ipratropium"
+19,hydrochlorothiazide,,"hydrochlorothiazide/extended, hydrochlorothiazide xr, hydrochlorothiazide123, hydrochlorothiazide\xr, hydrochlorothiazide@2025, hydrochlorothiazide|xr, hydrochlorothiazide 10mg, hydrochlorothiazide-er, hydrochlorothiazide_er"
+19,atorvastatin ezetim,,"atorvastatin ezetimibe 500mg, atorvastatin ezetimibe"
+19,amlodipine benazepr,,"amlodipine benazepril, amlodipine benazepril 500mg"
+19,amoxicillin clavula,,"amoxicillin clavulanate, amoxicillin clavulanate 500mg"
+19,lisinopril hydrochl,,"lisinopril hydrochlorothiazide, lisinopril hydrochlorothiazide 500mg"
+19,metformin glyburide,metformin glyburide 500mg,
+19,albuterol ipratropi,,"albuterol ipratropium 500mg, albuterol ipratropium"
+20,hydrochlorothiazide/,hydrochlorothiazide/extended,
+20,hydrochlorothiazide ,,"hydrochlorothiazide xr, hydrochlorothiazide 10mg"
+20,atorvastatin ezetimi,,"atorvastatin ezetimibe 500mg, atorvastatin ezetimibe"
+20,hydrochlorothiazide1,hydrochlorothiazide123,
+20,amlodipine benazepri,,"amlodipine benazepril, amlodipine benazepril 500mg"
+20,hydrochlorothiazide\,hydrochlorothiazide\xr,
+20,amoxicillin clavulan,,"amoxicillin clavulanate, amoxicillin clavulanate 500mg"
+20,hydrochlorothiazide@,hydrochlorothiazide@2025,
+20,hydrochlorothiazide|,hydrochlorothiazide|xr,
+20,hydrochlorothiazide-,hydrochlorothiazide-er,
+20,lisinopril hydrochlo,,"lisinopril hydrochlorothiazide, lisinopril hydrochlorothiazide 500mg"
+20,hydrochlorothiazide_,hydrochlorothiazide_er,
+20,albuterol ipratropiu,,"albuterol ipratropium 500mg, albuterol ipratropium"
+21,hydrochlorothiazide x,hydrochlorothiazide xr,
+21,atorvastatin ezetimib,,"atorvastatin ezetimibe 500mg, atorvastatin ezetimibe"
+21,amoxicillin clavulana,,"amoxicillin clavulanate 500mg, amoxicillin clavulanate"
+21,hydrochlorothiazide 1,hydrochlorothiazide 10mg,
+21,lisinopril hydrochlor,,"lisinopril hydrochlorothiazide, lisinopril hydrochlorothiazide 500mg"
+21,amlodipine benazepril,amlodipine benazepril 500mg,
+21,albuterol ipratropium,albuterol ipratropium 500mg,
+22,atorvastatin ezetimibe,atorvastatin ezetimibe 500mg,
+22,amoxicillin clavulanat,,"amoxicillin clavulanate 500mg, amoxicillin clavulanate"
+22,lisinopril hydrochloro,,"lisinopril hydrochlorothiazide, lisinopril hydrochlorothiazide 500mg"
+23,amoxicillin clavulanate,amoxicillin clavulanate 500mg,
+23,lisinopril hydrochlorot,,"lisinopril hydrochlorothiazide, lisinopril hydrochlorothiazide 500mg"
+24,lisinopril hydrochloroth,,"lisinopril hydrochlorothiazide, lisinopril hydrochlorothiazide 500mg"
+25,lisinopril hydrochlorothi,,"lisinopril hydrochlorothiazide, lisinopril hydrochlorothiazide 500mg"
+26,lisinopril hydrochlorothia,,"lisinopril hydrochlorothiazide, lisinopril hydrochlorothiazide 500mg"
+27,lisinopril hydrochlorothiaz,,"lisinopril hydrochlorothiazide, lisinopril hydrochlorothiazide 500mg"
+28,lisinopril hydrochlorothiazi,,"lisinopril hydrochlorothiazide, lisinopril hydrochlorothiazide 500mg"
+29,lisinopril hydrochlorothiazid,,"lisinopril hydrochlorothiazide, lisinopril hydrochlorothiazide 500mg"
+30,lisinopril hydrochlorothiazide,lisinopril hydrochlorothiazide 500mg,

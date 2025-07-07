@@ -1,13 +1,21 @@
 from collections import defaultdict
 import pandas as pd
 import re
+import os  # ➕ NEW: for handling directories
 
-# Constants
-INPUT_FILE = "Test1.xlsx"
+# === Configuration ===
+TEST_LABEL = "Test5"  
+INPUT_FILE = f"{TEST_LABEL}.xlsx"
 SHEET_NAME = "Sheet1"
-OUTPUT_CSV = "mnoa_output.csv"
-PREPROCESSED_NAMES_CSV = "preprocessed_names.csv"
-PREFIX_DETAIL_CSV = "prefix_resolution_rounds.csv"
+
+# === Dynamic Output Paths ===
+OUTPUT_DIR = f"validation_reports/{TEST_LABEL}"
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+OUTPUT_CSV = f"{OUTPUT_DIR}/mnoa_output.csv"
+PREPROCESSED_NAMES_CSV = f"{OUTPUT_DIR}/preprocessed_names.csv"
+PREFIX_DETAIL_CSV = f"{OUTPUT_DIR}/prefix_resolution_rounds.csv"
+
 
 # Preprocessing function
 def preprocess_names(name_series):
