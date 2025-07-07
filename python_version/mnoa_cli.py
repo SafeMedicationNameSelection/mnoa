@@ -1,12 +1,15 @@
-import pandas as pd
 from collections import defaultdict
+import pandas as pd
 import re
 
+# Constants
 INPUT_FILE = "Test1.xlsx"
 SHEET_NAME = "Sheet1"
 OUTPUT_CSV = "mnoa_output.csv"
 PREPROCESSED_NAMES_CSV = "preprocessed_names.csv"
+PREFIX_DETAIL_CSV = "prefix_resolution_rounds.csv"
 
+# Preprocessing function
 def preprocess_names(name_series):
     """
     Cleans and normalizes medication names according to MNOA preprocessing rules:
@@ -27,6 +30,7 @@ def preprocess_names(name_series):
     )
     return cleaned.tolist()
 
+# Load data function
 def load_med_names(path):
     """
     Loads the Excel input and applies preprocessing to the first column of Sheet1.
@@ -34,6 +38,7 @@ def load_med_names(path):
     df = pd.read_excel(path, sheet_name=SHEET_NAME, engine="openpyxl")
     return preprocess_names(df.iloc[:, 0])
 
+# Main disambiguation algorithm
 def keystroke_disambiguation(names):
     """
     MNOA core algorithm:
@@ -41,12 +46,14 @@ def keystroke_disambiguation(names):
     - Builds a map of names sharing same prefix.
     - If a prefix maps to one name, it's disambiguated.
     - Tracks possible misses and keystroke power (KP).
+    - Additionally records per-prefix disambiguation results to a separate CSV.
     """
     total_names = len(names)
     max_len = max(len(n) for n in names)
     resolved_set = set()
     search_space = names.copy()
     results = []
+    prefix_details = []  # store rows for prefix_resolution_rounds.csv
     previous_misses = None
 
     for k in range(1, max_len + 1):
@@ -61,11 +68,23 @@ def keystroke_disambiguation(names):
         disambiguated = []
         unresolved = []
 
-        for group in prefix_map.values():
+        for prefix, group in prefix_map.items():
             if len(group) == 1:
                 disambiguated.append(group[0])
+                prefix_details.append({
+                    "round": k,
+                    "prefix": prefix,
+                    "disambiguated": group[0],
+                    "unresolved": ""
+                })
             else:
                 unresolved.extend(group)
+                prefix_details.append({
+                    "round": k,
+                    "prefix": prefix,
+                    "disambiguated": "",
+                    "unresolved": ", ".join(group)
+                })
 
         possible_misses = sum(len(group) - 1 for group in prefix_map.values() if len(group) > 1)
         if k == 1:
@@ -98,8 +117,10 @@ def keystroke_disambiguation(names):
             "%KP": percent_KP
         })
 
+    pd.DataFrame(prefix_details).to_csv(PREFIX_DETAIL_CSV, index=False)
     return pd.DataFrame(results)
 
+# Run if script is executed directly
 if __name__ == "__main__":
     print("🔄 Loading medication names...")
     names = load_med_names(INPUT_FILE)
