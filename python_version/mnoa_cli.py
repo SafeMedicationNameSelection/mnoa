@@ -1,76 +1,49 @@
-from collections import defaultdict
-import pandas as pd
-import re
-import os  # ➕ NEW: for handling directories
+import csv
 
-# === Configuration ===
-TEST_LABEL = "Test5"  
-INPUT_FILE = f"{TEST_LABEL}.xlsx"
-SHEET_NAME = "Sheet1"
+# Step 1: Accept pasted input directly from terminal
+import sys
 
-# === Dynamic Output Paths ===
-OUTPUT_DIR = f"validation_reports/{TEST_LABEL}"
-os.makedirs(OUTPUT_DIR, exist_ok=True)
-
-OUTPUT_CSV = f"{OUTPUT_DIR}/mnoa_output.csv"
-PREPROCESSED_NAMES_CSV = f"{OUTPUT_DIR}/preprocessed_names.csv"
-PREFIX_DETAIL_CSV = f"{OUTPUT_DIR}/prefix_resolution_rounds.csv"
+def read_input_from_terminal():
+    print("📥 Paste medication names (one per line). Then press Ctrl+D (on Mac) or Ctrl+Z (on Windows) to finish:")
+    names = sys.stdin.read().splitlines()
+    return [line.strip() for line in names if line.strip()]
 
 
-# Preprocessing function
-def preprocess_names(name_series):
-    """
-    Cleans and normalizes medication names according to MNOA preprocessing rules:
-    - Lowercases all names
-    - Preserves multiple words with one space
-    - Removes leading/multiple spaces
-    - Accepts symbols as regular characters
-    - Removes names with '?' characters
-    - Sorts and deduplicates final list
-    """
-    cleaned = (
-        name_series.astype(str)
-        .str.lower()
-        .apply(lambda s: re.sub(r"\s+", " ", s.strip()))  # normalize spaces
-        .loc[lambda s: ~s.str.contains(r"\?")]             # exclude names with ?
-        .drop_duplicates()
-        .sort_values()
-    )
-    return cleaned.tolist()
+# Step 2: Clean names
+def clean_names(raw_names):
+    cleaned = []
+    for name in raw_names:
+        name = name.strip().lower()
+        name = " ".join(name.split())
+        if "?" in name:
+            continue
+        cleaned.append(name)
+    return sorted(set(cleaned))
 
-# Load data function
-def load_med_names(path):
-    """
-    Loads the Excel input and applies preprocessing to the first column of Sheet1.
-    """
-    df = pd.read_excel(path, sheet_name=SHEET_NAME, engine="openpyxl")
-    return preprocess_names(df.iloc[:, 0])
+# Step 3: Disambiguation logic
+def disambiguate(names):
+    results = []
+    prefix_details = []
 
-# Main disambiguation algorithm
-def keystroke_disambiguation(names):
-    """
-    MNOA core algorithm:
-    - Each round (k) examines prefixes of length k.
-    - Builds a map of names sharing same prefix.
-    - If a prefix maps to one name, it's disambiguated.
-    - Tracks possible misses and keystroke power (KP).
-    - Additionally records per-prefix disambiguation results to a separate CSV.
-    """
+    if not names:
+        print("❗Error: No names to disambiguate.")
+        return results, prefix_details
+
     total_names = len(names)
     max_len = max(len(n) for n in names)
     resolved_set = set()
     search_space = names.copy()
-    results = []
-    prefix_details = []  # store rows for prefix_resolution_rounds.csv
     previous_misses = None
 
     for k in range(1, max_len + 1):
-        prefix_map = defaultdict(list)
+        prefix_map = {}
         names_by_length = [n for n in search_space if len(n) == k]
-        remaining_names = [n for n in search_space if len(n) > k]
+        remaining_names = [n for n in search_space if len(n) >= k]  # ✅ FIXED
 
         for name in remaining_names:
             prefix = name[:k]
+            if prefix not in prefix_map:
+                prefix_map[prefix] = []
             prefix_map[prefix].append(name)
 
         disambiguated = []
@@ -95,23 +68,21 @@ def keystroke_disambiguation(names):
                 })
 
         possible_misses = sum(len(group) - 1 for group in prefix_map.values() if len(group) > 1)
-        if k == 1:
-            KPraw = 0
-            percent_KP = 0.0
-        else:
-            KPraw = previous_misses - possible_misses
-            percent_KP = round(KPraw / total_names, 4)
+        KPraw = 0 if k == 1 else previous_misses - possible_misses
+        percent_KP = 0.0 if k == 1 else round(KPraw / total_names, 4)
         previous_misses = possible_misses
 
         resolved_set.update(disambiguated)
         search_space = list(set(remaining_names) - set(disambiguated))
 
+        # Print round summary to terminal
         print(f"\n--- Round {k} ---")
-        print(f"Prefixes: {len(prefix_map)}")
-        print(f"Search space size: {len(remaining_names)}")
-        print(f"Disambiguated ({len(disambiguated)}): {disambiguated}")
-        print(f"Unresolved ({len(unresolved)}): {unresolved}")
+        print(f"Prefixes tested: {len(prefix_map)}")
+        print(f"Names with length = {k}: {len(names_by_length)}")
+        print(f"Disambiguated this round: {len(disambiguated)}")
+        print(f"Remaining unresolved: {len(unresolved)}")
         print(f"Possible misses: {possible_misses}")
+        print(f"KPraw: {KPraw}, %KP: {percent_KP * 100:.2f}%")
 
         results.append({
             "characters": k,
@@ -125,23 +96,47 @@ def keystroke_disambiguation(names):
             "%KP": percent_KP
         })
 
-    pd.DataFrame(prefix_details).to_csv(PREFIX_DETAIL_CSV, index=False)
-    return pd.DataFrame(results)
+        if not unresolved:
+            break
 
-# Run if script is executed directly
+    return results, prefix_details
+
+# Step 4: Save CSVs
+def save_to_csv(results, prefix_data, cleaned_names, output_dir=".", prefix_file="prefix_resolution_rounds.csv", names_file="preprocessed_names.csv", result_file="mnoa_output.csv"):
+    if results:
+        with open(f"{output_dir}/{result_file}", "w", newline="") as f:
+            writer = csv.DictWriter(f, fieldnames=results[0].keys())
+            writer.writeheader()
+            writer.writerows(results)
+
+    if prefix_data:
+        with open(f"{output_dir}/{prefix_file}", "w", newline="") as f:
+            writer = csv.DictWriter(f, fieldnames=prefix_data[0].keys())
+            writer.writeheader()
+            writer.writerows(prefix_data)
+
+    if cleaned_names:
+        with open(f"{output_dir}/{names_file}", "w", newline="") as f:
+            writer = csv.writer(f)
+            writer.writerow(["name"])
+            for name in cleaned_names:
+                writer.writerow([name])
+
+# MAIN
 if __name__ == "__main__":
-    print("🔄 Loading medication names...")
-    names = load_med_names(INPUT_FILE)
+    print("🔹 Starting MNOA Terminal Mode...")
 
-    print(f"📋 Preview of first 20 preprocessed names:\n{names[:20]}")
-    print(f"💾 Saving full preprocessed list to {PREPROCESSED_NAMES_CSV}")
-    pd.Series(names).to_csv(PREPROCESSED_NAMES_CSV, index=False, header=["name"])
+    raw = read_input_from_terminal()
+    print(f"\nOriginal names ({len(raw)}): {raw}")
 
-    print("⚙️  Running keystroke disambiguation analysis...")
-    df = keystroke_disambiguation(names)
+    print("\n🔹 Cleaning names...")
+    cleaned = clean_names(raw)
+    print(f"Cleaned names ({len(cleaned)}): {cleaned}")
 
-    print(f"💾 Saving output to {OUTPUT_CSV}...")
-    df.to_csv(OUTPUT_CSV, index=False)
+    print("\n🔹 Running disambiguation...")
+    results, prefix_data = disambiguate(cleaned)
 
-    print("✅ Done. Preview of first few rows:")
-    print(df.head())
+    print("\n🔹 Saving CSV outputs...")
+    save_to_csv(results, prefix_data, cleaned)
+
+    print("\n✅ Done.")
