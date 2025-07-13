@@ -4,7 +4,7 @@ import csv
 import sys
 
 def read_input_from_terminal():
-    print("📥 Paste medication names (one per line). Then press Ctrl+D (on Mac) or Ctrl+Z (on Windows) to finish:")
+    print("Paste medication names (one per line). Then press Ctrl+D (on Mac) or Ctrl+Z (on Windows) to finish:")
     names = sys.stdin.read().splitlines()
     return [line.strip() for line in names if line.strip()]
 
