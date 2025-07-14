@@ -36,9 +36,9 @@ def clean_names(raw_names):
         name = name.strip().lower()             # Normalize: lowercase and trim
         name = " ".join(name.split())           # Replace multiple spaces with a single space
         if "?" in name:
-            continue                            # Exclude questionable entries
+            continue                            # Exclude entries with question marks
         cleaned.append(name)
-    return sorted(set(cleaned))                 # Deduplicate and sort alphabetically
+    return sorted(set(cleaned))                 # Deduplicate with set and sort alphabetically
 
 
 # === Step 3: Core disambiguation logic ===
@@ -54,7 +54,7 @@ def disambiguate(names):
     Performs round-wise prefix-based disambiguation of medication names.
     At each round 'k', the algorithm:
     - Builds a prefix map of the first k characters
-    - Identifies unique prefixes that map to a single name (resolved)
+    - Identifies unique prefixes that map to a single complete name (resolved)
     - Tracks unresolved names and possible misses
     - Computes Keystroke Power (KP) metrics
 
@@ -69,13 +69,13 @@ def disambiguate(names):
 
     if not names:
         print("❗Error: No names to disambiguate.")  # ❌ Backend version will remove this print
-        return results, prefix_details
+        return 
 
     total_names = len(names)                             # Total number of input names
     max_len = max(len(n) for n in names)                 # Longest name determines max prefix length
     resolved_set = set()                                 # Keeps track of names already disambiguated
     search_space = names.copy()                          # Active pool of names still unresolved
-    previous_misses = None                               # To calculate improvement (KP) between rounds
+    previous_misses = total_names - 1                    # To calculate improvement (KP) between rounds
 
     # Iterate from prefix length k = 1 up to the longest name
     for k in range(1, max_len + 1):
@@ -87,10 +87,10 @@ def disambiguate(names):
 
         # Build prefix map: prefix → [list of names sharing it]
         for name in remaining_names:
-            prefix = name[:k]
+            prefix = name[:k] # Slices the first k characters to get a prefix from every name
             if prefix not in prefix_map:
                 prefix_map[prefix] = []
-            prefix_map[prefix].append(name)
+            prefix_map[prefix].append(name) 
 
         disambiguated = []  # Names uniquely resolved this round
         unresolved = []     # Names that are still ambiguous
