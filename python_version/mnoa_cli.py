@@ -1,29 +1,63 @@
-import csv
+import csv  # Standard library module for reading and writing CSV files
+import sys  # Provides access to system-specific parameters and functions (e.g., stdin)
 
-# Step 1: Accept pasted input directly from terminal
-import sys
-
+# === Step 1: Read raw input from terminal ===
 def read_input_from_terminal():
+    """
+    Prompts the user to input medication names via the terminal, one per line.
+    Input is terminated by Ctrl+D (Unix/macOS) or Ctrl+Z (Windows).
+    
+    Returns:
+        List[str]: A list of non-empty, whitespace-trimmed medication names.
+    """
     print("Paste medication names (one per line). Then press Ctrl+D (on Mac) or Ctrl+Z (on Windows) to finish:")
-    names = sys.stdin.read().splitlines()
-    return [line.strip() for line in names if line.strip()]
+    names = sys.stdin.read().splitlines()  # Reads multi-line input and splits into lines
+    return [line.strip() for line in names if line.strip()]  # Trims whitespace and removes empty lines
 
 
-# Step 2: Clean names
+# === Step 2: Clean input names for standardization ===
 def clean_names(raw_names):
+    """
+    Cleans and normalizes raw input names.
+    - Converts to lowercase
+    - Removes excess internal whitespace
+    - Excludes entries containing '?' (potential invalid entries)
+    - Removes duplicates and sorts list
+
+    Args:
+        raw_names (List[str]): Unprocessed medication names
+
+    Returns:
+        List[str]: Cleaned, sorted, and deduplicated list of medication names
+    """
     cleaned = []
     for name in raw_names:
-        name = name.strip().lower()
-        name = " ".join(name.split())
+        name = name.strip().lower()             # Normalize: lowercase and trim
+        name = " ".join(name.split())           # Replace multiple spaces with a single space
         if "?" in name:
-            continue
+            continue                            # Exclude questionable entries
         cleaned.append(name)
-    return sorted(set(cleaned))
+    return sorted(set(cleaned))                 # Deduplicate and sort alphabetically
 
-# Step 3: Disambiguation logic
+
+# === Step 3: Core disambiguation logic ===
 def disambiguate(names):
-    results = []
-    prefix_details = []
+    """
+    Performs round-wise prefix-based disambiguation of medication names.
+    At each round 'k', the algorithm:
+    - Builds a prefix map of the first k characters
+    - Identifies unique prefixes that map to a single name (resolved)
+    - Tracks unresolved names and possible misses
+    - Computes Keystroke Power (KP) metrics
+
+    Args:
+        names (List[str]): Preprocessed and sorted medication names
+
+    Returns:
+        Tuple[List[Dict], List[Dict]]: Summary metrics per round and detailed prefix disambiguation logs
+    """
+    results = []          # High-level round summaries
+    prefix_details = []   # Detailed per-prefix resolution records
 
     if not names:
         print("❗Error: No names to disambiguate.")
@@ -33,24 +67,26 @@ def disambiguate(names):
     max_len = max(len(n) for n in names)
     resolved_set = set()
     search_space = names.copy()
-    previous_misses = None
+    previous_misses = None  # For calculating KP change
 
     for k in range(1, max_len + 1):
-        prefix_map = {}
+        prefix_map = {}  # Maps k-character prefixes to full name groups
         names_by_length = [n for n in search_space if len(n) == k]
-        remaining_names = [n for n in search_space if len(n) >= k]  # ✅ FIXED
+        remaining_names = [n for n in search_space if len(n) >= k]  # Keeps only names ≥ k
 
+        # Build prefix mapping
         for name in remaining_names:
             prefix = name[:k]
             if prefix not in prefix_map:
                 prefix_map[prefix] = []
             prefix_map[prefix].append(name)
 
-        disambiguated = []
-        unresolved = []
+        disambiguated = []  # Names resolved this round
+        unresolved = []     # Still ambiguous
 
         for prefix, group in prefix_map.items():
             if len(group) == 1:
+                # Prefix maps to one name => resolved
                 disambiguated.append(group[0])
                 prefix_details.append({
                     "round": k,
@@ -59,6 +95,7 @@ def disambiguate(names):
                     "unresolved": ""
                 })
             else:
+                # Prefix maps to multiple => unresolved
                 unresolved.extend(group)
                 prefix_details.append({
                     "round": k,
@@ -67,15 +104,16 @@ def disambiguate(names):
                     "unresolved": ", ".join(group)
                 })
 
+        # Keystroke Power (KP) calculations
         possible_misses = sum(len(group) - 1 for group in prefix_map.values() if len(group) > 1)
         KPraw = 0 if k == 1 else previous_misses - possible_misses
         percent_KP = 0.0 if k == 1 else round(KPraw / total_names, 4)
         previous_misses = possible_misses
 
         resolved_set.update(disambiguated)
-        search_space = list(set(remaining_names) - set(disambiguated))
+        search_space = list(set(remaining_names) - set(disambiguated))  # Filter resolved names from next round
 
-        # Print round summary to terminal
+        # Print summary for the current round
         print(f"\n--- Round {k} ---")
         print(f"Prefixes tested: {len(prefix_map)}")
         print(f"Names with length = {k}: {len(names_by_length)}")
@@ -84,6 +122,7 @@ def disambiguate(names):
         print(f"Possible misses: {possible_misses}")
         print(f"KPraw: {KPraw}, %KP: {percent_KP * 100:.2f}%")
 
+        # Append round metrics
         results.append({
             "characters": k,
             "search_terms": len(prefix_map),
@@ -97,12 +136,33 @@ def disambiguate(names):
         })
 
         if not unresolved:
-            break
+            break  # All names resolved
 
     return results, prefix_details
 
-# Step 4: Save CSVs
-def save_to_csv(results, prefix_data, cleaned_names, output_dir=".", prefix_file="prefix_resolution_rounds.csv", names_file="preprocessed_names.csv", result_file="mnoa_output.csv"):
+
+# === Step 4: Export all results as CSVs ===
+def save_to_csv(
+    results,
+    prefix_data,
+    cleaned_names,
+    output_dir=".",
+    prefix_file="prefix_resolution_rounds.csv",
+    names_file="preprocessed_names.csv",
+    result_file="mnoa_output.csv"
+):
+    """
+    Saves all outputs to CSV files.
+
+    Args:
+        results (List[Dict]): Round-wise summary statistics
+        prefix_data (List[Dict]): Prefix-level disambiguation logs
+        cleaned_names (List[str]): Cleaned medication names
+        output_dir (str): Output directory path
+        prefix_file (str): Filename for prefix resolution details
+        names_file (str): Filename for cleaned names
+        result_file (str): Filename for round summary output
+    """
     if results:
         with open(f"{output_dir}/{result_file}", "w", newline="") as f:
             writer = csv.DictWriter(f, fieldnames=results[0].keys())
@@ -122,7 +182,8 @@ def save_to_csv(results, prefix_data, cleaned_names, output_dir=".", prefix_file
             for name in cleaned_names:
                 writer.writerow([name])
 
-# MAIN
+
+# === MAIN EXECUTION ===
 if __name__ == "__main__":
     print("🔹 Starting MNOA Terminal Mode...")
 
