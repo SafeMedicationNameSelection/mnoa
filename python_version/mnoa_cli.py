@@ -47,13 +47,7 @@ def clean_names(raw_names):
 # - To make it fully backend-friendly:
 #   🔸 Remove all print() statements (used for terminal testing).
 # - Inputs and outputs are already structured as clean Python data (lists/dicts). 
-
-# === Step 3: Core disambiguation logic ===
-# ✅ BACKEND READY (Minor edits needed):
-# - The logic is backend-safe and modular.
-# - To make it fully backend-friendly:
-#   🔸 Remove all print() statements (used for terminal testing).
-# - Inputs and outputs are already structured as clean Python data (lists/dicts). 
+ 
 
 def disambiguate(names):
     """
