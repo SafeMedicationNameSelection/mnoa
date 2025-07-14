@@ -48,6 +48,13 @@ def clean_names(raw_names):
 #   🔸 Remove all print() statements (used for terminal testing).
 # - Inputs and outputs are already structured as clean Python data (lists/dicts). 
 
+# === Step 3: Core disambiguation logic ===
+# ✅ BACKEND READY (Minor edits needed):
+# - The logic is backend-safe and modular.
+# - To make it fully backend-friendly:
+#   🔸 Remove all print() statements (used for terminal testing).
+# - Inputs and outputs are already structured as clean Python data (lists/dicts). 
+
 def disambiguate(names):
     """
     Performs round-wise prefix-based disambiguation of medication names.
@@ -63,37 +70,41 @@ def disambiguate(names):
     Returns:
         Tuple[List[Dict], List[Dict]]: Summary metrics per round and detailed prefix disambiguation logs
     """
-    results = []          # High-level round summaries
-    prefix_details = []   # Detailed per-prefix resolution records
+    results = []          # Stores summary metrics for each round
+    prefix_details = []   # Stores detailed log of which prefixes resolved or failed
 
     if not names:
-        print("❗Error: No names to disambiguate.")
+        print("❗Error: No names to disambiguate.")  # ❌ Backend version will remove this print
         return results, prefix_details
 
-    total_names = len(names)
-    max_len = max(len(n) for n in names)
-    resolved_set = set()
-    search_space = names.copy()
-    previous_misses = None  # For calculating KP change
+    total_names = len(names)                             # Total number of input names
+    max_len = max(len(n) for n in names)                 # Longest name determines max prefix length
+    resolved_set = set()                                 # Keeps track of names already disambiguated
+    search_space = names.copy()                          # Active pool of names still unresolved
+    previous_misses = None                               # To calculate improvement (KP) between rounds
 
+    # Iterate from prefix length k = 1 up to the longest name
     for k in range(1, max_len + 1):
-        prefix_map = {}  # Maps k-character prefixes to full name groups
-        names_by_length = [n for n in search_space if len(n) == k]
-        remaining_names = [n for n in search_space if len(n) >= k]  # Keeps only names ≥ k
+        prefix_map = {}  # Maps each prefix to a list of full names that start with that prefix
 
-        # Build prefix mapping
+        # Categorize names by length
+        names_by_length = [n for n in search_space if len(n) == k]   # Names exactly k characters
+        remaining_names = [n for n in search_space if len(n) >= k]   # Names long enough to test prefix
+
+        # Build prefix map: prefix → [list of names sharing it]
         for name in remaining_names:
             prefix = name[:k]
             if prefix not in prefix_map:
                 prefix_map[prefix] = []
             prefix_map[prefix].append(name)
 
-        disambiguated = []  # Names resolved this round
-        unresolved = []     # Still ambiguous
+        disambiguated = []  # Names uniquely resolved this round
+        unresolved = []     # Names that are still ambiguous
 
+        # Process each prefix group
         for prefix, group in prefix_map.items():
             if len(group) == 1:
-                # Prefix maps to one name => resolved
+                # ✅ Unique match – resolved
                 disambiguated.append(group[0])
                 prefix_details.append({
                     "round": k,
@@ -102,7 +113,7 @@ def disambiguate(names):
                     "unresolved": ""
                 })
             else:
-                # Prefix maps to multiple => unresolved
+                # ❌ Ambiguous – unresolved
                 unresolved.extend(group)
                 prefix_details.append({
                     "round": k,
@@ -111,16 +122,17 @@ def disambiguate(names):
                     "unresolved": ", ".join(group)
                 })
 
-        # Keystroke Power (KP) calculations
+        # Compute Keystroke Power (KP) metrics
         possible_misses = sum(len(group) - 1 for group in prefix_map.values() if len(group) > 1)
         KPraw = 0 if k == 1 else previous_misses - possible_misses
         percent_KP = 0.0 if k == 1 else round(KPraw / total_names, 4)
         previous_misses = possible_misses
 
+        # Update resolved names and shrink the search space
         resolved_set.update(disambiguated)
-        search_space = list(set(remaining_names) - set(disambiguated))  # Filter resolved names from next round
+        search_space = list(set(remaining_names) - set(disambiguated))
 
-        # Print summary for the current round
+        # ❗Terminal-only logging – will be removed in backend version
         print(f"\n--- Round {k} ---")
         print(f"Prefixes tested: {len(prefix_map)}")
         print(f"Names with length = {k}: {len(names_by_length)}")
@@ -129,7 +141,7 @@ def disambiguate(names):
         print(f"Possible misses: {possible_misses}")
         print(f"KPraw: {KPraw}, %KP: {percent_KP * 100:.2f}%")
 
-        # Append round metrics
+        # Save round-level summary
         results.append({
             "characters": k,
             "search_terms": len(prefix_map),
@@ -143,9 +155,10 @@ def disambiguate(names):
         })
 
         if not unresolved:
-            break  # All names resolved
+            break  # ✅ All names resolved – stop loop early
 
-    return results, prefix_details
+    return results, prefix_details  # Return round summaries and detailed prefix logs
+
 
 
 # === Step 4: Export all results as CSVs ===
