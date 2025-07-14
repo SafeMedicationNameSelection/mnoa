@@ -2,6 +2,7 @@ import csv  # Standard library module for reading and writing CSV files
 import sys  # Provides access to system-specific parameters and functions (e.g., stdin)
 
 # === Step 1: Read raw input from terminal ===
+# ⚠️ TESTING ONLY: This function is used only for manual testing in terminal.
 def read_input_from_terminal():
     """
     Prompts the user to input medication names via the terminal, one per line.
@@ -41,6 +42,12 @@ def clean_names(raw_names):
 
 
 # === Step 3: Core disambiguation logic ===
+# ✅ BACKEND READY (Minor edits needed):
+# - The logic is backend-safe and modular.
+# - To make it fully backend-friendly:
+#   🔸 Remove all print() statements (used for terminal testing).
+# - Inputs and outputs are already structured as clean Python data (lists/dicts). 
+
 def disambiguate(names):
     """
     Performs round-wise prefix-based disambiguation of medication names.
@@ -142,6 +149,7 @@ def disambiguate(names):
 
 
 # === Step 4: Export all results as CSVs ===
+# ⚠️ TESTING ONLY: Final app will not write CSVs — this is just for debug/output inspection.
 def save_to_csv(
     results,
     prefix_data,
@@ -184,6 +192,7 @@ def save_to_csv(
 
 
 # === MAIN EXECUTION ===
+⚠️ TESTING ONLY: This block is for running the script manually in terminal.
 if __name__ == "__main__":
     print("🔹 Starting MNOA Terminal Mode...")
 
