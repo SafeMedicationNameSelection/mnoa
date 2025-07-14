@@ -6,7 +6,7 @@ import sys  # Provides access to system-specific parameters and functions (e.g.,
 def read_input_from_terminal():
     """
     Prompts the user to input medication names via the terminal, one per line.
-    Input is terminated by Ctrl+D (Unix/macOS) or Ctrl+Z (Windows).
+    Input is terminated by Ctrl+D (macOS) or Ctrl+Z (Windows).
     
     Returns:
         List[str]: A list of non-empty, whitespace-trimmed medication names.
@@ -192,7 +192,7 @@ def save_to_csv(
 
 
 # === MAIN EXECUTION ===
-⚠️ TESTING ONLY: This block is for running the script manually in terminal.
+# ⚠️ TESTING ONLY: This block is for running the script manually in terminal.
 if __name__ == "__main__":
     print("🔹 Starting MNOA Terminal Mode...")
 
