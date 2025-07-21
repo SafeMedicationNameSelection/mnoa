@@ -1,357 +1,84 @@
 round,prefix,disambiguated,unresolved
-1,a,,"acetaminophen, acyclovir, advair, albuterol, alendronate, alfuzosin, allopurinol, alprazolam, amitriptyline, amlodipine, amoxicillin, apixaban, aspirin, atenolol, atomoxetine, atorvastatin, atripla, augmentin, avalide, azithromycin"
-1,b,,"baclofen, benicar, benztropine, betamethasone, bevacizumab, bisoprolol, buprenorphine, butalbital"
-1,c,,"caffeine, canagliflozin, carbidopa, carvedilol, cefdinir, cefuroxime, celecoxib, cephalexin, chlorhexidine, chlorpheniramine, cinacalcet, ciprofloxacin, citalopram, clarithromycin, clavulanic acid, clindamycin, clonazepam, clopidogrel, clotrimazole, clozapine, colchicine, conjugated estrogens, cyclosporin"
-1,d,,"dabigatran, dalteparin, denosumab, dextromethorphan, diazepam, diclofenac, dicyclomine, diphenhydramine, donepezil, doxazosin, doxycycline, drospirenone, dutasteride"
-1,e,,"efavirenz, eletriptan, emtricitabine, enalapril, enoxaparin, entacapone, epoetin alfa, escitalopram, esomeprazole, eszopiclone, etanercept, ethinyl estradiol, ezetimibe"
-1,f,,"famotidine, fenofibrate, fentanyl, ferrous sulfate, finasteride, fingolimod, fioricet, fluconazole, fluoxetine, fluticasone, fluticasone propionate, fluvoxamine, furosemide"
-1,g,,"gabapentin, gemfibrozil, glimepiride, glipizide, glyburide, granisetron, guaifenesin"
-1,h,,"haloperidol, heparin sodium, hydralazine, hydrochlorothiazide, hydrocodone, hydrocortisone, hydroxychloroquine, hyzaar"
-1,i,,"ibandronate, ibuprofen, imipramine, infliximab, insulin aspart, insulin detemir, insulin glargine, insulin isophane, insulin lispro, ipratropium, irbesartan, isosorbide mononitrate"
-1,k,ketoconazole,
-1,l,,"lactulose, lamotrigine, lansoprazole, levetiracetam, levodopa, levofloxacin, levothyroxine, lidocaine, liraglutide, lisdexamfetamine, lisinopril, lorazepam, losartan, lotrisone, lovastatin"
-1,m,,"meloxicam, memantine, metformin, methadone, methocarbamol, methotrexate, methylphenidate, metoclopramide, metoprolol, metronidazole, montelukast, moxifloxacin, mupirocin"
-1,n,,"nabumetone, naloxone, naproxen, niacin, night time, nitrofurantoin, nitroglycerin, nortriptyline"
-1,o,,"olanzapine, olmesartan, omalizumab, omega-3 fatty acids, omeprazole, ondansetron, oseltamivir, oxycodone"
-1,p,,"pantoprazole, paroxetine, pemetrexed, penicillin, percocet, perindopril, phenazopyridine, phenytoin, pioglitazone, pravastatin, prednisolone, prednisone, pregabalin"
-1,q,quetiapine,
-1,r,,"rabeprazole, raloxifene, raltegravir, ramipril, ranitidine, risedronate, risperidone, rivaroxaban, robitussin, ropinirole, rosuvastatin"
-1,s,,"salmeterol, senna, sertraline, sevelamer, sildenafil, simvastatin, sitagliptin, sofosbuvir, solifenacin, spironolactone, stalevo 50, suboxone, sumatriptan"
-1,t,,"tadalafil, temazepam, tenofovir, terazosin, tetracycline, tiotropium, tizanidine, tramadol, trastuzumab, trazodone, triamcinolone, triamterene"
-1,u,ustekinumab,
-1,v,,"valganciclovir, valproate sodium, vardenafil, venlafaxine, vicodin"
-1,w,warfarin,
-1,y,yaz,
-1,z,,"zaleplon, zoledronic acid, zolmitriptan, zolpidem"
-2,ni,,"nitrofurantoin, niacin, nitroglycerin, night time"
-2,az,azithromycin,
-2,me,,"metronidazole, methotrexate, meloxicam, metoprolol, methylphenidate, metformin, methocarbamol, metoclopramide, memantine, methadone"
-2,hy,,"hydrochlorothiazide, hydralazine, hydrocortisone, hydroxychloroquine, hydrocodone, hyzaar"
-2,es,,"escitalopram, eszopiclone, esomeprazole"
-2,gr,granisetron,
-2,ef,efavirenz,
-2,sp,spironolactone,
-2,ac,,"acetaminophen, acyclovir"
-2,se,,"sertraline, sevelamer, senna"
-2,fe,,"fentanyl, fenofibrate, ferrous sulfate"
-2,gl,,"glyburide, glipizide, glimepiride"
-2,in,,"insulin glargine, insulin detemir, insulin isophane, infliximab, insulin aspart, insulin lispro"
-2,si,,"sitagliptin, sildenafil, simvastatin"
-2,is,isosorbide mononitrate,
-2,ca,,"carbidopa, carvedilol, canagliflozin, caffeine"
-2,cl,,"clotrimazole, clozapine, clonazepam, clarithromycin, clindamycin, clopidogrel, clavulanic acid"
-2,di,,"diclofenac, diazepam, diphenhydramine, dicyclomine"
-2,ph,,"phenytoin, phenazopyridine"
-2,so,,"sofosbuvir, solifenacin"
-2,le,,"levodopa, levetiracetam, levothyroxine, levofloxacin"
-2,vi,vicodin,
-2,om,,"omeprazole, omalizumab, omega-3 fatty acids"
-2,dr,drospirenone,
-2,zo,,"zoledronic acid, zolmitriptan, zolpidem"
-2,he,heparin sodium,
-2,ve,venlafaxine,
-2,be,,"betamethasone, benicar, benztropine, bevacizumab"
-2,ga,gabapentin,
-2,ba,baclofen,
-2,pe,,"penicillin, percocet, pemetrexed, perindopril"
-2,al,,"alprazolam, albuterol, allopurinol, alfuzosin, alendronate"
-2,ti,,"tizanidine, tiotropium"
-2,pr,,"pravastatin, prednisone, pregabalin, prednisolone"
-2,du,dutasteride,
-2,en,,"entacapone, enalapril, enoxaparin"
-2,pi,pioglitazone,
-2,va,,"vardenafil, valproate sodium, valganciclovir"
+1,!,!fluticasone,
+1,#,#fluticasone#,
+1,(,(ferrous sulfate),
+1,*,**heparin sodium**,
+1,1,123hyzaar4,
+1,<,<heparin><sodium>,
+1,[,[ezetimibe],
+1,a,,"advair, aug mentin"
+1,b,benicar,
+1,c,conjugated estrogens,
+1,e,,"ethinyl estradiol, ezetimibe, ezetimibe[], ezetimibe{}"
+1,f,,"famotidine, fenofibrate, fent-anyl, ferrous sulfate, ferrous""sulfate"", ferrous'sulfate', ferrous,sulfate, ferrous-sulfate, ferrous:sulfate, ferrous;sulfate, ferrous_sulfate, ferrous~sulfate, fioricet, fioricet(), fluticasone propionate, fluticasone@propionate"
+1,h,,"heparin sodium, heparin&&sodium, heparin.sodium, heparin/sodium, heparin\sodium, heparin^sodium, heparinsodium&, heparin|sodium, hyzaar"
+1,l,lotrisone,
+1,n,night time,
+1,{,{exetimibe},
+2,he,,"heparin/sodium, heparin|sodium, heparin\sodium, heparin sodium, heparinsodium&, heparin^sodium, heparin.sodium, heparin&&sodium"
+2,fe,,"ferrous_sulfate, ferrous,sulfate, ferrous:sulfate, ferrous;sulfate, fent-anyl, ferrous sulfate, fenofibrate, ferrous'sulfate', ferrous-sulfate, ferrous""sulfate"", ferrous~sulfate"
+2,ez,,"ezetimibe{}, ezetimibe, ezetimibe[]"
+2,hy,hyzaar,
 2,ad,advair,
-2,na,,"naproxen, naloxone, nabumetone"
-2,ro,,"robitussin, ropinirole, rosuvastatin"
-2,te,,"tenofovir, terazosin, tetracycline, temazepam"
-2,ce,,"cefdinir, celecoxib, cefuroxime, cephalexin"
-2,ra,,"raltegravir, ranitidine, rabeprazole, ramipril, raloxifene"
-2,fi,,"finasteride, fioricet, fingolimod"
-2,em,emtricitabine,
-2,ez,ezetimibe,
-2,mo,,"moxifloxacin, montelukast"
-2,et,,"etanercept, ethinyl estradiol"
-2,ge,gemfibrozil,
-2,sa,salmeterol,
-2,da,,"dalteparin, dabigatran"
-2,do,,"doxycycline, doxazosin, donepezil"
-2,ib,,"ibuprofen, ibandronate"
-2,pa,,"paroxetine, pantoprazole"
-2,lo,,"lotrisone, lovastatin, lorazepam, losartan"
-2,ip,ipratropium,
-2,fl,,"fluconazole, fluoxetine, fluvoxamine, fluticasone, fluticasone propionate"
-2,bu,,"buprenorphine, butalbital"
-2,la,,"lamotrigine, lansoprazole, lactulose"
-2,ri,,"risedronate, risperidone, rivaroxaban"
-2,ci,,"citalopram, cinacalcet, ciprofloxacin"
-2,am,,"amoxicillin, amlodipine, amitriptyline"
-2,as,aspirin,
-2,su,,"suboxone, sumatriptan"
-2,tr,,"triamcinolone, trastuzumab, triamterene, trazodone, tramadol"
-2,no,nortriptyline,
-2,ox,oxycodone,
-2,im,imipramine,
-2,el,eletriptan,
-2,li,,"lidocaine, lisinopril, lisdexamfetamine, liraglutide"
-2,au,augmentin,
-2,ha,haloperidol,
-2,ir,irbesartan,
-2,gu,guaifenesin,
-2,at,,"atripla, atorvastatin, atomoxetine, atenolol"
-2,mu,mupirocin,
-2,za,zaleplon,
+2,et,ethinyl estradiol,
+2,fl,,"fluticasone@propionate, fluticasone propionate"
+2,fi,,"fioricet, fioricet()"
 2,fa,famotidine,
-2,ch,,"chlorhexidine, chlorpheniramine"
-2,av,avalide,
-2,ep,epoetin alfa,
-2,bi,bisoprolol,
-2,co,,"colchicine, conjugated estrogens"
-2,st,stalevo 50,
-2,de,,"dextromethorphan, denosumab"
-2,ol,,"olmesartan, olanzapine"
-2,ap,apixaban,
-2,cy,cyclosporin,
-2,ta,tadalafil,
-2,on,ondansetron,
-2,fu,furosemide,
-2,os,oseltamivir,
-3,nit,,"nitrofurantoin, nitroglycerin"
-3,met,,"metronidazole, methotrexate, metoprolol, methylphenidate, metformin, methocarbamol, metoclopramide, methadone"
-3,hyd,,"hydrochlorothiazide, hydralazine, hydrocortisone, hydroxychloroquine, hydrocodone"
-3,esc,escitalopram,
-3,ace,acetaminophen,
-3,ser,sertraline,
-3,fen,,"fentanyl, fenofibrate"
-3,gly,glyburide,
-3,ins,,"insulin glargine, insulin detemir, insulin isophane, insulin aspart, insulin lispro"
-3,sit,sitagliptin,
-3,clo,,"clotrimazole, clozapine, clonazepam, clopidogrel"
-3,car,,"carbidopa, carvedilol"
-3,dic,,"diclofenac, dicyclomine"
-3,phe,,"phenytoin, phenazopyridine"
-3,sof,sofosbuvir,
-3,lev,,"levodopa, levetiracetam, levothyroxine, levofloxacin"
-3,ome,,"omeprazole, omega-3 fatty acids"
-3,zol,,"zoledronic acid, zolmitriptan, zolpidem"
-3,bet,betamethasone,
-3,sil,sildenafil,
-3,pen,penicillin,
-3,alp,alprazolam,
-3,tiz,tizanidine,
-3,pra,pravastatin,
-3,ent,entacapone,
-3,ena,enalapril,
-3,alb,albuterol,
-3,var,vardenafil,
-3,nap,naproxen,
-3,rob,robitussin,
-3,ten,tenofovir,
-3,nia,niacin,
-3,cef,,"cefdinir, cefuroxime"
-3,ral,,"raltegravir, raloxifene"
-3,fin,,"finasteride, fingolimod"
-3,ter,terazosin,
-3,all,allopurinol,
-3,mox,moxifloxacin,
-3,pre,,"prednisone, pregabalin, prednisolone"
-3,per,,"percocet, perindopril"
-3,eta,etanercept,
-3,fer,ferrous sulfate,
-3,mel,meloxicam,
-3,ran,ranitidine,
-3,dal,dalteparin,
-3,dox,,"doxycycline, doxazosin"
-3,dia,diazepam,
-3,ibu,ibuprofen,
-3,nal,naloxone,
-3,par,paroxetine,
-3,lot,lotrisone,
-3,sev,sevelamer,
-3,flu,,"fluconazole, fluoxetine, fluvoxamine, fluticasone, fluticasone propionate"
-3,gli,,"glipizide, glimepiride"
-3,bup,buprenorphine,
-3,lam,lamotrigine,
-3,eno,enoxaparin,
-3,eth,ethinyl estradiol,
-3,ris,,"risedronate, risperidone"
-3,cit,citalopram,
-3,amo,amoxicillin,
-3,cin,cinacalcet,
-3,dab,dabigatran,
-3,sub,suboxone,
-3,val,,"valproate sodium, valganciclovir"
-3,pem,pemetrexed,
-3,tet,tetracycline,
-3,lov,lovastatin,
-3,oma,omalizumab,
-3,fio,fioricet,
-3,mon,montelukast,
-3,cla,,"clavulanic acid, clarithromycin"
-3,rab,rabeprazole,
-3,cel,celecoxib,
-3,lor,lorazepam,
-3,lid,lidocaine,
-3,dip,diphenhydramine,
-3,esz,eszopiclone,
-3,tra,,"trastuzumab, trazodone, tramadol"
-3,nig,night time,
-3,inf,infliximab,
-3,ben,,"benicar, benztropine"
-3,atr,atripla,
-3,ram,ramipril,
-3,but,butalbital,
-3,alf,alfuzosin,
-3,hyz,hyzaar,
-3,cli,clindamycin,
-3,iba,ibandronate,
-3,lis,,"lisinopril, lisdexamfetamine"
-3,ato,,"atorvastatin, atomoxetine"
-3,chl,,"chlorhexidine, chlorpheniramine"
-3,nab,nabumetone,
-3,can,canagliflozin,
-3,ale,alendronate,
-3,don,donepezil,
-3,aml,amlodipine,
-3,ami,amitriptyline,
-3,col,colchicine,
-3,olm,olmesartan,
-3,cip,ciprofloxacin,
-3,sen,senna,
-3,den,denosumab,
-3,sol,solifenacin,
-3,bev,bevacizumab,
-3,sum,sumatriptan,
-3,lan,lansoprazole,
-3,tri,,"triamterene, triamcinolone"
-3,los,losartan,
-3,eso,esomeprazole,
-3,caf,caffeine,
-3,acy,acyclovir,
-3,tem,temazepam,
-3,ate,atenolol,
-3,lir,liraglutide,
-3,tio,tiotropium,
-3,mem,memantine,
-3,cep,cephalexin,
-3,rop,ropinirole,
-3,lac,lactulose,
-3,pan,pantoprazole,
-3,riv,rivaroxaban,
-3,sim,simvastatin,
-3,ros,rosuvastatin,
-3,con,conjugated estrogens,
-3,ola,olanzapine,
-3,dex,dextromethorphan,
-4,nitr,,"nitrofurantoin, nitroglycerin"
-4,metr,metronidazole,
-4,hydr,,"hydrochlorothiazide, hydralazine, hydrocortisone, hydroxychloroquine, hydrocodone"
-4,fent,fentanyl,
-4,insu,,"insulin glargine, insulin detemir, insulin isophane, insulin aspart, insulin lispro"
-4,clot,clotrimazole,
-4,carb,carbidopa,
-4,dicl,diclofenac,
-4,phen,,"phenytoin, phenazopyridine"
-4,levo,,"levodopa, levothyroxine, levofloxacin"
-4,omep,omeprazole,
-4,zole,zoledronic acid,
-4,zolm,zolmitriptan,
-4,cloz,clozapine,
+2,au,aug mentin,
+3,hep,,"heparin/sodium, heparin.sodium, heparin|sodium, heparin\sodium, heparin sodium, heparinsodium&, heparin&&sodium, heparin^sodium"
+3,fer,,"ferrous_sulfate, ferrous,sulfate, ferrous sulfate, ferrous:sulfate, ferrous'sulfate', ferrous;sulfate, ferrous-sulfate, ferrous""sulfate"", ferrous~sulfate"
+3,eze,,"ezetimibe, ezetimibe[], ezetimibe{}"
+3,fen,,"fenofibrate, fent-anyl"
+3,flu,,"fluticasone@propionate, fluticasone propionate"
+3,fio,,"fioricet, fioricet()"
+4,hepa,,"heparin/sodium, heparin.sodium, heparin|sodium, heparin\sodium, heparin sodium, heparinsodium&, heparin&&sodium, heparin^sodium"
+4,ferr,,"ferrous_sulfate, ferrous,sulfate, ferrous sulfate, ferrous:sulfate, ferrous'sulfate', ferrous;sulfate, ferrous-sulfate, ferrous""sulfate"", ferrous~sulfate"
+4,ezet,,"ezetimibe, ezetimibe[], ezetimibe{}"
 4,feno,fenofibrate,
-4,cefd,cefdinir,
-4,meth,,"methotrexate, methylphenidate, methocarbamol, methadone"
-4,ralt,raltegravir,
-4,fina,finasteride,
-4,pred,,"prednisone, prednisolone"
-4,carv,carvedilol,
-4,perc,percocet,
-4,clon,clonazepam,
-4,doxy,doxycycline,
-4,fluc,fluconazole,
-4,fluo,fluoxetine,
-4,glip,glipizide,
-4,rise,risedronate,
-4,doxa,doxazosin,
-4,valp,valproate sodium,
-4,clav,clavulanic acid,
-4,meto,,"metoprolol, metoclopramide"
-4,tras,trastuzumab,
-4,beni,benicar,
-4,benz,benztropine,
-4,clar,clarithromycin,
-4,metf,metformin,
-4,fluv,fluvoxamine,
-4,ralo,raloxifene,
-4,lisi,lisinopril,
-4,ator,atorvastatin,
-4,glim,glimepiride,
-4,chlo,,"chlorhexidine, chlorpheniramine"
-4,atom,atomoxetine,
-4,clop,clopidogrel,
-4,fing,fingolimod,
-4,peri,perindopril,
-4,lisd,lisdexamfetamine,
-4,leve,levetiracetam,
-4,cefu,cefuroxime,
-4,tria,,"triamterene, triamcinolone"
-4,omeg,omega-3 fatty acids,
-4,dicy,dicyclomine,
-4,risp,risperidone,
-4,zolp,zolpidem,
-4,flut,,"fluticasone, fluticasone propionate"
-4,traz,trazodone,
-4,preg,pregabalin,
-4,tram,tramadol,
-4,valg,valganciclovir,
-5,nitro,,"nitrofurantoin, nitroglycerin"
-5,metop,metoprolol,
-5,metoc,metoclopramide,
-5,predn,,"prednisone, prednisolone"
-5,levot,levothyroxine,
-5,hydro,,"hydrochlorothiazide, hydrocortisone, hydrocodone, hydroxychloroquine"
-5,methy,methylphenidate,
-5,hydra,hydralazine,
-5,insul,,"insulin lispro, insulin glargine, insulin aspart, insulin detemir, insulin isophane"
-5,pheny,phenytoin,
-5,fluti,,"fluticasone, fluticasone propionate"
-5,levod,levodopa,
-5,metho,,"methocarbamol, methotrexate"
-5,chlor,,"chlorpheniramine, chlorhexidine"
-5,metha,methadone,
-5,levof,levofloxacin,
-5,phena,phenazopyridine,
-5,triam,,"triamcinolone, triamterene"
-6,nitrof,nitrofurantoin,
-6,predni,,"prednisone, prednisolone"
-6,hydroc,,"hydrochlorothiazide, hydrocortisone, hydrocodone"
-6,insuli,,"insulin lispro, insulin glargine, insulin aspart, insulin detemir, insulin isophane"
-6,flutic,,"fluticasone, fluticasone propionate"
-6,methoc,methocarbamol,
-6,chlorp,chlorpheniramine,
-6,chlorh,chlorhexidine,
-6,hydrox,hydroxychloroquine,
-6,methot,methotrexate,
-6,nitrog,nitroglycerin,
-6,triamc,triamcinolone,
-6,triamt,triamterene,
-7,flutica,,"fluticasone, fluticasone propionate"
-7,insulin,,"insulin aspart, insulin detemir, insulin lispro, insulin isophane, insulin glargine"
-7,prednis,,"prednisone, prednisolone"
-7,hydroch,hydrochlorothiazide,
-7,hydroco,,"hydrocortisone, hydrocodone"
-8,fluticas,,"fluticasone, fluticasone propionate"
-8,insulin ,,"insulin aspart, insulin detemir, insulin lispro, insulin isophane, insulin glargine"
-8,predniso,,"prednisone, prednisolone"
-8,hydrocor,hydrocortisone,
-8,hydrocod,hydrocodone,
-9,fluticaso,,"fluticasone, fluticasone propionate"
-9,insulin a,insulin aspart,
-9,prednison,prednisone,
-9,insulin d,insulin detemir,
-9,insulin l,insulin lispro,
-9,insulin i,insulin isophane,
-9,insulin g,insulin glargine,
-9,prednisol,prednisolone,
-10,fluticason,,"fluticasone, fluticasone propionate"
-11,fluticasone,,"fluticasone, fluticasone propionate"
+4,flut,,"fluticasone@propionate, fluticasone propionate"
+4,fior,,"fioricet, fioricet()"
+4,fent,fent-anyl,
+5,hepar,,"heparin/sodium, heparin.sodium, heparin|sodium, heparin\sodium, heparin sodium, heparinsodium&, heparin&&sodium, heparin^sodium"
+5,ferro,,"ferrous_sulfate, ferrous,sulfate, ferrous sulfate, ferrous:sulfate, ferrous'sulfate', ferrous;sulfate, ferrous-sulfate, ferrous""sulfate"", ferrous~sulfate"
+5,ezeti,,"ezetimibe, ezetimibe[], ezetimibe{}"
+5,fluti,,"fluticasone@propionate, fluticasone propionate"
+5,fiori,,"fioricet, fioricet()"
+6,hepari,,"heparin/sodium, heparin.sodium, heparin|sodium, heparin\sodium, heparin sodium, heparinsodium&, heparin&&sodium, heparin^sodium"
+6,ferrou,,"ferrous_sulfate, ferrous,sulfate, ferrous sulfate, ferrous:sulfate, ferrous'sulfate', ferrous;sulfate, ferrous-sulfate, ferrous""sulfate"", ferrous~sulfate"
+6,ezetim,,"ezetimibe, ezetimibe[], ezetimibe{}"
+6,flutic,,"fluticasone@propionate, fluticasone propionate"
+6,fioric,,"fioricet, fioricet()"
+7,heparin,,"heparin/sodium, heparin.sodium, heparin|sodium, heparin\sodium, heparin sodium, heparinsodium&, heparin&&sodium, heparin^sodium"
+7,ferrous,,"ferrous_sulfate, ferrous,sulfate, ferrous sulfate, ferrous:sulfate, ferrous'sulfate', ferrous;sulfate, ferrous-sulfate, ferrous""sulfate"", ferrous~sulfate"
+7,ezetimi,,"ezetimibe, ezetimibe[], ezetimibe{}"
+7,flutica,,"fluticasone@propionate, fluticasone propionate"
+7,fiorice,,"fioricet, fioricet()"
+8,heparin/,heparin/sodium,
+8,heparin.,heparin.sodium,
+8,heparin|,heparin|sodium,
+8,ferrous_,ferrous_sulfate,
+8,ezetimib,,"ezetimibe, ezetimibe[], ezetimibe{}"
+8,"ferrous,","ferrous,sulfate",
+8,heparin\,heparin\sodium,
+8,ferrous ,ferrous sulfate,
+8,heparin ,heparin sodium,
+8,ferrous:,ferrous:sulfate,
+8,ferrous',ferrous'sulfate',
+8,fluticas,,"fluticasone@propionate, fluticasone propionate"
+8,ferrous;,ferrous;sulfate,
+8,fioricet,,"fioricet, fioricet()"
+8,ferrous-,ferrous-sulfate,
+8,"ferrous""","ferrous""sulfate""",
+8,heparins,heparinsodium&,
+8,heparin&,heparin&&sodium,
+8,ferrous~,ferrous~sulfate,
+8,heparin^,heparin^sodium,
+9,fluticaso,,"fluticasone propionate, fluticasone@propionate"
+9,ezetimibe,,"ezetimibe, ezetimibe[], ezetimibe{}"
+9,fioricet(,fioricet(),
+10,fluticason,,"fluticasone propionate, fluticasone@propionate"
+10,ezetimibe[,ezetimibe[],
+10,ezetimibe{,ezetimibe{},
+11,fluticasone,,"fluticasone propionate, fluticasone@propionate"
 12,fluticasone ,fluticasone propionate,
+12,fluticasone@,fluticasone@propionate,
