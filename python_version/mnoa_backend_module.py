@@ -10,10 +10,10 @@ def clean_names(raw_names):
     """
     cleaned = []  # List to store valid cleaned names
     for name in raw_names:
-        name = name.strip().lower()  # Remove leading/trailing spaces and convert to lowercase
-        name = " ".join(name.split())  # Collapse multiple spaces into a single space
-        if "?" not in name:  # Exclude names with question marks
-            cleaned.append(name)  # Add valid name to the cleaned list
+        name = name.strip().lower()  # Removes leading/trailing spaces and convert to lowercase
+        name = " ".join(name.split())  # Replaces multiple spaces into a single space
+        if "?" not in name:  # Excludes names with question marks
+            cleaned.append(name)  # Adds valid name to the cleaned list
     return sorted(set(cleaned))  # Deduplicate using set, sort alphabetically, and return
 
 
@@ -31,10 +31,10 @@ def disambiguate(names):
     if not names:
         return round_stats, prefix_logs  # Return empty output if no input names
 
-    total = len(names)  # Total number of input names
-    max_len = max(len(name) for name in names)  # Maximum name length among all inputs
+    total = len(names)  # Total number of names to analyze
+    max_len = max(len(name) for name in names)  # Longest name in the input list
     resolved = set()  # Set to keep track of disambiguated names
-    search_pool = names.copy()  # Copy of names to operate on
+    search_pool = names.copy()  # Names yet to be disambiguated, copied to avoid modifying original list
     prev_misses = total - 1  # Initial unresolved count, used to calculate raw KP
 
     # Iterate over prefix lengths from 1 to the maximum name length
