@@ -175,14 +175,19 @@
 const overlapLogsByRound = {};
 
 result.prefix_logs.forEach(log => {
+  const round = log.round;
+  if (!overlapLogsByRound[round]) {
+    overlapLogsByRound[round] = [];
+  }
+
   if (log.unresolved) {
-    const round = log.round;
-    if (!overlapLogsByRound[round]) {
-      overlapLogsByRound[round] = [];
-    }
-    overlapLogsByRound[round].push(`${log.prefix} → ${log.unresolved}`);
+    overlapLogsByRound[round].push(`Prefix "${log.prefix}" matched multiple: ${log.unresolved}`);
+  } else if (log.disambiguated) {
+    overlapLogsByRound[round].push(`Prefix "${log.prefix}" resolved: ${log.disambiguated}`);
   }
 });
+
+
 
 let formattedOverlaps = "";
 for (const round of Object.keys(overlapLogsByRound)) {

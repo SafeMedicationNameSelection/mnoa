@@ -1,76 +1,70 @@
-"""
-MNOA - Medication Name Overlap Analyzer (Backend Module)
-This module exposes a single entrypoint: run_mnoa(med_name_list).
-"""
+# MNOA - Medication Name Overlap Analyzer (Backend Version with Full Documentation)
 
 def clean_names(raw_names):
     """
-    Cleans and normalizes raw input names.
+    Cleans and standardizes medication names:
+    - Trims whitespace
     - Converts to lowercase
-    - Removes excess internal whitespace
-    - Excludes entries containing '?' (potential invalid entries)
-    - Removes duplicates and sorts list
-    
-     Args:
-        raw_names (List[str]): Unprocessed medication names
-
-    Returns:
-        List[str]: Cleaned, sorted, and deduplicated list of medication names
+    - Removes names containing '?'
+    - Deduplicates and sorts the final list
     """
-    cleaned = []
+    cleaned = []  # List to store valid cleaned names
     for name in raw_names:
-        name = name.strip().lower()             # Normalize: lowercase and trim
-        name = " ".join(name.split())           # Replace multiple spaces with a single space
-        if "?" in name:
-            continue                            # Exclude entries with question marks
-        cleaned.append(name)
-    return sorted(set(cleaned))                 # Deduplicate with set and sort alphabetically
+        name = name.strip().lower()  # Remove leading/trailing spaces and convert to lowercase
+        name = " ".join(name.split())  # Collapse multiple spaces into a single space
+        if "?" not in name:  # Exclude names with question marks
+            cleaned.append(name)  # Add valid name to the cleaned list
+    return sorted(set(cleaned))  # Deduplicate using set, sort alphabetically, and return
 
 
 def disambiguate(names):
     """
-    Runs the MNOA prefix disambiguation algorithm.
-    Args:
-        names (List[str]): cleaned and sorted medication names
+    Disambiguates medication names using prefix-based matching.
+    Each round increases prefix length by one character to reduce ambiguity.
     Returns:
-        Tuple: (round_stats, prefix_logs)
-          - round_stats: List[Dict], 1 per round, overall summary
-          - prefix_logs: List[Dict], 1 per prefix per round, detailed prefix log
+    - round_stats: per-round summary metrics
+    - prefix_logs: detailed resolution/unresolved logs per prefix per round
     """
-    round_stats = []
-    prefix_logs = []
+    round_stats = []  # List to store summary stats for each round
+    prefix_logs = []  # List to store prefix-level resolution logs
+
     if not names:
-        return round_stats, prefix_logs
-    
-    total_names = len(names)
-    max_len = max(len(n) for n in names)
-    resolved = set()
-    search_space = names.copy()
-    previous_misses = total_names - 1  # So KPraw is 0 in round 1
+        return round_stats, prefix_logs  # Return empty output if no input names
 
+    total = len(names)  # Total number of input names
+    max_len = max(len(name) for name in names)  # Maximum name length among all inputs
+    resolved = set()  # Set to keep track of disambiguated names
+    search_pool = names.copy()  # Copy of names to operate on
+    prev_misses = total - 1  # Initial unresolved count, used to calculate raw KP
+
+    # Iterate over prefix lengths from 1 to the maximum name length
     for k in range(1, max_len + 1):
-        prefix_map = {}
-        remaining_names = [n for n in search_space if len(n) >= k]
+        prefix_map = {}  # Dictionary to map prefixes to lists of names sharing them
 
-        # Map prefixes to their candidate names
-        for name in remaining_names:
-            prefix = name[:k]
-            prefix_map.setdefault(prefix, []).append(name)
-        
-        disambiguated = []
-        unresolved = []
-        
+        # Build prefix map for all names long enough for this round
+        for name in search_pool:
+            if len(name) >= k:  # Skip names shorter than current prefix length
+                prefix = name[:k]  # Extract prefix of length k
+                prefix_map.setdefault(prefix, []).append(name)  # Group by prefix
+
+        disamb = []  # Names successfully disambiguated in this round
+        unresolved = []  # Names that remain ambiguous after this round
+
+        # Evaluate each prefix group
         for prefix, group in prefix_map.items():
             if len(group) == 1:
-                disambiguated.append(group[0])
+                # If prefix maps to one name → resolved
+                resolved_name = group[0]
+                disamb.append(resolved_name)
                 prefix_logs.append({
                     "round": k,
                     "prefix": prefix,
-                    "disambiguated": group[0],
+                    "disambiguated": resolved_name,
                     "unresolved": ""
                 })
             else:
-                unresolved.extend(group)
+                # Prefix maps to multiple names → unresolved
+                unresolved += group
                 prefix_logs.append({
                     "round": k,
                     "prefix": prefix,
@@ -78,47 +72,43 @@ def disambiguate(names):
                     "unresolved": ", ".join(group)
                 })
 
-        # Metrics
-        possible_misses = sum(len(g) - 1 for g in prefix_map.values() if len(g) > 1)
-        KPraw = 0 if k == 1 else previous_misses - possible_misses
-        percent_KP = 0.0 if k == 1 else round(KPraw / total_names, 4)
-        previous_misses = possible_misses
+        # Calculate metrics for this round
+        misses = sum(len(g) - 1 for g in prefix_map.values() if len(g) > 1)  # Total remaining conflicts
+        kp_raw = prev_misses - misses if k > 1 else 0  # Raw Keystroke Power gained this round
+        kp_percent = round(kp_raw / total, 4) if k > 1 else 0.0  # Normalized KP as a percent
+        prev_misses = misses  # Update unresolved count for next round
 
-        resolved.update(disambiguated)
-        search_space = list(set(remaining_names) - set(disambiguated))
+        resolved.update(disamb)  # Add resolved names to the global set
+        search_pool = list(set(search_pool) - set(disamb))  # Remove resolved names from next round's pool
 
+        # Record summary statistics for this round
         round_stats.append({
             "characters": k,
             "search_terms": len(prefix_map),
-            "search_space_size": len(remaining_names),
+            "search_space_size": len(search_pool) + len(disamb),
             "unresolved_items": len(unresolved),
             "disambiguated_names": len(resolved),
-            "possible_misses": possible_misses,
-            "KPraw": KPraw,
-            "%KP": percent_KP
+            "possible_misses": misses,
+            "KPraw": kp_raw,
+            "%KP": kp_percent
         })
 
         if not unresolved:
-            break
+            break  # Stop if all names are resolved
 
-    return round_stats, prefix_logs
+    return round_stats, prefix_logs  # Return all round metrics and prefix logs
 
-def run_mnoa(med_name_list):
+
+def run_mnoa(med_names):
     """
-    The single entry point for backend integration.
-    Args:
-        med_name_list (List[str]): Unprocessed, pasted list from user.
-    Returns:
-        Dict: {
-            'cleaned_names': List[str],
-            'round_stats': List[Dict],
-            'prefix_logs': List[Dict]
-        }
+    Entrypoint for the MNOA backend.
+    Input: unprocessed medication name list
+    Output: dictionary with cleaned names, round stats, and resolution logs
     """
-    cleaned = clean_names(med_name_list)
-    round_stats, prefix_logs = disambiguate(cleaned)
+    cleaned = clean_names(med_names)  # Step 1: clean raw inputs
+    stats, logs = disambiguate(cleaned)  # Step 2: run disambiguation rounds
     return {
-        "cleaned_names": cleaned,
-        "round_stats": round_stats,
-        "prefix_logs": prefix_logs,
+        "cleaned_names": cleaned,  # Final cleaned and sorted name list
+        "round_stats": stats,      # Per-round performance summary
+        "prefix_logs": logs        # Per-prefix resolution/unresolved logs
     }

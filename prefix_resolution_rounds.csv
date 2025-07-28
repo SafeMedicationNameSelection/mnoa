@@ -15,70 +15,70 @@ round,prefix,disambiguated,unresolved
 1,l,lotrisone,
 1,n,night time,
 1,{,{exetimibe},
-2,he,,"heparin/sodium, heparin|sodium, heparin\sodium, heparin sodium, heparinsodium&, heparin^sodium, heparin.sodium, heparin&&sodium"
-2,fe,,"ferrous_sulfate, ferrous,sulfate, ferrous:sulfate, ferrous;sulfate, fent-anyl, ferrous sulfate, fenofibrate, ferrous'sulfate', ferrous-sulfate, ferrous""sulfate"", ferrous~sulfate"
-2,ez,,"ezetimibe{}, ezetimibe, ezetimibe[]"
+2,au,aug mentin,
+2,et,ethinyl estradiol,
+2,he,,"heparin|sodium, heparin&&sodium, heparin.sodium, heparinsodium&, heparin^sodium, heparin\sodium, heparin/sodium, heparin sodium"
+2,fl,,"fluticasone propionate, fluticasone@propionate"
+2,fi,,"fioricet, fioricet()"
+2,fe,,"ferrous,sulfate, fent-anyl, ferrous:sulfate, ferrous sulfate, ferrous-sulfate, ferrous'sulfate', ferrous;sulfate, fenofibrate, ferrous_sulfate, ferrous~sulfate, ferrous""sulfate"""
+2,fa,famotidine,
+2,ez,,"ezetimibe{}, ezetimibe[], ezetimibe"
 2,hy,hyzaar,
 2,ad,advair,
-2,et,ethinyl estradiol,
-2,fl,,"fluticasone@propionate, fluticasone propionate"
-2,fi,,"fioricet, fioricet()"
-2,fa,famotidine,
-2,au,aug mentin,
-3,hep,,"heparin/sodium, heparin.sodium, heparin|sodium, heparin\sodium, heparin sodium, heparinsodium&, heparin&&sodium, heparin^sodium"
-3,fer,,"ferrous_sulfate, ferrous,sulfate, ferrous sulfate, ferrous:sulfate, ferrous'sulfate', ferrous;sulfate, ferrous-sulfate, ferrous""sulfate"", ferrous~sulfate"
-3,eze,,"ezetimibe, ezetimibe[], ezetimibe{}"
-3,fen,,"fenofibrate, fent-anyl"
-3,flu,,"fluticasone@propionate, fluticasone propionate"
+3,hep,,"heparin^sodium, heparin\sodium, heparin|sodium, heparin/sodium, heparin&&sodium, heparin.sodium, heparinsodium&, heparin sodium"
+3,eze,,"ezetimibe[], ezetimibe{}, ezetimibe"
+3,flu,,"fluticasone propionate, fluticasone@propionate"
 3,fio,,"fioricet, fioricet()"
-4,hepa,,"heparin/sodium, heparin.sodium, heparin|sodium, heparin\sodium, heparin sodium, heparinsodium&, heparin&&sodium, heparin^sodium"
-4,ferr,,"ferrous_sulfate, ferrous,sulfate, ferrous sulfate, ferrous:sulfate, ferrous'sulfate', ferrous;sulfate, ferrous-sulfate, ferrous""sulfate"", ferrous~sulfate"
-4,ezet,,"ezetimibe, ezetimibe[], ezetimibe{}"
-4,feno,fenofibrate,
-4,flut,,"fluticasone@propionate, fluticasone propionate"
+3,fen,,"fenofibrate, fent-anyl"
+3,fer,,"ferrous,sulfate, ferrous_sulfate, ferrous~sulfate, ferrous""sulfate"", ferrous:sulfate, ferrous sulfate, ferrous-sulfate, ferrous'sulfate', ferrous;sulfate"
+4,hepa,,"heparin^sodium, heparin\sodium, heparin|sodium, heparin/sodium, heparin&&sodium, heparin.sodium, heparinsodium&, heparin sodium"
+4,ezet,,"ezetimibe[], ezetimibe{}, ezetimibe"
+4,flut,,"fluticasone propionate, fluticasone@propionate"
 4,fior,,"fioricet, fioricet()"
+4,feno,fenofibrate,
+4,ferr,,"ferrous,sulfate, ferrous_sulfate, ferrous~sulfate, ferrous""sulfate"", ferrous:sulfate, ferrous sulfate, ferrous-sulfate, ferrous'sulfate', ferrous;sulfate"
 4,fent,fent-anyl,
-5,hepar,,"heparin/sodium, heparin.sodium, heparin|sodium, heparin\sodium, heparin sodium, heparinsodium&, heparin&&sodium, heparin^sodium"
-5,ferro,,"ferrous_sulfate, ferrous,sulfate, ferrous sulfate, ferrous:sulfate, ferrous'sulfate', ferrous;sulfate, ferrous-sulfate, ferrous""sulfate"", ferrous~sulfate"
-5,ezeti,,"ezetimibe, ezetimibe[], ezetimibe{}"
-5,fluti,,"fluticasone@propionate, fluticasone propionate"
+5,hepar,,"heparin^sodium, heparin\sodium, heparin|sodium, heparin/sodium, heparin&&sodium, heparin.sodium, heparinsodium&, heparin sodium"
+5,ezeti,,"ezetimibe[], ezetimibe{}, ezetimibe"
+5,fluti,,"fluticasone propionate, fluticasone@propionate"
 5,fiori,,"fioricet, fioricet()"
-6,hepari,,"heparin/sodium, heparin.sodium, heparin|sodium, heparin\sodium, heparin sodium, heparinsodium&, heparin&&sodium, heparin^sodium"
-6,ferrou,,"ferrous_sulfate, ferrous,sulfate, ferrous sulfate, ferrous:sulfate, ferrous'sulfate', ferrous;sulfate, ferrous-sulfate, ferrous""sulfate"", ferrous~sulfate"
-6,ezetim,,"ezetimibe, ezetimibe[], ezetimibe{}"
-6,flutic,,"fluticasone@propionate, fluticasone propionate"
+5,ferro,,"ferrous,sulfate, ferrous_sulfate, ferrous~sulfate, ferrous""sulfate"", ferrous:sulfate, ferrous sulfate, ferrous-sulfate, ferrous'sulfate', ferrous;sulfate"
+6,hepari,,"heparin^sodium, heparin\sodium, heparin|sodium, heparin/sodium, heparin&&sodium, heparin.sodium, heparinsodium&, heparin sodium"
+6,ezetim,,"ezetimibe[], ezetimibe{}, ezetimibe"
+6,flutic,,"fluticasone propionate, fluticasone@propionate"
 6,fioric,,"fioricet, fioricet()"
-7,heparin,,"heparin/sodium, heparin.sodium, heparin|sodium, heparin\sodium, heparin sodium, heparinsodium&, heparin&&sodium, heparin^sodium"
-7,ferrous,,"ferrous_sulfate, ferrous,sulfate, ferrous sulfate, ferrous:sulfate, ferrous'sulfate', ferrous;sulfate, ferrous-sulfate, ferrous""sulfate"", ferrous~sulfate"
-7,ezetimi,,"ezetimibe, ezetimibe[], ezetimibe{}"
-7,flutica,,"fluticasone@propionate, fluticasone propionate"
+6,ferrou,,"ferrous,sulfate, ferrous_sulfate, ferrous~sulfate, ferrous""sulfate"", ferrous:sulfate, ferrous sulfate, ferrous-sulfate, ferrous'sulfate', ferrous;sulfate"
+7,heparin,,"heparin^sodium, heparin\sodium, heparin|sodium, heparin/sodium, heparin&&sodium, heparin.sodium, heparinsodium&, heparin sodium"
+7,ezetimi,,"ezetimibe[], ezetimibe{}, ezetimibe"
+7,flutica,,"fluticasone propionate, fluticasone@propionate"
 7,fiorice,,"fioricet, fioricet()"
-8,heparin/,heparin/sodium,
-8,heparin.,heparin.sodium,
-8,heparin|,heparin|sodium,
-8,ferrous_,ferrous_sulfate,
-8,ezetimib,,"ezetimibe, ezetimibe[], ezetimibe{}"
-8,"ferrous,","ferrous,sulfate",
+7,ferrous,,"ferrous,sulfate, ferrous_sulfate, ferrous~sulfate, ferrous""sulfate"", ferrous:sulfate, ferrous sulfate, ferrous-sulfate, ferrous'sulfate', ferrous;sulfate"
+8,heparin^,heparin^sodium,
+8,ezetimib,,"ezetimibe[], ezetimibe{}, ezetimibe"
 8,heparin\,heparin\sodium,
-8,ferrous ,ferrous sulfate,
-8,heparin ,heparin sodium,
-8,ferrous:,ferrous:sulfate,
-8,ferrous',ferrous'sulfate',
-8,fluticas,,"fluticasone@propionate, fluticasone propionate"
-8,ferrous;,ferrous;sulfate,
+8,heparin|,heparin|sodium,
+8,fluticas,,"fluticasone propionate, fluticasone@propionate"
 8,fioricet,,"fioricet, fioricet()"
-8,ferrous-,ferrous-sulfate,
-8,"ferrous""","ferrous""sulfate""",
-8,heparins,heparinsodium&,
+8,heparin/,heparin/sodium,
+8,"ferrous,","ferrous,sulfate",
+8,ferrous_,ferrous_sulfate,
 8,heparin&,heparin&&sodium,
 8,ferrous~,ferrous~sulfate,
-8,heparin^,heparin^sodium,
+8,heparin.,heparin.sodium,
+8,"ferrous""","ferrous""sulfate""",
+8,ferrous:,ferrous:sulfate,
+8,ferrous ,ferrous sulfate,
+8,heparins,heparinsodium&,
+8,ferrous-,ferrous-sulfate,
+8,ferrous',ferrous'sulfate',
+8,ferrous;,ferrous;sulfate,
+8,heparin ,heparin sodium,
+9,ezetimibe,,"ezetimibe[], ezetimibe, ezetimibe{}"
 9,fluticaso,,"fluticasone propionate, fluticasone@propionate"
-9,ezetimibe,,"ezetimibe, ezetimibe[], ezetimibe{}"
 9,fioricet(,fioricet(),
-10,fluticason,,"fluticasone propionate, fluticasone@propionate"
 10,ezetimibe[,ezetimibe[],
+10,fluticason,,"fluticasone propionate, fluticasone@propionate"
 10,ezetimibe{,ezetimibe{},
-11,fluticasone,,"fluticasone propionate, fluticasone@propionate"
-12,fluticasone ,fluticasone propionate,
+11,fluticasone,,"fluticasone@propionate, fluticasone propionate"
 12,fluticasone@,fluticasone@propionate,
+12,fluticasone ,fluticasone propionate,
