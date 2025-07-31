@@ -89,33 +89,6 @@
         <button onclick="submitNames()" style="font-size: 30px; border: none; background: none; cursor: pointer;">▶️</button>
       </div>
 
-      <!-- Right: Output
-<div style="flex: 1; padding-left: 10px;">
-  <div style="border: 1px solid #ccc; border-radius: 6px; padding: 15px; background-color: #fff;">
-    <h3 style="margin-top: 0;">Statistics</h3>
-    <div style="font-size: 14px;">
-      <p><strong>Number of med names = </strong><span id="stat-count">-</span> names</p>
-      <p><strong>Greatest overlap = </strong><span id="stat-overlap">-</span> characters</p>
-      <p><strong>Raw Keystroke Power = </strong><span id="stat-kpraw">-</span> keystrokes</p>
-      <p><strong>Keystroke Power Percent = </strong><span id="stat-kppercent">-</span> %</p>
-    </div>
-  </div>
-</div>
-
-        </div> -->
-
-        <!-- Overlaps Section -->
-        <!-- <div style="margin-top: 20px; border: 1px solid #ccc; border-radius: 6px; padding: 15px; background-color: #fff; height: 200px; overflow-y: auto;">
-          <h3>All Overlaps</h3> -->
-          <!-- <div style="flex: 1; padding-left: 10px;">
-  <div style="border: 1px solid #ccc; border-radius: 6px; padding: 15px; background-color: #fff;">
-    <h3 style="margin-top: 0;">All Overlaps</h3>
-    <div style="font-size: 14px;">
-          <div id="overlap-box" style="font-family: monospace; font-size: 13px;"></div>
-        </div>
-      </div>
-    </div>
-  </div> -->
 
 <!-- Right: Output -->
 <div style="flex: 1; padding-left: 10px;">
@@ -187,8 +160,7 @@ result.prefix_logs.forEach(log => {
   }
 });
 
-
-
+// Format overlaps for display
 let formattedOverlaps = "";
 for (const round of Object.keys(overlapLogsByRound)) {
   const entries = overlapLogsByRound[round]

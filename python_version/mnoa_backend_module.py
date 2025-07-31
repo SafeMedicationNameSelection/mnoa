@@ -31,7 +31,7 @@ def disambiguate(names):
     if not names:
         return round_stats, prefix_logs  # Return empty output if no input names
 
-    total = len(names)  # Total number of names to analyze
+    total = len(names)  # Total number of names to analyze 
     max_len = max(len(name) for name in names)  # Longest name in the input list
     resolved = set()  # Set to keep track of disambiguated names
     search_pool = names.copy()  # Names yet to be disambiguated, copied to avoid modifying original list
