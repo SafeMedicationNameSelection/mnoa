@@ -1,8 +1,18 @@
+<!--
+MNOA Frontend – Medication Name Overlap Analyzer Web UI
+Description:
+- Single-page frontend for uploading medication name list
+- Submits input to backend API (/disambiguate) and receives disambiguation results
+- Displays cleaned names, round-by-round disambiguation logs, and summary statistics
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>MNOA – Medication Name Overlap Analyzer</title>
+
+  <!-- Styling block for layout, typography, UI boxes -->
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -66,9 +76,12 @@
     }
   </style>
 </head>
+
 <body>
+  <!-- Page wrapper with flex layout and padding -->
   <div style="display: flex; flex-direction: column; align-items: center; padding: 20px;">
-    <!-- Header -->
+
+    <!-- Header with app title and turtle logo -->
     <div style="display: flex; align-items: center; margin-bottom: 30px;">
       <img src="https://cdn-icons-png.flaticon.com/512/6789/6789501.png" alt="turtle" width="50" style="margin-right: 15px;">
       <h1 style="font-size: 28px; margin: 0;">
@@ -76,108 +89,142 @@
       </h1>
     </div>
 
-    <!-- Main panel -->
+    <!-- Main layout: input | button | output -->
     <div style="display: flex; width: 100%; max-width: 1100px;">
       
-      <!-- Left: Input -->
+      <!-- Left Panel: Input text area -->
       <div style="flex: 1; padding-right: 10px;">
         <textarea id="medInput" placeholder="Paste a list of medication names here ..." style="width: 100%; height: 300px; font-size: 14px; padding: 10px; border-radius: 6px; border: 1px solid #ccc;"></textarea>
       </div>
 
-      <!-- Middle: Button -->
+      <!-- Middle Panel: Action Button -->
       <div style="display: flex; align-items: center; justify-content: center; padding: 0 10px;">
         <button onclick="submitNames()" style="font-size: 30px; border: none; background: none; cursor: pointer;">▶️</button>
       </div>
 
+      <!-- Right Panel: Outputs (wrapped in vertical stack) -->
+      <div style="flex: 1; padding-left: 10px; display: flex; flex-direction: column; gap: 20px;">
 
-<!-- Right: Output -->
-<div style="flex: 1; padding-left: 10px;">
-  
-  <!-- Statistics Box -->
-  <div style="border: 1px solid #ccc; border-radius: 6px; padding: 15px; background-color: #fff; margin-bottom: 20px;">
-    <h3 style="margin-top: 0;">Statistics</h3>
-    <div style="font-size: 14px;">
-      <p><strong>Number of med names = </strong><span id="stat-count">-</span> names</p>
-      <p><strong>Greatest overlap = </strong><span id="stat-overlap">-</span> characters</p>
-      <p><strong>Raw Keystroke Power = </strong><span id="stat-kpraw">-</span> keystrokes</p>
-      <p><strong>Keystroke Power Percent = </strong><span id="stat-kppercent">-</span> %</p>
+        <!-- Box: Summary Statistics -->
+        <div style="border: 1px solid #ccc; border-radius: 6px; padding: 15px; background-color: #fff;">
+          <h3 style="margin-top: 0;">📊 Statistics</h3>
+          <div style="font-size: 14px;">
+            <p><strong>Number of med names = </strong><span id="stat-count">-</span> names</p>
+            <p><strong>Greatest overlap = </strong><span id="stat-overlap">-</span> characters</p>
+            <p><strong>Raw Keystroke Power = </strong><span id="stat-kpraw">-</span> keystrokes</p>
+            <p><strong>Keystroke Power Percent = </strong><span id="stat-kppercent">-</span> %</p>
+          </div>
+        </div>
+
+        <!-- Box: Cleaned Names + Round Stats (side-by-side layout) -->
+        <div style="display: flex; gap: 10px;">
+          
+          <!-- Cleaned Name List (alphabetical) -->
+          <div id="cleanedNamesBox" style="flex: 1; border: 1px solid #ccc; padding: 10px; overflow-y: auto; max-height: 300px;">
+            <h3>✅ Alphabetically Cleaned Names</h3>
+            <ul id="cleanedNamesList"></ul>
+          </div>
+
+          <!-- Round-by-Round Stats -->
+          <div id="roundStatsBox" style="flex: 1; border: 1px solid #ccc; padding: 10px; overflow-y: auto; max-height: 300px;">
+            <h3>🔁 Round Statistics</h3>
+            <pre id="roundStats" style="white-space: pre-wrap;"></pre>
+          </div>
+        </div>
+
+        <!-- Box: All Overlap Logs (Grouped by Round) -->
+        <div style="border: 1px solid #ccc; border-radius: 6px; padding: 15px; background-color: #fff; height: 250px; overflow-y: auto;">
+          <h3 style="margin-top: 0;">🔍 All Overlaps</h3>
+          <div id="overlap-box" style="font-family: monospace; font-size: 13px; white-space: pre-wrap;"></div>
+        </div>
+
+      </div>
     </div>
+
+    <!-- JavaScript for interaction and backend integration -->
+    <script>
+      async function submitNames() {
+        // Read input and clean empty lines
+        const rawInput = document.getElementById("medInput").value;
+        const names = rawInput
+          .split("\n")
+          .map(n => n.trim())
+          .filter(n => n.length > 0);
+
+        // Set initial loading placeholders
+        document.getElementById("stat-count").innerText = "Loading...";
+        document.getElementById("stat-overlap").innerText = "";
+        document.getElementById("stat-kpraw").innerText = "";
+        document.getElementById("stat-kppercent").innerText = "";
+        document.getElementById("overlap-box").innerText = "Processing...";
+
+        try {
+          // Call the backend endpoint
+          const response = await fetch("/disambiguate", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ names })
+          });
+
+          const result = await response.json();
+
+          // ✅ Update Round Stats Box
+          document.getElementById("roundStats").innerText = result.round_stats
+            .map(stat =>
+              `Round ${stat.characters}:\n- Terms: ${stat.search_terms}\n- Unresolved: ${stat.unresolved_items}\n- Disambig: ${stat.disambiguated_names}\n- KPraw: ${stat.KPraw}\n- %KP: ${stat["%KP"]}`
+            )
+            .join('\n\n');
+
+          // ✅ Update Cleaned Names Box
+          const cleanedList = document.getElementById("cleanedNamesList");
+          cleanedList.innerHTML = ''; // Clear existing
+          result.cleaned_names.forEach(name => {
+            const li = document.createElement("li");
+            li.textContent = name;
+            cleanedList.appendChild(li);
+          });
+
+          // ✅ Update Main Stats Section
+          const totalNames = result.cleaned_names.length;
+          const lastRound = result.round_stats[result.round_stats.length - 1];
+          document.getElementById("stat-count").innerText = totalNames;
+          document.getElementById("stat-overlap").innerText = lastRound.characters;
+          document.getElementById("stat-kpraw").innerText = lastRound.KPraw;
+          document.getElementById("stat-kppercent").innerText = (lastRound["%KP"] * 100).toFixed(2);
+
+          // ✅ Update Overlap Box – grouped by round
+          const overlapLogsByRound = {};
+          result.prefix_logs.forEach(log => {
+            const round = log.round;
+            if (!overlapLogsByRound[round]) {
+              overlapLogsByRound[round] = [];
+            }
+
+            if (log.unresolved) {
+              overlapLogsByRound[round].push(`Prefix "${log.prefix}" matched multiple: ${log.unresolved}`);
+            } else if (log.disambiguated) {
+              overlapLogsByRound[round].push(`Prefix "${log.prefix}" resolved: ${log.disambiguated}`);
+            }
+          });
+
+          // Format the grouped overlap logs
+          let formattedOverlaps = "";
+          for (const round of Object.keys(overlapLogsByRound)) {
+            const entries = overlapLogsByRound[round]
+              .map(entry => `Round ${round}: ${entry}`)
+              .join("\n");
+            formattedOverlaps += entries + "\n\n";
+          }
+
+          document.getElementById("overlap-box").innerText =
+            formattedOverlaps.trim() || "✅ No unresolved overlaps.";
+
+        } catch (error) {
+          document.getElementById("overlap-box").innerText = "❌ Error: " + error;
+        }
+      }
+    </script>
+
   </div>
-
-  <!-- All Overlaps Box -->
-  <div style="border: 1px solid #ccc; border-radius: 6px; padding: 15px; background-color: #fff; height: 250px; overflow-y: auto;">
-    <h3 style="margin-top: 0;">All Overlaps</h3>
-    <div id="overlap-box" style="font-family: monospace; font-size: 13px; white-space: pre-wrap;"></div>
-  </div>
-
-</div>
-
-
-<script>
-  async function submitNames() {
-    const rawInput = document.getElementById("medInput").value;
-    const names = rawInput
-      .split("\n")
-      .map(n => n.trim())
-      .filter(n => n.length > 0);
-
-    document.getElementById("stat-count").innerText = "Loading...";
-    document.getElementById("stat-overlap").innerText = "";
-    document.getElementById("stat-kpraw").innerText = "";
-    document.getElementById("stat-kppercent").innerText = "";
-    document.getElementById("overlap-box").innerText = "Processing...";
-
-    try {
-      const response = await fetch("/disambiguate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ names })
-      });
-
-      const result = await response.json();
-
-      // Update Statistics
-      const totalNames = result.cleaned_names.length;
-      const lastRound = result.round_stats[result.round_stats.length - 1];
-      document.getElementById("stat-count").innerText = totalNames;
-      document.getElementById("stat-overlap").innerText = lastRound.characters;
-      document.getElementById("stat-kpraw").innerText = lastRound.KPraw;
-      document.getElementById("stat-kppercent").innerText = (lastRound["%KP"] * 100).toFixed(2);
-
-      // Populate All Overlaps – Grouped by Round with spacing
-const overlapLogsByRound = {};
-
-result.prefix_logs.forEach(log => {
-  const round = log.round;
-  if (!overlapLogsByRound[round]) {
-    overlapLogsByRound[round] = [];
-  }
-
-  if (log.unresolved) {
-    overlapLogsByRound[round].push(`Prefix "${log.prefix}" matched multiple: ${log.unresolved}`);
-  } else if (log.disambiguated) {
-    overlapLogsByRound[round].push(`Prefix "${log.prefix}" resolved: ${log.disambiguated}`);
-  }
-});
-
-// Format overlaps for display
-let formattedOverlaps = "";
-for (const round of Object.keys(overlapLogsByRound)) {
-  const entries = overlapLogsByRound[round]
-    .map(entry => `Round ${round}: ${entry}`)
-    .join("\n");
-  formattedOverlaps += entries + "\n\n"; // Add blank line between rounds
-}
-
-document.getElementById("overlap-box").innerText =
-  formattedOverlaps.trim() || "✅ No unresolved overlaps.";
-
-
-    } catch (error) {
-      document.getElementById("overlap-box").innerText = "❌ Error: " + error;
-    }
-  }
-</script>
-
 </body>
 </html>

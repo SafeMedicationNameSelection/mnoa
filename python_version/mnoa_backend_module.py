@@ -74,8 +74,8 @@ def disambiguate(names):
 
         # Calculate metrics for this round
         misses = sum(len(g) - 1 for g in prefix_map.values() if len(g) > 1)  # Total remaining conflicts
-        kp_raw = prev_misses - misses if k > 1 else 0  # Raw Keystroke Power gained this round
-        kp_percent = round(kp_raw / total, 4) if k > 1 else 0.0  # Normalized KP as a percent
+        kp_raw = prev_misses - misses  # Raw Keystroke Power gained this round
+        kp_percent = round(kp_raw / total, 4)  # Normalized KP as a percent
         prev_misses = misses  # Update unresolved count for next round
 
         resolved.update(disamb)  # Add resolved names to the global set
