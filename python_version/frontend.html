@@ -156,17 +156,55 @@ Description:
       </div>
     </div>
 
-    <!-- JavaScript for interaction and backend integration -->
+    <!-- JavaScript  -->
     <script>
+      // --- %KP helpers ---
+      // NOTE: The backend may send %KP either as a fraction (0–1) or as a percent (0–100).
+      // normalizePercent() converts either form into a 0–100 percentage for display.
+      function normalizePercent(v) {
+        const n = Number(v);
+        if (!Number.isFinite(n)) return null;
+        return n > 1 ? n : n * 100; // if <=1 treat as ratio; if >1 assume already a percent
+      }
+      // fmtPct() returns a 2-decimal string for % display (or "–" if not a number).
+      function fmtPct(v) {
+        const p = normalizePercent(v);
+        return p == null ? "–" : p.toFixed(2);
+      }
+      // --- end helpers ---
+
+      /**
+       * submitNames()
+       * 1) Reads the textarea input and sends it to /disambiguate (POST).
+       * 2) Receives JSON containing:
+       *    - cleaned_names: array of preprocessed names
+       *    - round_stats: array of rounds with fields like:
+       *        characters          → the prefix length examined in this round
+       *        search_terms        → the actual prefix(es) used this round
+       *        unresolved_items    → how many names remain unresolved after this round
+       *        disambiguated_names → how many names have been resolved cumulatively
+       *        KPraw               → "raw keystroke power" contributed by THIS round
+       *        %KP                 → per-round keystroke power percent (backend’s value)
+       *    - prefix_logs: logs of unresolved/resolved prefixes by round
+       * 3) Updates all UI panels (stats, cleaned list, per-round table, overlap logs).
+       *
+       * 🔎 KP metrics (as implemented here):
+       *    • KPraw (top box): we compute the cumulative sum across ALL rounds,
+       *      i.e., sum of stat.KPraw for every round.
+       *    • Keystroke Power Percent (top box): we compute a cumulative % across ALL rounds
+       *      as (sum(KPraw) / sum(characters)) × 100. This gives an overall efficiency for the run.
+       *    • In the "Round Statistics" panel and the "KPraw table", we display each round’s KPraw and %KP.
+       *      The %KP there is normalized for display via fmtPct(...) so it looks consistent (0–100%).
+       */
       async function submitNames() {
-        // Read input and clean empty lines
+        // 1) Collect and sanitize user input lines
         const rawInput = document.getElementById("medInput").value;
         const names = rawInput
           .split("\n")
           .map(n => n.trim())
           .filter(n => n.length > 0);
 
-        // Set initial loading placeholders
+        // Show a simple loading state in the UI while we wait for the backend
         document.getElementById("stat-count").innerText = "Loading...";
         document.getElementById("stat-overlap").innerText = "";
         document.getElementById("stat-kpraw").innerText = "";
@@ -174,40 +212,63 @@ Description:
         document.getElementById("overlap-box").innerText = "Processing...";
 
         try {
-          // Call the backend endpoint
+          // 2) POST to backend endpoint with the array of names
           const response = await fetch("/disambiguate", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ names })
           });
 
+          // 3) Parse backend JSON response
           const result = await response.json();
 
-          // ✅ Update Round Stats Box
+          // --- Round Statistics panel ---
+          // For each round, we show characters, search terms, unresolved/resolved counts,
+          // KPraw (this round), and %KP (this round, normalized for display).
           document.getElementById("roundStats").innerText = result.round_stats
             .map(stat =>
-              `Round ${stat.characters}:\n- Characters: ${stat.search_terms}\n- Total Unresolved: ${stat.unresolved_items}\n- Total Disambiguated: ${stat.disambiguated_names}\n- KPraw: ${stat.KPraw}\n- %KP: ${(stat["%KP"] * 100).toFixed(2)}`
+              `Round ${stat.characters}:\n- Characters: ${Array.isArray(stat.search_terms) ? stat.search_terms.join(", ") : stat.search_terms}\n- Total Unresolved: ${stat.unresolved_items}\n- Total Disambiguated: ${stat.disambiguated_names}\n- KPraw: ${stat.KPraw}\n- %KP: ${fmtPct(stat["%KP"])}%`
             )
             .join('\n\n');
 
-          // ✅ Update Cleaned Names Box
+          // --- Cleaned Names panel ---
+          // Shows the preprocessed, alphabetized names exactly as returned by backend.
           const cleanedList = document.getElementById("cleanedNamesList");
-          cleanedList.innerHTML = ''; // Clear existing
+          cleanedList.innerHTML = '';
           result.cleaned_names.forEach(name => {
             const li = document.createElement("li");
             li.textContent = name;
             cleanedList.appendChild(li);
           });
 
-          // ✅ Update Main Stats Section
+          // --- Top Summary Statistics ---
+          // totalNames: count of cleaned names returned by backend
           const totalNames = result.cleaned_names.length;
-          const lastRound = result.round_stats[result.round_stats.length - 1];
-          document.getElementById("stat-count").innerText = totalNames;
-          document.getElementById("stat-overlap").innerText = lastRound.characters;
-          document.getElementById("stat-kpraw").innerText = lastRound.KPraw;
-          document.getElementById("stat-kppercent").innerText = (lastRound["%KP"] * 100).toFixed(2);
 
-          // ✅ NEW: Update KPraw Table (Round → KPraw → %KP)
+          // Cumulative KP working (top box):
+          // • totalKpRaw: sum of KPraw contributed by EACH round.
+          // • totalChars: sum of the "characters" field across ALL rounds (the per-round
+          //   denominator used to size the search space by prefix length).
+          // • weightedPercent: overall %KP for the full run = (sum(KPraw) / sum(characters)) × 100.
+          const totalKpRaw = result.round_stats.reduce((sum, r) => sum + (Number(r.KPraw) || 0), 0);
+          const totalChars = result.round_stats.reduce((sum, r) => sum + (Number(r.characters) || 0), 0);
+          const weightedPercent = totalChars > 0 ? (totalKpRaw / totalChars) * 100 : 0;
+
+          // lastRound: we still read some fields (e.g., disambiguated_names) from the final entry
+          const lastRound = result.round_stats[result.round_stats.length - 1];
+
+          // Update the top stats box
+          document.getElementById("stat-count").innerText = totalNames;
+          // NOTE: "Number of med names analysed" displays lastRound.disambiguated_names as in your code.
+          document.getElementById("stat-overlap").innerText = lastRound.disambiguated_names;
+          // Raw Keystroke Power (top): cumulative across all rounds
+          document.getElementById("stat-kpraw").innerText = totalKpRaw;
+          // Keystroke Power Percent (top): cumulative across all rounds
+          document.getElementById("stat-kppercent").innerText = weightedPercent.toFixed(2);
+
+          // --- KPraw Table ---
+          // For each round, show the round number (as "characters"), the KPraw of that round,
+          // and that round’s %KP normalized for display.
           const kpTbody = document.querySelector('#kprawTable tbody');
           if (kpTbody) {
             kpTbody.innerHTML = '';
@@ -216,20 +277,20 @@ Description:
               tr.innerHTML = `
                 <td style="padding: 6px 4px; border-bottom: 1px solid #f0f0f0;">${stat.characters}</td>
                 <td style="padding: 6px 4px; border-bottom: 1px solid #f0f0f0;">${stat.KPraw}</td>
-                <td style="padding: 6px 4px; border-bottom: 1px solid #f0f0f0;">${(stat["%KP"] * 100).toFixed(2)}%</td>
+                <td style="padding: 6px 4px; border-bottom: 1px solid #f0f0f0;">${fmtPct(stat["%KP"])}%</td>
               `;
               kpTbody.appendChild(tr);
             });
           }
 
-          // ✅ Update Overlap Box – grouped by round
+          // --- All Overlaps log ---
+          // Group overlap messages by round for readability.
           const overlapLogsByRound = {};
           result.prefix_logs.forEach(log => {
             const round = log.round;
             if (!overlapLogsByRound[round]) {
               overlapLogsByRound[round] = [];
             }
-
             if (log.unresolved) {
               overlapLogsByRound[round].push(`Prefix "${log.prefix}" matched multiple: ${log.unresolved}`);
             } else if (log.disambiguated) {
@@ -237,7 +298,7 @@ Description:
             }
           });
 
-          // Format the grouped overlap logs
+          // Flatten grouped logs into a single preformatted text block
           let formattedOverlaps = "";
           for (const round of Object.keys(overlapLogsByRound)) {
             const entries = overlapLogsByRound[round]
@@ -245,11 +306,11 @@ Description:
               .join("\n");
             formattedOverlaps += entries + "\n\n";
           }
-
           document.getElementById("overlap-box").innerText =
             formattedOverlaps.trim() || "✅ No unresolved overlaps.";
 
         } catch (error) {
+          // Any network/parse error gets surfaced in the overlaps panel
           document.getElementById("overlap-box").innerText = "❌ Error: " + error;
         }
       }
