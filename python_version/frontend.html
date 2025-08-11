@@ -109,8 +109,8 @@ Description:
         <div style="border: 1px solid #ccc; border-radius: 6px; padding: 15px; background-color: #fff;">
           <h3 style="margin-top: 0;">📊 Statistics</h3>
           <div style="font-size: 14px;">
-            <p><strong>Number of med names = </strong><span id="stat-count">-</span> names</p>
-            <p><strong>Greatest overlap = </strong><span id="stat-overlap">-</span> characters</p>
+            <p><strong>Number of med names provided = </strong><span id="stat-count">-</span> names</p>
+            <p><strong>Number of med names analysed = </strong><span id="stat-overlap">-</span> characters</p>
             <p><strong>Raw Keystroke Power = </strong><span id="stat-kpraw">-</span> keystrokes</p>
             <p><strong>Keystroke Power Percent = </strong><span id="stat-kppercent">-</span> %</p>
           </div>
@@ -130,6 +130,21 @@ Description:
             <h3>🔁 Round Statistics</h3>
             <pre id="roundStats" style="white-space: pre-wrap;"></pre>
           </div>
+        </div>
+
+        <!-- ✅ NEW: KPraw Table (Round-by-Round) -->
+        <div id="kprawBox" style="border: 1px solid #ccc; border-radius: 6px; padding: 15px; background-color: #fff;">
+          <h3 style="margin-top: 0;">⌨️ Keystroke Power by Round</h3>
+          <table id="kprawTable" style="width: 100%; border-collapse: collapse; font-size: 14px;">
+            <thead>
+              <tr>
+                <th style="text-align: left; border-bottom: 1px solid #ddd; padding: 6px 4px;">Round</th>
+                <th style="text-align: left; border-bottom: 1px solid #ddd; padding: 6px 4px;">KPraw</th>
+                <th style="text-align: left; border-bottom: 1px solid #ddd; padding: 6px 4px;">%KP</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
         </div>
 
         <!-- Box: All Overlap Logs (Grouped by Round) -->
@@ -171,7 +186,7 @@ Description:
           // ✅ Update Round Stats Box
           document.getElementById("roundStats").innerText = result.round_stats
             .map(stat =>
-              `Round ${stat.characters}:\n- Terms: ${stat.search_terms}\n- Unresolved: ${stat.unresolved_items}\n- Disambig: ${stat.disambiguated_names}\n- KPraw: ${stat.KPraw}\n- %KP: ${stat["%KP"]}`
+              `Round ${stat.characters}:\n- Characters: ${stat.search_terms}\n- Total Unresolved: ${stat.unresolved_items}\n- Total Disambiguated: ${stat.disambiguated_names}\n- KPraw: ${stat.KPraw}\n- %KP: ${(stat["%KP"] * 100).toFixed(2)}`
             )
             .join('\n\n');
 
@@ -191,6 +206,21 @@ Description:
           document.getElementById("stat-overlap").innerText = lastRound.characters;
           document.getElementById("stat-kpraw").innerText = lastRound.KPraw;
           document.getElementById("stat-kppercent").innerText = (lastRound["%KP"] * 100).toFixed(2);
+
+          // ✅ NEW: Update KPraw Table (Round → KPraw → %KP)
+          const kpTbody = document.querySelector('#kprawTable tbody');
+          if (kpTbody) {
+            kpTbody.innerHTML = '';
+            result.round_stats.forEach(stat => {
+              const tr = document.createElement('tr');
+              tr.innerHTML = `
+                <td style="padding: 6px 4px; border-bottom: 1px solid #f0f0f0;">${stat.characters}</td>
+                <td style="padding: 6px 4px; border-bottom: 1px solid #f0f0f0;">${stat.KPraw}</td>
+                <td style="padding: 6px 4px; border-bottom: 1px solid #f0f0f0;">${(stat["%KP"] * 100).toFixed(2)}%</td>
+              `;
+              kpTbody.appendChild(tr);
+            });
+          }
 
           // ✅ Update Overlap Box – grouped by round
           const overlapLogsByRound = {};
