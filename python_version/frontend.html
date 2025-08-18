@@ -1,321 +1,401 @@
-<!--
-MNOA Frontend – Medication Name Overlap Analyzer Web UI
-Description:
-- Single-page frontend for uploading medication name list
-- Submits input to backend API (/disambiguate) and receives disambiguation results
-- Displays cleaned names, round-by-round disambiguation logs, and summary statistics
--->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>MNOA – Medication Name Overlap Analyzer</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>MNOA – Medication Name Overlap Analyzer</title>
+<style>
+  /* ===== Theme / layout =====
+     - Colors, shadows, spacing, sizes
+     - Used across the page
+  */
+  *,*::before,*::after{box-sizing:border-box}
+  :root{
+    --bg:#f6f9ff; --card:#fff; --ink:#111827; --muted:#6b7280;
+    --border:#e5e7eb; --primary:#2563eb; --ghost:rgba(37,99,235,.16);
+    --radius:20px; --shadow:0 1px 2px rgba(0,0,0,.05), 0 10px 30px rgba(0,0,0,.07);
+    --gap:24px;
+    --ta-h:480px;  /* big twin height (left + right textareas) */
+    --label-h:28px; /* label line height */
+  }
+  body{
+    margin:0; padding:32px 40px; background:var(--bg);
+    font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+    color:var(--ink);
+  }
+  .wrap{max-width:1640px; margin:0 auto}
 
-  <!-- Styling block for layout, typography, UI boxes -->
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 40px;
-      padding: 0;
-      background-color: #f9f9f9;
-    }
+  /* Header row: icon + title */
+  .hdr{display:flex; align-items:center; gap:12px; margin-bottom:var(--gap)}
+  .hdr h1{margin:0; font-size:28px; font-weight:800}
+  .hdr small{color:var(--muted); font-weight:600}
 
-    h1 {
-      font-size: 28px;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
+  /* 4-col main row:
+     1) input field
+     2) button (center)
+     3) alphabetized field
+     4) sidebar pills (collapsed)
+  */
+  .row{
+    display:grid;
+    grid-template-columns: 1fr 84px 1fr 360px;
+    gap:var(--gap);
+    align-items:start;
+    min-width:1240px; 
+  }
 
-    textarea {
-      width: 100%;
-      max-width: 600px;
-      height: 160px;
-      padding: 10px;
-      font-size: 14px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      resize: vertical;
-    }
+  /* Field block: label + textarea */
+  .field{display:flex; flex-direction:column}
+  .label{
+    font-weight:700; margin:0 0 8px 2px; line-height:1;
+    min-height:var(--label-h); display:flex; align-items:center;
+  }
+  .textarea{
+    width:100%; height:var(--ta-h); resize:vertical;
+    padding:14px 16px; font-size:15px; line-height:1.45;
+    border:1px solid var(--border); border-radius:var(--radius); background:#fff; box-shadow:var(--shadow);
+    outline:none;
+  }
+  .textarea:focus{border-color:var(--primary); box-shadow:0 0 0 3px var(--ghost), var(--shadow)}
 
-    button {
-      margin-top: 12px;
-      padding: 10px 20px;
-      font-size: 14px;
-      font-weight: bold;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+  /* CTA column: keeps the button centered between the two big textareas */
+  .cta{position:relative; height:calc(var(--label-h) + var(--ta-h)); display:block}
+  .btn{
+    position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+    width:60px; height:60px; border-radius:50%; border:none; cursor:pointer;
+    background:var(--primary); color:#fff; font-weight:800; font-size:20px;
+    display:grid; place-items:center; box-shadow:var(--shadow);
+  }
+  .btn:active{transform:translate(-50%,-50%) scale(.98)}
 
-    button:hover {
-      background-color: #45a049;
-    }
+  /* Sidebar pills (collapsed by default) */
+  .side{
+    display:flex; flex-direction:column; justify-content:center; gap:20px;
+    height:calc(var(--label-h) + var(--ta-h)); /* same height as the big fields */
+  }
+  .pill{
+    display:block; width:100%;
+    border:1px solid var(--border); background:#fff; border-radius:999px; box-shadow:var(--shadow);
+    overflow:hidden; /* keeps rounded look when open */
+  }
+  .pill .hd{
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    padding:12px 18px; cursor:pointer; font-weight:700;
+  }
+  .pill .hint{color:var(--muted); font-size:12px; white-space:nowrap}
+  .pill .content{
+    max-height:0; overflow:hidden; transition:max-height .25s ease;
+    border-top:1px solid var(--border); background:#fff;
+  }
+  .pill.open{border-radius:var(--radius)} /* round corners when open */
+  .pill.open .content{max-height:var(--pill-max, 600px); overflow:visible}
+  
+  /* Scroll area inside some pills:
+     - rounds text, kp table, overlaps
+  */
+  #p-rounds .content .inner,
+  #p-kp .content .inner,
+  #p-overlaps .content .inner {
+      max-height: 250px;
+      overflow-y: auto;
+      padding: 12px 18px;
+  }
 
-    .output-section {
-      margin-top: 30px;
-      background-color: #fff;
-      padding: 20px;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      max-width: 800px;
-      overflow-x: auto;
-    }
-
-    pre {
-      font-family: Consolas, monospace;
-      font-size: 13px;
-      white-space: pre-wrap;
-      word-wrap: break-word;
-    }
-
-    label {
-      font-weight: bold;
-    }
-  </style>
+  /* Table + code text */
+  table{width:100%; border-collapse:collapse; font-size:14px}
+  th,td{padding:9px 8px; border-bottom:1px solid #f1f5f9; text-align:left}
+  th{font-weight:700}
+  pre{font-family:Consolas,Menlo,monospace; font-size:13px; white-space:pre-wrap; margin:0}
+  
+  /* Sticky table header (kp table) */
+  .sticky-header {
+      position: sticky;
+      top: 0;
+      background-color: #f8f9fa;
+      z-index: 10;
+  }
+  
+  /* Visual highlight helpers (added/removed in JS) */
+  .data-highlight {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 3px var(--ghost), var(--shadow) !important;
+    transition: all 0.5s ease;
+  }
+  .accordion-highlight {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 3px var(--ghost), var(--shadow) !important;
+    transition: all 0.5s ease;
+  }
+</style>
 </head>
-
 <body>
-  <!-- Page wrapper with flex layout and padding -->
-  <div style="display: flex; flex-direction: column; align-items: center; padding: 20px;">
-
-    <!-- Header with app title and turtle logo -->
-    <div style="display: flex; align-items: center; margin-bottom: 30px;">
-      <img src="https://cdn-icons-png.flaticon.com/512/6789/6789501.png" alt="turtle" width="50" style="margin-right: 15px;">
-      <h1 style="font-size: 28px; margin: 0;">
-        <strong>MNOA</strong> <span style="font-weight: normal;">Medication Name Overlap Analyzer</span>
-      </h1>
+  <div class="wrap">
+    <!-- Top header: turtle icon + app title -->
+    <div class="hdr">
+      <img src="https://cdn-icons-png.flaticon.com/512/6789/6789501.png" alt="" width="40" height="40" />
+      <h1>MNOA <small>- Medication Name Overlap Analyzer</small></h1>
     </div>
 
-    <!-- Main layout: input | button | output -->
-    <div style="display: flex; width: 100%; max-width: 1100px;">
-      
-      <!-- Left Panel: Input text area -->
-      <div style="flex: 1; padding-right: 10px;">
-        <textarea id="medInput" placeholder="Paste a list of medication names here ..." style="width: 100%; height: 300px; font-size: 14px; padding: 10px; border-radius: 6px; border: 1px solid #ccc;"></textarea>
+    <!-- Main 4-column row -->
+    <div class="row">
+      <!-- Left big field: user input -->
+      <section class="field">
+        <div class="label">Paste a list of medication names here…</div>
+        <textarea id="medInput" class="textarea" placeholder="One medication per line…"></textarea>
+      </section>
+
+      <!-- Center: analyze button (calls submitNames) -->
+      <div class="cta">
+        <button class="btn" aria-label="Analyze" type="button" onclick="submitNames()">▶</button>
       </div>
 
-      <!-- Middle Panel: Action Button (CTA) -->
-      <div style="display: flex; align-items: center; justify-content: center; padding: 0 10px;">
-        <button onclick="submitNames()" style="font-size: 30px; border: none; background: none; cursor: pointer;">▶️</button>
-      </div>
+      <!-- Right big field: alphabetized result (read-only) -->
+      <section class="field">
+        <div class="label">Alphabetized List for Analysis</div>
+        <textarea id="alphaBox" class="textarea" placeholder="Results will appear here after Analyze" readonly></textarea>
+      </section>
 
-      <!-- Right Panel: Outputs (wrapped in vertical stack) -->
-      <div style="flex: 1; padding-left: 10px; display: flex; flex-direction: column; gap: 20px;">
-
-        <!-- Box: Summary Statistics -->
-        <div style="border: 1px solid #ccc; border-radius: 6px; padding: 15px; background-color: #fff;">
-          <h3 style="margin-top: 0;">📊 Statistics</h3>
-          <div style="font-size: 14px;">
-            <p><strong>Number of med names provided = </strong><span id="stat-count">-</span> names</p>
-            <p><strong>Number of med names analysed = </strong><span id="stat-overlap">-</span> characters</p>
-            <p><strong>Raw Keystroke Power = </strong><span id="stat-kpraw">-</span> keystrokes</p>
-            <p><strong>Keystroke Power Percent = </strong><span id="stat-kppercent">-</span> %</p>
+      <!-- Far right: small boxes (pills), collapsed by default -->
+      <aside class="side">
+        <!-- Overall stats -->
+        <div class="pill" id="p-overall">
+          <div class="hd" onclick="toggleAccordion('p-overall')">
+            <span>📊 Overall List Stats</span>
+            <span class="hint">(click to expand)</span>
           </div>
+          <div class="content"><div class="inner" style="padding:12px 18px;">
+            <div><strong>Number of med names provided = </strong><span id="stat-count">-</span> names</div>
+            <div><strong>Number of med names analysed = </strong><span id="stat-overlap">-</span> characters</div>
+            <div><strong>Raw Keystroke Power = </strong><span id="stat-kpraw">-</span> keystrokes</div>
+            <div><strong>Keystroke Power Percent = </strong><span id="stat-kppercent">-</span> %</div>
+          </div></div>
         </div>
 
-        <!-- Box: Cleaned Names + Round Stats (side-by-side layout) -->
-        <div style="display: flex; gap: 10px;">
-          
-          <!-- Cleaned Name List (alphabetical) -->
-          <div id="cleanedNamesBox" style="flex: 1; border: 1px solid #ccc; padding: 10px; overflow-y: auto; max-height: 300px;">
-            <h3>✅ Alphabetically Cleaned Names</h3>
-            <ul id="cleanedNamesList"></ul>
+        <!-- Rounds text (scrolls inside) -->
+        <div class="pill" id="p-rounds">
+          <div class="hd" onclick="toggleAccordion('p-rounds')">
+            <span>🔁 Round By Round Stats</span>
+            <span class="hint">(click to expand)</span>
           </div>
+          <div class="content"><div class="inner">
+            <pre id="roundStats" style="white-space:pre-wrap;"></pre>
+          </div></div>
+        </div>
 
-          <!-- Round-by-Round Stats -->
-          <div id="roundStatsBox" style="flex: 1; border: 1px solid #ccc; padding: 10px; overflow-y: auto; max-height: 300px;">
-            <h3>🔁 Round Statistics</h3>
-            <pre id="roundStats" style="white-space: pre-wrap;"></pre>
+        <!-- KP table (sticky header + scroll inside) -->
+        <div class="pill" id="p-kp">
+          <div class="hd" onclick="toggleAccordion('p-kp')">
+            <span>⌨️ Keystroke Power by Round</span>
+            <span class="hint">(click to expand)</span>
           </div>
+          <div class="content"><div class="inner">
+              <table id="kprawTable" style="width:100%; border-collapse:collapse; font-size:14px;">
+                <thead class="sticky-header">
+                  <tr>
+                    <th style="text-align:left; border-bottom:1px solid #ddd; padding:6px 4px;">Round</th>
+                    <th style="text-align:left; border-bottom:1px solid #ddd; padding:6px 4px;">KPraw</th>
+                    <th style="text-align:left; border-bottom:1px solid #ddd; padding:6px 4px;">%KP</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+          </div></div>
         </div>
 
-        <!-- ✅ NEW: KPraw Table (Round-by-Round) -->
-        <div id="kprawBox" style="border: 1px solid #ccc; border-radius: 6px; padding: 15px; background-color: #fff;">
-          <h3 style="margin-top: 0;">⌨️ Keystroke Power by Round</h3>
-          <table id="kprawTable" style="width: 100%; border-collapse: collapse; font-size: 14px;">
-            <thead>
-              <tr>
-                <th style="text-align: left; border-bottom: 1px solid #ddd; padding: 6px 4px;">Round</th>
-                <th style="text-align: left; border-bottom: 1px solid #ddd; padding: 6px 4px;">KPraw</th>
-                <th style="text-align: left; border-bottom: 1px solid #ddd; padding: 6px 4px;">%KP</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
+        <!-- Overlaps text (scrolls inside) -->
+        <div class="pill" id="p-overlaps">
+          <div class="hd" onclick="toggleAccordion('p-overlaps')">
+            <span>🔎 All Overlaps by Round</span>
+            <span class="hint">(click to expand)</span>
+          </div>
+          <div class="content"><div class="inner">
+            <div id="overlap-box" style="font-family:monospace; font-size:13px; white-space:pre-wrap;"></div>
+          </div></div>
         </div>
-
-        <!-- Box: All Overlap Logs (Grouped by Round) -->
-        <div style="border: 1px solid #ccc; border-radius: 6px; padding: 15px; background-color: #fff; height: 250px; overflow-y: auto;">
-          <h3 style="margin-top: 0;">🔍 All Overlaps</h3>
-          <div id="overlap-box" style="font-family: monospace; font-size: 13px; white-space: pre-wrap;"></div>
-        </div>
-
-      </div>
+      </aside>
     </div>
-
-    <!-- JavaScript  -->
-    <script>
-      // --- %KP helpers ---
-      // NOTE: The backend may send %KP either as a fraction (0–1) or as a percent (0–100).
-      // normalizePercent() converts either form into a 0–100 percentage for display.
-      function normalizePercent(v) {
-        const n = Number(v);
-        if (!Number.isFinite(n)) return null;
-        return n > 1 ? n : n * 100; // if <=1 treat as ratio; if >1 assume already a percent
-      }
-      // fmtPct() returns a 2-decimal string for % display (or "–" if not a number).
-      function fmtPct(v) {
-        const p = normalizePercent(v);
-        return p == null ? "–" : p.toFixed(2);
-      }
-      // --- end helpers ---
-
-      /**
-       * submitNames()
-       * 1) Reads the textarea input and sends it to /disambiguate (POST).
-       * 2) Receives JSON containing:
-       *    - cleaned_names: array of preprocessed names
-       *    - round_stats: array of rounds with fields like:
-       *        characters          → the prefix length examined in this round
-       *        search_terms        → the actual prefix(es) used this round
-       *        unresolved_items    → how many names remain unresolved after this round
-       *        disambiguated_names → how many names have been resolved cumulatively
-       *        KPraw               → "raw keystroke power" contributed by THIS round
-       *        %KP                 → per-round keystroke power percent (backend’s value)
-       *    - prefix_logs: logs of unresolved/resolved prefixes by round
-       * 3) Updates all UI panels (stats, cleaned list, per-round table, overlap logs).
-       *
-       * 🔎 KP metrics (as implemented here):
-       *    • KPraw (top box): we compute the cumulative sum across ALL rounds,
-       *      i.e., sum of stat.KPraw for every round.
-       *    • Keystroke Power Percent (top box): we compute a cumulative % across ALL rounds
-       *      as (sum(KPraw) / sum(characters)) × 100. This gives an overall efficiency for the run.
-       *    • In the "Round Statistics" panel and the "KPraw table", we display each round’s KPraw and %KP.
-       *      The %KP there is normalized for display via fmtPct(...) so it looks consistent (0–100%).
-       */
-      async function submitNames() {
-        // 1) Collect and sanitize user input lines
-        const rawInput = document.getElementById("medInput").value;
-        const names = rawInput
-          .split("\n")
-          .map(n => n.trim())
-          .filter(n => n.length > 0);
-
-        // Show a simple loading state in the UI while we wait for the backend
-        document.getElementById("stat-count").innerText = "Loading...";
-        document.getElementById("stat-overlap").innerText = "";
-        document.getElementById("stat-kpraw").innerText = "";
-        document.getElementById("stat-kppercent").innerText = "";
-        document.getElementById("overlap-box").innerText = "Processing...";
-
-        try {
-          // 2) POST to backend endpoint with the array of names
-          const response = await fetch("/disambiguate", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ names })
-          });
-
-          // 3) Parse backend JSON response
-          const result = await response.json();
-
-          // --- Round Statistics panel ---
-          // For each round, we show characters, search terms, unresolved/resolved counts,
-          // KPraw (this round), and %KP (this round, normalized for display).
-          document.getElementById("roundStats").innerText = result.round_stats
-            .map(stat =>
-              `Round ${stat.characters}:\n- Characters: ${Array.isArray(stat.search_terms) ? stat.search_terms.join(", ") : stat.search_terms}\n- Total Unresolved: ${stat.unresolved_items}\n- Total Disambiguated: ${stat.disambiguated_names}\n- KPraw: ${stat.KPraw}\n- %KP: ${fmtPct(stat["%KP"])}%`
-            )
-            .join('\n\n');
-
-          // --- Cleaned Names panel ---
-          // Shows the preprocessed, alphabetized names exactly as returned by backend.
-          const cleanedList = document.getElementById("cleanedNamesList");
-          cleanedList.innerHTML = '';
-          result.cleaned_names.forEach(name => {
-            const li = document.createElement("li");
-            li.textContent = name;
-            cleanedList.appendChild(li);
-          });
-
-          // --- Top Summary Statistics ---
-          // totalNames: count of cleaned names returned by backend
-          const totalNames = result.cleaned_names.length;
-
-          // Cumulative KP working (top box):
-          // • totalKpRaw: sum of KPraw contributed by EACH round.
-          // • totalChars: sum of the "characters" field across ALL rounds (the per-round
-          //   denominator used to size the search space by prefix length).
-          // • weightedPercent: overall %KP for the full run = (sum(KPraw) / sum(characters)) × 100.
-          const totalKpRaw = result.round_stats.reduce((sum, r) => sum + (Number(r.KPraw) || 0), 0);
-          const totalChars = result.round_stats.reduce((sum, r) => sum + (Number(r.characters) || 0), 0);
-          const weightedPercent = totalChars > 0 ? (totalKpRaw / totalChars) * 100 : 0;
-
-          // lastRound: we still read some fields (e.g., disambiguated_names) from the final entry
-          const lastRound = result.round_stats[result.round_stats.length - 1];
-
-          // Update the top stats box
-          document.getElementById("stat-count").innerText = totalNames;
-          // NOTE: "Number of med names analysed" displays lastRound.disambiguated_names as in your code.
-          document.getElementById("stat-overlap").innerText = lastRound.disambiguated_names;
-          // Raw Keystroke Power (top): cumulative across all rounds
-          document.getElementById("stat-kpraw").innerText = totalKpRaw;
-          // Keystroke Power Percent (top): cumulative across all rounds
-          document.getElementById("stat-kppercent").innerText = weightedPercent.toFixed(2);
-
-          // --- KPraw Table ---
-          // For each round, show the round number (as "characters"), the KPraw of that round,
-          // and that round’s %KP normalized for display.
-          const kpTbody = document.querySelector('#kprawTable tbody');
-          if (kpTbody) {
-            kpTbody.innerHTML = '';
-            result.round_stats.forEach(stat => {
-              const tr = document.createElement('tr');
-              tr.innerHTML = `
-                <td style="padding: 6px 4px; border-bottom: 1px solid #f0f0f0;">${stat.characters}</td>
-                <td style="padding: 6px 4px; border-bottom: 1px solid #f0f0f0;">${stat.KPraw}</td>
-                <td style="padding: 6px 4px; border-bottom: 1px solid #f0f0f0;">${fmtPct(stat["%KP"])}%</td>
-              `;
-              kpTbody.appendChild(tr);
-            });
-          }
-
-          // --- All Overlaps log ---
-          // Group overlap messages by round for readability.
-          const overlapLogsByRound = {};
-          result.prefix_logs.forEach(log => {
-            const round = log.round;
-            if (!overlapLogsByRound[round]) {
-              overlapLogsByRound[round] = [];
-            }
-            if (log.unresolved) {
-              overlapLogsByRound[round].push(`Prefix "${log.prefix}" matched multiple: ${log.unresolved}`);
-            } else if (log.disambiguated) {
-              overlapLogsByRound[round].push(`Prefix "${log.prefix}" resolved: ${log.disambiguated}`);
-            }
-          });
-
-          // Flatten grouped logs into a single preformatted text block
-          let formattedOverlaps = "";
-          for (const round of Object.keys(overlapLogsByRound)) {
-            const entries = overlapLogsByRound[round]
-              .map(entry => `Round ${round}: ${entry}`)
-              .join("\n");
-            formattedOverlaps += entries + "\n\n";
-          }
-          document.getElementById("overlap-box").innerText =
-            formattedOverlaps.trim() || "✅ No unresolved overlaps.";
-
-        } catch (error) {
-          // Any network/parse error gets surfaced in the overlaps panel
-          document.getElementById("overlap-box").innerText = "❌ Error: " + error;
-        }
-      }
-    </script>
-
   </div>
+
+  <script>
+    // Toggle one pill. Close other open pills.
+    function toggleAccordion(accordionId) {
+      const allAccordions = ['p-overall', 'p-rounds', 'p-kp', 'p-overlaps'];
+      allAccordions.forEach(id => {
+        const pill = document.getElementById(id);
+        if (id !== accordionId && pill.classList.contains('open')) {
+            pill.classList.remove('open');
+        }
+      });
+      const accordion = document.getElementById(accordionId);
+      accordion.classList.toggle('open');
+    }
+
+    // --- %KP helpers (EXACT original) ---
+    // normalizePercent: accepts 0–1 or 0–100 and returns 0–100
+    function normalizePercent(v){
+      const n = Number(v);
+      if (!Number.isFinite(n)) return null;
+      return n > 1 ? n : n * 100;
+    }
+    // fmtPct: prints percent with 2 decimals, or "–"
+    function fmtPct(v){
+      const p = normalizePercent(v);
+      return p == null ? "–" : p.toFixed(2);
+    }
+    // --- end helpers ---
+    
+    // Button look based on input state
+    function updateButtonState() {
+      const textarea = document.getElementById("medInput");
+      const button = document.querySelector(".btn");
+      const hasContent = textarea.value.trim().length > 0;
+      if (hasContent) {
+        button.style.background = "var(--primary)";
+        button.style.color = "white";
+        button.style.cursor = "pointer";
+      } else {
+        button.style.background = "var(--border)";
+        button.style.color = "var(--muted)";
+        button.style.cursor = "not-allowed";
+      }
+    }
+
+    // Run once ready: wire listeners for input -> button state
+    document.addEventListener('DOMContentLoaded', function() {
+      const textarea = document.getElementById("medInput");
+      textarea.addEventListener('input', updateButtonState);
+      textarea.addEventListener('keyup', updateButtonState);
+      textarea.addEventListener('paste', function() {
+        setTimeout(updateButtonState, 10);
+      });
+      updateButtonState(); // set initial
+    });
+
+    // Add highlight while loading / updating
+    function applyHighlights() {
+      document.getElementById("medInput").classList.add("data-highlight");
+      document.getElementById("alphaBox").classList.add("data-highlight");
+      document.querySelectorAll(".pill").forEach(item => {
+        item.classList.add("accordion-highlight");
+      });
+    }
+
+    // Remove highlight after load
+    function removeHighlights() {
+      document.getElementById("medInput").classList.remove("data-highlight");
+      document.getElementById("alphaBox").classList.remove("data-highlight");
+      document.querySelectorAll(".pill").forEach(item => {
+        item.classList.remove("accordion-highlight");
+      });
+    }
+
+    // Main action: read input, call /disambiguate, fill all views
+    async function submitNames(){
+      const rawInput = document.getElementById("medInput").value;
+      const names = rawInput.split("\n").map(n=>n.trim()).filter(n=>n.length>0);
+      if (names.length === 0) {
+        document.getElementById("alphaBox").value = "Please enter some medication names first.";
+        return;
+      }
+      
+      applyHighlights(); // show glow
+
+      // Reset UI while loading
+      document.getElementById("alphaBox").value = "Processing medication names...";
+      document.getElementById("stat-count").innerText = "-";
+      document.getElementById("stat-overlap").innerText = "-";
+      document.getElementById("stat-kpraw").innerText = "-";
+      document.getElementById("stat-kppercent").innerText = "-";
+      document.getElementById("roundStats").innerText = "";
+      document.querySelector('#kprawTable tbody').innerHTML = "";
+      document.getElementById("overlap-box").innerText = "Processing...";
+
+      try {
+        // Send to backend
+        const response = await fetch("/disambiguate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ names })
+        });
+        const result = await response.json();
+
+        // Alphabetized list (right big field)
+        if (result.cleaned_names && result.cleaned_names.length > 0) {
+          document.getElementById("alphaBox").value = result.cleaned_names.join("\n");
+        } else {
+          document.getElementById("alphaBox").value = "No valid medication names found.";
+        }
+
+        // Top stats: count, kp sums, percent
+        const totalNames = result.cleaned_names.length;
+        const totalKpRaw = result.round_stats.reduce((sum, r) => sum + (Number(r.KPraw) || 0), 0);
+        const totalChars = result.round_stats.reduce((sum, r) => sum + (Number(r.characters) || 0), 0);
+        const weightedPercent = totalChars > 0 ? (totalKpRaw / totalChars) * 100 : 0;
+        const lastRound = result.round_stats[result.round_stats.length - 1];
+
+        document.getElementById("stat-count").innerText = totalNames;
+        document.getElementById("stat-overlap").innerText = lastRound?.disambiguated_names ?? "";
+        document.getElementById("stat-kpraw").innerText = totalKpRaw;
+        document.getElementById("stat-kppercent").innerText = weightedPercent.toFixed(2);
+
+        // Rounds text block
+        document.getElementById("roundStats").innerText = result.round_stats
+          .map(stat =>
+            `Round ${stat.characters}:
+- Characters: ${Array.isArray(stat.search_terms) ? stat.search_terms.join(", ") : stat.search_terms}
+- Total Unresolved: ${stat.unresolved_items}
+- Total Disambiguated: ${stat.disambiguated_names}
+- KPraw: ${stat.KPraw}
+- %KP: ${fmtPct(stat["%KP"])}%`
+          )
+          .join('\n\n');
+
+        // KP table rows
+        const kpTbody = document.querySelector('#kprawTable tbody');
+        if (kpTbody) {
+          kpTbody.innerHTML = '';
+          result.round_stats.forEach(stat => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+              <td style="padding:6px 4px; border-bottom:1px solid #f0f0f0;">${stat.characters}</td>
+              <td style="padding:6px 4px; border-bottom:1px solid #f0f0f0;">${stat.KPraw}</td>
+              <td style="padding:6px 4px; border-bottom:1px solid #f0f0f0;">${fmtPct(stat["%KP"])}%</td>
+            `;
+            kpTbody.appendChild(tr);
+          });
+        }
+        
+        // Overlaps (group by round)
+        const overlapLogsByRound = {};
+        result.prefix_logs.forEach(log => {
+          const round = log.round;
+          if (!overlapLogsByRound[round]) {
+            overlapLogsByRound[round] = [];
+          }
+          if (log.unresolved) {
+            overlapLogsByRound[round].push(`Prefix "${log.prefix}" matched multiple: ${log.unresolved}`);
+          } else if (log.disambiguated) {
+            overlapLogsByRound[round].push(`Prefix "${log.prefix}" resolved: ${log.disambiguated}`);
+          }
+        });
+
+        let formattedOverlaps = "";
+        for (const round of Object.keys(overlapLogsByRound)) {
+          const entries = overlapLogsByRound[round]
+            .map(entry => `Round ${round}: ${entry}`)
+            .join("\n");
+          formattedOverlaps += entries + "\n\n";
+        }
+        document.getElementById("overlap-box").innerText = formattedOverlaps.trim() || "✅ No unresolved overlaps.";
+
+      } catch (error) {
+        // Error state
+        document.getElementById("alphaBox").value = "❌ Error: " + error.message;
+      } finally {
+        // Remove glow after a short delay
+        setTimeout(removeHighlights, 1000);
+      }
+    }
+  </script>
 </body>
 </html>
