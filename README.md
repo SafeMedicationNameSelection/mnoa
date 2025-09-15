@@ -1,5 +1,11 @@
 # MNOA: A Medication Name Overlap Analyzer
 
+Developed by: Gaurav Bhatti (2025)
+Designed by: Gaurav Bhatti and Allen Flynn (2025)
+Invented by: Allen Flynn, Conor Myers, and Katie Mieure (2023)
+
+---
+
 This repository contains the source code for an implementation of a Medication Name Overlap Analyzer (MNOA). This MNOA tool is web-based and has been developed in Python using Flask. A similar tool has been used in research. A published paper with results showing how the characters in medication names overlap from left to right is available at this [link](https://academic.oup.com/ajhp/article-abstract/81/14/622/7613639). 
 
 The tool is designed to analyze lists of medication names to identify potential "look-alike" conflicts that can contribute to medication selection errors, a significant challenge in patient safety.
