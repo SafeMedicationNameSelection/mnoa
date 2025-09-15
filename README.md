@@ -8,7 +8,7 @@ This work represents a 2025 reimplementation and modernization of the foundation
 
 ### Application Interface
 
-![MNOA Application Screenshot](mnoa-screenshot.png)
+![MNOA Application Screenshot](assets/mnoa-screenshot.png)
 
 ---
 
@@ -39,39 +39,35 @@ To deploy and run this application locally, a Python 3.8+ environment is require
 * Navigate to the main GitHub repository page. Click the green **`< > Code`** button and select **Download ZIP**.
 * Extract the contents of the downloaded ZIP file to a suitable location on your local machine.
 
-![Step 1: Downloading the repository source code](step-1-download.png)
+![Step 1: Downloading the repository source code](assets/step-1-download.png)
 
 **Step 2: Open a Terminal and Navigate to the Project Directory**
 * Open a command-line terminal (e.g., Terminal on macOS, PowerShell on Windows).
 * Use the `cd` (change directory) command to navigate into the unzipped project folder (e.g., `cd Downloads/mnoa-main`).
 
-![Step 2: Navigating into the project directory via the terminal](step-2-terminal.png)
+![Step 2: Navigating into the project directory via the terminal](assets/step-2-terminal.png)
 
 **Step 3: Create and Activate a Python Virtual Environment**
 * A virtual environment isolates the project's dependencies. Execute the command `python3 -m venv venv` to create it.
 * Activate the environment using the appropriate command for your operating system. After activation, your terminal prompt will be prefixed with `(venv)`.
 
-![Step 3: Activating the Python virtual environment](step-3-activate.png)
+![Step 3: Activating the Python virtual environment](assets/step-3-activate.png)
 
 **Step 4: Install Required Dependencies**
 * Execute the command `pip install -r requirements.txt`. This will install the Flask library required to run the web server.
 
-![Step 4: Installing dependencies using pip](step-4-install.png)
+![Step 4: Installing dependencies using pip](assets/step-4-install.png)
 
 **Step 5: Launch the Application Server**
 * Execute the command `python3 app.py` to start the Flask development server.
 * The terminal will indicate that the server is running and listening for requests.
 
-![Step 5: Launching the Flask application server](step-5-run.png)
+![Step 5: Launching the Flask application server](assets/step-5-run.png)
 
 **Step 6: Access the Application**
 * Open a web browser and navigate to the local address `http://127.0.0.1:5000`.
 * The MNOA web interface will now be accessible for use.
 
-![Step 6: Viewing the running application in a web browser](step-6-browser.png)
+![Step 6: Viewing the running application in a web browser](assets/step-6-browser.png)
 
 ---
-
-### 📚 Citation
-
-*(Please insert the appropriate academic citation for the original research here, as provided by your PI.)*
