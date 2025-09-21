@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title></title>
+<title>MNOA – Medication Name Overlap Analyzer</title>
 <style>
   /* ===== Theme / layout =====
      - Colors, shadows, spacing, sizes
@@ -30,9 +30,9 @@
   .hdr h1{margin:0; font-size:28px; font-weight:800}
   .hdr small{color:var(--muted); font-weight:600}
   .hdr img {
-  height: 100px;
-  width: auto;
-}
+    height: 100px; /* Restored original value */
+    width: auto;
+  }
 
   /* In the .row rule, update grid-template-columns and remove min-width */
  .row{
@@ -135,6 +135,24 @@
     box-shadow: 0 0 0 3px var(--ghost), var(--shadow) !important;
     transition: all 0.5s ease;
   }
+
+  /* === NEW CSS BLOCK FOR FOOTER === */
+  .ftr {
+    text-align: center;
+    margin-top: calc(var(--gap) * 2);
+    padding-top: var(--gap);
+    border-top: 1px solid var(--border);
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .ftr a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .ftr a:hover {
+    text-decoration: underline;
+  }
 </style>
 </head>
 <body>
@@ -178,9 +196,9 @@
             <span class="hint">(click to expand)</span>
           </div>
           <div class="content"><div class="inner" style="padding:12px 18px;">
-            <div><strong>Number of med names provided = </strong><span id="stat-count"> </div>
-            <div><strong>Number of med names analysed = </strong><span id="stat-overlap"> </div>
-            <div><strong>Most Powerful Keystroke = </strong><span id="stat-kpraw"> </div>
+            <div><strong>Number of med names provided = </strong><span id="stat-count"> </span></div>
+            <div><strong>Number of med names analysed = </strong><span id="stat-overlap"> </span></div>
+            <div><strong>Most Powerful Keystroke = </strong><span id="stat-kpraw"> </span></div>
             </div></div>
         </div>
 
@@ -224,6 +242,13 @@
         </div>
       </aside>
     </div>
+
+    <footer class="ftr">
+      <p>
+        View the source code on <a href="https://github.com/SafeMedicationNameSelection/mnoa" target="_blank" rel="noopener noreferrer">GitHub</a>.
+      </p>
+    </footer>
+
   </div>
 
   <script>
