@@ -1,0 +1,46 @@
+ADVAIR
+Atripla?
+?Avalide
+Aug mentin
+Benicar
+Fioricet
+Fioricet()
+Hyzaar
+123hyzaar4
+Lotrisone
+Night Time
+Conjugated estrogens
+Ethinyl estradiol
+Ezetimibe
+[Ezetimibe]
+Ezetimibe[]
+{Exetimibe}
+Ezetimibe{}
+FaMOTidine
+Fenofibrate
+Fent-anyl
+Ferrous_sulfate
+FerrOUS sulfate
+ferrous-sulfate
+ferrous SULFATE
+(ferrous sulfate)
+ferrous:sulfate
+ferrous;sulfate
+ferrous,sulfate
+ferrous"sulfate"
+ferrous'sulfate'
+ferrous~sulfate
+!Fluticasone
+#Fluticasone#
+Fluticasone@propionate
+Fluticasone propionate
+Heparin Sodium
+Heparin^Sodium
+HeparinSodium&
+Heparin&&Sodium
+<Heparin><Sodium>
+**Heparin Sodium**
+heparin/sodium
+heparin|sodium
+Heparin\sodium
+HEPARIN.SODIUM
