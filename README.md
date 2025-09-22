@@ -1,16 +1,16 @@
 # MNOA: A Medication Name Overlap Analyzer
 
-- Developed by: Gaurav Bhatti (2025)
-- Designed by: Gaurav Bhatti and Allen Flynn (2025)
-- Invented by: Allen Flynn, Conor Myers, and Katie Mieure (2023)
+- Analyzer Developed by: Gaurav Bhatti (2025)
+- Analyzer Designed by: Gaurav Bhatti and Allen Flynn (2025)
+- Overlap Analysis Method from: Allen Flynn, Conor Myers, and Katie Mieure (2023)
 
 ---
 
-This repository contains the source code for an implementation of a Medication Name Overlap Analyzer (MNOA). This MNOA tool is web-based and has been developed in Python using Flask. A similar tool has been used in research. A published paper with results showing how the characters in medication names overlap from left to right is available at this [link](https://academic.oup.com/ajhp/article-abstract/81/14/622/7613639). 
+This repository contains the source code for an implementation of a Medication Name Overlap Analyzer (MNOA). This MNOA tool is web-based and has been developed with a JavaScript front-end and a Python back-end using Flask. A similar tool has been used in research. A published paper with results showing how the characters in medication names overlap from left to right is available at this [link](https://academic.oup.com/ajhp/article-abstract/81/14/622/7613639). 
 
-The MNOA tool is designed to analyze lists of medication names for left-to-right character overlap. This overlap can cause confusion and contribute to medication selection errors, a concerning patient safety challenge. 
+The MNOA tool is designed to analyze lists of medication names for left-to-right character overlap. This overlap can cause confusion and contribute to medication selection errors, a concerning patient safety issue. 
 
-This work represents a reimplementation of the original software from in the "Keystroke Disambiguation" project. Here, the core medication name overlap analysis engine has been implemented inside a server-side Python file to support a easy-to-use interactive web interface. More information about the "Keystroke Disambiguation" project can be found [here](https://github.com/SafeMedicationNameSelection/Keystroke_Disambiguation).
+This work represents a reimplementation of the original software from in the "Keystroke Disambiguation" project. Here, the  software engine for the medication name overlap analysis method has been implemented as a single-page web application with an easy-to-use interactive user interface. More information about the "Keystroke Disambiguation" project can be found [here](https://github.com/SafeMedicationNameSelection/Keystroke_Disambiguation).
 
 ---
 
@@ -22,7 +22,7 @@ This work represents a reimplementation of the original software from in the "Ke
 
 ### Background & Rationale
 
-The accurate identification and selection of medications is critical for patient safety. With thousands of drug products on the market, the potential for name confusion is a persistent risk. Such confusion can arise from names that are similar, orthographically (look-alikes) or otherwise. Medication errors where the name of one medication is confused with that of another have resulted in patient harm.
+The accurate identification and selection of medications is critical for patient safety. With thousands of drug products on the market, the risk of name confusion is persistent. Such confusion can arise from names that have similar spellings. Harm has resulted from medication errors where the name of one medication is confused with another.
 
 This project addresses how to use software to prevent users from confusing one medication name for another. It approaches preventing medication name confusion through the lens of **keystroke disambiguation** which is the process of determining the minimum number of characters required to uniquely identify a medication name from a given list during a search task. For instance, the names "fluconazole" and "fluoxetine" only become distinguishable after the first three characters ("flu) or, when searching and matching by name, only the after first three keystrokes. Only upon entry of a fourth character do the search terms diverge ("fluc" vs. "fluo"). The MNOA tool systematically quantifies the number or characters needed to remove ambiguity from every medication name on a given list of names.
 
@@ -79,3 +79,5 @@ To deploy and run this application locally, a Python 3.8+ environment is require
 ![Step 6: Viewing the running application in a web browser](assets/step-6-browser.png)
 
 ---
+
+Tests and testing documentation are included in the MNOA GitHub repository. In the Tests folder there are two test files. The instructions for testing the MNOA web application are [here](https://github.com/SafeMedicationNameSelection/mnoa/blob/main/Test/Instructions%20for%20Testing.md).
