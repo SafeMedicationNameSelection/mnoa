@@ -1,0 +1,21 @@
+# Ignore everything by default
+*
+
+# --- Allow-list (files at repo root) ---
+!.gitignore
+!app.py
+!frontend.html
+!mnoa_backend_module.py
+!requirements.txt
+!README.md
+
+# --- Allow-list (folders + contents) ---
+!assets/
+!assets/**
+!Test/
+!Test/**
+
+# --- Re-ignore OS cruft everywhere (must be AFTER the allow-list) ---
+**/.DS_Store
+**/.DS_Store?
+**/._*
