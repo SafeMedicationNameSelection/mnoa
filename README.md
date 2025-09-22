@@ -80,4 +80,4 @@ To deploy and run this application locally, a Python 3.8+ environment is require
 
 ---
 
-Tests and testing documentation are included in the MNOA GitHub repository. In the Tests folder there are two test files. The instructions for testing the MNOA web application are [here]().
+Tests and testing documentation are included in the MNOA GitHub repository. In the Tests folder there are two test files. The instructions for testing the MNOA web application are [here](https://github.com/SafeMedicationNameSelection/mnoa/blob/main/Test/Instructions%20for%20Testing.md).
