@@ -2,7 +2,6 @@
 *
 
 # --- Allow-list (files at repo root) ---
-!.gitignore
 !app.py
 !frontend.html
 !mnoa_backend_module.py
