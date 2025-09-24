@@ -5,6 +5,7 @@
 # 2. Accept POST requests at /disambiguate with medication name input
 # 3. Return JSON-formatted disambiguation results from the backend module
 
+import os
 from flask import Flask, request, jsonify, send_from_directory
 from mnoa_backend_module import run_mnoa  # Import main logic function
 
@@ -27,3 +28,5 @@ def disambiguate():
 # Run app when this file is executed directly (not imported)
 if __name__ == '__main__':
     app.run(debug=True, port=5050, use_reloader=False)  # Start local server at http://localhost:5050
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=True, use_reloader=False)
