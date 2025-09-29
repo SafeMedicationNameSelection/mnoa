@@ -25,15 +25,30 @@ This test uses `Test 1.txt` to validate the robustness of the algorithm's **`cle
 The input file `Test 1.txt` contains 46 raw medication names with a variety of intentional formatting issues.
 
 ### Results & Analysis
-The algorithm correctly processes the 44 raw entries and produces a clean, unique, and alphabetized list of 20 names. This demonstrates that the cleaning logic successfully handles:
+The algorithm processes the 44 valid entries (after dropping two names containing a "?") and produces a clean, unique, and alphabetized list of 43 names. This demonstrates that the cleaning logic successfully handles:
 
-- **Case variations:** All names are correctly converted to lowercase.
-- **Special Characters:** Hyphens and underscores are correctly treated as spaces.
-- **Duplicates:** All variations of a name (e.g., `ferrous_sulfate`, `ferrous-sulfate`) are consolidated into a single entry.
-- **Invalid Entry Rejection:** The algorithm is designed to **ignore any name containing a question mark (`?`)**. In this test case, `Atripla?` and `?Avalide` are intentionally dropped.
+- **Case and Spacing:** All names are correctly converted to lowercase, and extra spaces are normalized.
+- **Character Preservation:** The algorithm correctly preserves all numbers and special characters (e.g., `()`, `[]`, `{}`, `*`, `!`, `#`, `@`, `:`, `;`, `,`, `-`, `_`), treating them as part of the medication name.
+- **Duplicate Removal:** The algorithm correctly identifies and removes a duplicate entry (e.g., `FerrOUS sulfate` and `ferrous SULFATE`).
+- **Invalid Entry Rejection:** The algorithm correctly drops any name containing a question mark (`?`).
 
+### Expected Output
+The final results in the application should match the summary statistics below.
 
-The final output should match the screenshot below, confirming the data cleaning function is working as expected.
+**Overall List Stats:** 
+Names Provided: 46
+Names Dropped: 2
+Duplicates Removed: 1
+Names Analysed: 43
+
+**Disambiguation Stats:** 
+Most Powerful Keystroke: 1
+(KPraw = 15)
+Total Rounds to Disambiguate: 12
+
+For a complete list of all cleaned names and detailed round-by-round logs, please see the **[Test 1 Output Logs](Test%201%20Output%20Logs.md)**.
+
+The visual output in the application should also match the screenshot below.
 
 ![Test 1 Output](Output%20Images/test-1-output.jpg)
 

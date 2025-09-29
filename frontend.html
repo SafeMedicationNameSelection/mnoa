@@ -267,7 +267,7 @@
       accordion.classList.toggle('open');
     }
 
-    // --- %KP helpers (EXACT original) ---
+    // --- %KP helpers ---
     // normalizePercent: accepts 0–1 or 0–100 and returns 0–100
     function normalizePercent(v){
       const n = Number(v);
@@ -369,10 +369,10 @@
         // === NEW LOGIC BLOCK: Find the round number(s) with the highest KPraw ===
         let mostPowerfulRoundsString = "-";
         if (result.round_stats && result.round_stats.length > 0) {
-          // 1. Find the maximum KPraw value
+          // 1. Finding the maximum KPraw value
           const maxKpValue = Math.max(...result.round_stats.map(r => r.KPraw));
           
-          // 2. Find all rounds that have this maximum value
+          // 2. Finding all rounds that have this maximum value
           const topRounds = result.round_stats.filter(r => r.KPraw === maxKpValue);
           
           // 3. Extract just the round numbers from those top rounds
