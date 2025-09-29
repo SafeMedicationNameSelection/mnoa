@@ -60,17 +60,31 @@ The visual output in the application should also match the screenshot below.
 This test uses `Test 2.txt` to validate the performance and correctness of the **`disambiguation` algorithm** on a large, clean dataset representative of a real-world formulary.
 
 ### Input
-The input file `Test 2.txt` contains a list of over 224 medication names.
+The input file `Test 2.txt` contains 224 raw medication names.
 
 ### Results & Analysis
-The algorithm processes the list and provides detailed disambiguation metrics. Key observations from the results include:
+Based on the test output, the algorithm successfully processes the input list and provides detailed disambiguation metrics. Key observations from the results include:
 
--   **Comprehensive Analysis:** The algorithm successfully analyzes the entire list, demonstrating its ability to handle a large number of unique medication names.
-
--   **Most Powerful Keystroke:** The output correctly identifies the round with the highest Keystroke Power. For this dataset, the highest `KPraw` value is **75**, which occurs in **Round 3**. The display therefore correctly reads **"3"**.
-
+-   **Duplicate Removal:** The algorithm correctly identifies that there are no duplicate entries in the raw list that become identical after cleaning, resulting in a final analyzed list of 224 unique names.
+-   **Most Powerful Keystroke:** The output correctly identifies the round with the highest Keystroke Power. For this dataset, the highest `KPraw` value is **75**, which occurs in **Round 3**.
 -   **Performance Metrics:** The "Round By Round Stats" table provides a detailed breakdown of the algorithm's efficiency, showing how ambiguity is resolved over time.
 
-The final output should match the screenshot below, confirming the disambiguation engine is performing correctly on a large scale.
+### Expected Output
+The final results in the application should match the following summary statistics.
+
+**Overall List Stats:**
+Names Provided: 224
+Names Dropped: 0
+Duplicates Removed: 0
+Names Analysed: 224
+
+**Disambiguation Stats:**
+Most Powerful Keystroke: 3
+(KPraw = 75)
+Total Rounds to Disambiguate: 12
+
+For a detailed breakdown of the final cleaned list and round-by-round statistics, please see the **[Test 2 Output Logs](Test%202%20Output%20Logs.md)**.
+
+The visual output in the application should also match the screenshot below.
 
 ![Test 2 Output](Output%20Images/test-2-output.jpg)
