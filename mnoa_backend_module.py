@@ -35,7 +35,7 @@ def disambiguate(names):
     max_len = max(len(name) for name in names)  # Longest name in the input list
     resolved = set()  # Set to keep track of disambiguated names
     search_pool = names.copy()  # Names yet to be disambiguated, copied to avoid modifying original list
-    prev_misses = total - 1  # Initial unresolved count, used to calculate raw KP
+    prev_misses = total - 1  # Initial unresolved count, used to calculate raw KP, number of possible mis-picks
 
     # Iterate over prefix lengths from 1 to the maximum name length
     for k in range(1, max_len + 1):
@@ -73,7 +73,7 @@ def disambiguate(names):
                 })
 
         # Calculate metrics for this round
-        misses = sum(len(g) - 1 for g in prefix_map.values() if len(g) > 1)  # Total remaining conflicts
+        misses = len(unresolved) - 1  # Total remaining possible mistakes
         kp_raw = prev_misses - misses  # Raw Keystroke Power gained this round
         kp_percent = round(kp_raw / total, 4)  # Normalized KP as a percent
         prev_misses = misses  # Update unresolved count for next round
@@ -112,3 +112,6 @@ def run_mnoa(med_names):
         "round_stats": stats,      # Per-round performance summary
         "prefix_logs": logs        # Per-prefix resolution/unresolved logs
     }
+
+med_names1 = ["acebutolol", "acetaminophen","aspirin","benicar","buprenorphine"]
+run_mnoa(med_names1)
