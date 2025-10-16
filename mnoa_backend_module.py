@@ -113,5 +113,3 @@ def run_mnoa(med_names):
         "prefix_logs": logs        # Per-prefix resolution/unresolved logs
     }
 
-med_names1 = ["acebutolol", "acetaminophen","aspirin","benicar","buprenorphine"]
-run_mnoa(med_names1)
