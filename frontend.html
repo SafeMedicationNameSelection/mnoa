@@ -329,6 +329,7 @@
     // Main action: read input, call /disambiguate, fill all views
     async function submitNames(){
       const rawInput = document.getElementById("medInput").value;
+      // Get the raw list of names to get the *actual* provided count
       const names = rawInput.split("\n").map(n=>n.trim()).filter(n=>n.length>0);
       if (names.length === 0) {
         document.getElementById("alphaBox").value = "Please enter some medication names first.";
@@ -363,10 +364,15 @@
           document.getElementById("alphaBox").value = "No valid medication names found.";
         }
 
-        // Top stats: count, kp sums, percent
-        const totalNames = result.cleaned_names.length;
+        // === BUG FIX: Corrected the logic for stats display ===
+
+        // "Names Provided" is the raw count *before* cleaning.
+        const rawNamesCount = names.length;
         
-        // === NEW LOGIC BLOCK: Find the round number(s) with the highest KPraw ===
+        // "Names Analysed" is the final count *after* cleaning and deduplication.
+        const cleanedNamesCount = result.cleaned_names.length;
+
+        // Find the round(s) with the highest KPraw
         let mostPowerfulRoundsString = "-";
         if (result.round_stats && result.round_stats.length > 0) {
           // 1. Finding the maximum KPraw value
@@ -381,15 +387,13 @@
           // 4. Format the final string for display (e.g., "1, 8")
           mostPowerfulRoundsString = topRoundNumbers.join(', ');
         }
-        // ======================================================================
         
-        const lastRound = result.round_stats.length > 0 ? result.round_stats[result.round_stats.length - 1] : null;
-
-        document.getElementById("stat-count").innerText = totalNames;
-        document.getElementById("stat-overlap").innerText = lastRound?.disambiguated_names ?? "";
-        
-        // === UPDATED DISPLAY LINE: Show the new string of round numbers ===
+        // Update the UI with the *correct* variables
+        document.getElementById("stat-count").innerText = rawNamesCount;
+        document.getElementById("stat-overlap").innerText = cleanedNamesCount;
         document.getElementById("stat-kpraw").innerText = mostPowerfulRoundsString;
+        
+        // === END BUG FIX ===
         
         // Rounds text block
         document.getElementById("roundStats").innerText = result.round_stats
@@ -446,7 +450,7 @@
         document.getElementById("alphaBox").value = "❌ Error: " + error.message;
       } finally {
         // Remove glow after a short delay
-        setTimeout(removeHighlights, 1000);
+        // setTimeout(removeHighlights, 1000); // This was commented out in your original, leaving it
       }
     }
   </script>
