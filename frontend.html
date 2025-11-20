@@ -1,163 +1,345 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>MNOA – Medication Name Overlap Analyzer</title>
-<style>
-  /* ===== Theme / layout =====
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MNOA – Medication Name Overlap Analyzer</title>
+  <style>
+    /* ===== Theme / layout =====
      - Colors, shadows, spacing, sizes
      - Used across the page
   */
-  *,*::before,*::after{box-sizing:border-box}
-  :root{
-    --bg:#f6f9ff; --card:#fff; --ink:#111827; --muted:#6b7280;
-    --border:#e5e7eb; --primary:#2563eb; --ghost:rgba(37,99,235,.16);
-    --radius:20px; --shadow:0 1px 2px rgba(0,0,0,.05), 0 10px 30px rgba(0,0,0,.07);
-    --gap:24px;
-    --ta-h:480px;  /* big twin height (left + right textareas) */
-    --label-h:28px; /* label line height */
-  }
-  body{
-    margin:0; padding:32px 40px; background:var(--bg);
-    font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
-    color:var(--ink);
-  }
-  .wrap{max-width:1640px; margin:0 auto}
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box
+    }
 
-  /* Header row: icon + title */
-  .hdr{display:flex; align-items:center; gap:12px; margin-bottom:var(--gap)}
-  .hdr h1{margin:0; font-size:28px; font-weight:800}
-  .hdr small{color:var(--muted); font-weight:600}
-  .hdr img {
-    height: 100px; /* Restored original value */
-    width: auto;
-  }
+    :root {
+      --bg: #f6f9ff;
+      --card: #fff;
+      --ink: #111827;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --primary: #2563eb;
+      --ghost: rgba(37, 99, 235, .16);
+      --radius: 20px;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .05), 0 10px 30px rgba(0, 0, 0, .07);
+      --gap: 24px;
+      --ta-h: 480px;
+      /* big twin height (left + right textareas) */
+      --label-h: 28px;
+      /* label line height */
+    }
 
-  /* In the .row rule, update grid-template-columns and remove min-width */
- .row{
-   display:grid;
-   grid-template-columns: 1fr auto 1fr;
-   gap: 65px;
-   align-items:start;
- }
+    body {
+      margin: 0;
+      padding: 32px 40px;
+      background: var(--bg);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color: var(--ink);
+    }
 
- /* In the .side rule, remove the fixed height and change justification */
- .side{
-   display:flex;
-   flex-direction:column;
-   justify-content:start;
-   gap: 20px;
-   padding-top: calc(var(--label-h) + 8px);
- }
+    .wrap {
+      max-width: 1640px;
+      margin: 0 auto
+    }
 
-  /* Field block: label + textarea */
-  .field{display:flex; flex-direction:column}
-  .label{
-    font-weight:700; margin:0 0 8px 2px; line-height:1;
-    min-height:var(--label-h); display:flex; align-items:center;
-  }
-  .textarea{
-    width:100%; height:var(--ta-h); resize:vertical;
-    padding:14px 16px; font-size:15px; line-height:1.45;
-    border:1px solid var(--border); border-radius:var(--radius); background:#fff; box-shadow:var(--shadow);
-    outline:none;
-  }
-  .textarea:focus{border-color:var(--primary); box-shadow:0 0 0 3px var(--ghost), var(--shadow)}
+    /* Header row: icon + title */
+    .hdr {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: var(--gap)
+    }
 
-  /* CTA column: keeps the button centered between the two big textareas */
-  .cta{position:relative; height:calc(var(--label-h) + var(--ta-h)); display:block}
-  .btn{
-    position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
-    width:60px; height:60px; border-radius:50%; border:none; cursor:pointer;
-    background:var(--primary); color:#fff; font-weight:800; font-size:20px;
-    display:grid; place-items:center; box-shadow:var(--shadow);
-  }
-  .btn:active{transform:translate(-50%,-50%) scale(.98)}
+    .hdr h1 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 800
+    }
 
-  /* Sidebar pills (collapsed by default) */
-  .pill{
-    display:block; width:100%;
-    border:1px solid var(--border); background:#fff; border-radius:999px; box-shadow:var(--shadow);
-    overflow:hidden; /* keeps rounded look when open */
-  }
-  .pill .hd{
-    display:flex; align-items:center; justify-content:space-between; gap:10px;
-    padding:12px 18px; cursor:pointer; font-weight:700;
-  }
-  .pill .hint{color:var(--muted); font-size:12px; white-space:nowrap}
-  .pill .content{
-    max-height:0; overflow:hidden; transition:max-height .25s ease;
-    border-top:1px solid var(--border); background:#fff;
-  }
-  .pill.open{border-radius:var(--radius)} /* round corners when open */
-  .pill.open .content{max-height:var(--pill-max, 600px); overflow:visible}
-  
-  /* Scroll area inside some pills:
+    .hdr small {
+      color: var(--muted);
+      font-weight: 600
+    }
+
+    .hdr img {
+      height: 100px;
+      /* Restored original value */
+      width: auto;
+    }
+
+    /* In the .row rule, update grid-template-columns and remove min-width */
+    .row {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 65px;
+      align-items: start;
+    }
+
+    /* In the .side rule, remove the fixed height and change justification */
+    .side {
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      gap: 20px;
+      padding-top: calc(var(--label-h) + 8px);
+    }
+
+    /* Field block: label + textarea */
+    .field {
+      display: flex;
+      flex-direction: column
+    }
+
+    .label {
+      font-weight: 700;
+      margin: 0 0 8px 2px;
+      line-height: 1;
+      min-height: var(--label-h);
+      display: flex;
+      align-items: center;
+    }
+
+    .textarea {
+      width: 100%;
+      height: var(--ta-h);
+      resize: vertical;
+      padding: 14px 16px;
+      font-size: 15px;
+      line-height: 1.45;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: var(--shadow);
+      outline: none;
+    }
+
+    .textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--ghost), var(--shadow)
+    }
+
+    /* CTA column: keeps the button centered between the two big textareas */
+    .cta {
+      position: relative;
+      height: calc(var(--label-h) + var(--ta-h));
+      display: block
+    }
+
+    .btn {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 800;
+      font-size: 20px;
+      display: grid;
+      place-items: center;
+      box-shadow: var(--shadow);
+    }
+
+    .btn:active {
+      transform: translate(-50%, -50%) scale(.98)
+    }
+
+    /* Sidebar pills (collapsed by default) */
+    .pill {
+      display: block;
+      width: 100%;
+      border: 1px solid var(--border);
+      background: #fff;
+      border-radius: 999px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      /* keeps rounded look when open */
+    }
+
+    .pill .hd {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px 18px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .pill .hint {
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap
+    }
+
+    .pill .content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .25s ease;
+      border-top: 1px solid var(--border);
+      background: #fff;
+    }
+
+    .pill.open {
+      border-radius: var(--radius)
+    }
+
+    /* round corners when open */
+    .pill.open .content {
+      max-height: var(--pill-max, 600px);
+      overflow: visible
+    }
+
+    /* Scroll area inside some pills:
      - rounds text, kp table, overlaps
   */
-  #p-rounds .content .inner,
-  #p-kp .content .inner,
-  #p-overlaps .content .inner {
+    #p-rounds .content .inner,
+    #p-kp .content .inner,
+    #p-overlaps .content .inner {
       max-height: 300px;
       overflow-y: auto;
       padding: 12px 18px;
-  }
+    }
 
-  #p-alpha .content .inner {
-    max-height: var(--ta-h);
-    overflow-y: auto;
-    padding: 12px 18px;
-  }
+    #p-alpha .content .inner {
+      max-height: var(--ta-h);
+      overflow-y: auto;
+      padding: 12px 18px;
+    }
 
-  /* Table + code text */
-  table{width:100%; border-collapse:collapse; font-size:14px}
-  th,td{padding:9px 8px; border-bottom:1px solid #f1f5f9; text-align:left}
-  th{font-weight:700}
-  pre{font-family:Consolas,Menlo,monospace; font-size:13px; white-space:pre-wrap; margin:0}
-  
-  /* Sticky table header (kp table) */
-  .sticky-header {
+    /* Table + code text */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px
+    }
+
+    th,
+    td {
+      padding: 9px 8px;
+      border-bottom: 1px solid #f1f5f9;
+      text-align: left
+    }
+
+    th {
+      font-weight: 700
+    }
+
+    pre {
+      font-family: Consolas, Menlo, monospace;
+      font-size: 13px;
+      white-space: pre-wrap;
+      margin: 0
+    }
+
+    /* Sticky table header (kp table) */
+    .sticky-header {
       position: sticky;
       top: 0;
       background-color: #f8f9fa;
       z-index: 10;
-  }
-  
-  /* Visual highlight helpers (added/removed in JS) */
-  .data-highlight {
-    border-color: var(--primary) !important;
-    box-shadow: 0 0 0 3px var(--ghost), var(--shadow) !important;
-    transition: all 0.5s ease;
-  }
-  .accordion-highlight {
-    border-color: var(--primary) !important;
-    box-shadow: 0 0 0 3px var(--ghost), var(--shadow) !important;
-    transition: all 0.5s ease;
-  }
+    }
 
-  /* === Footer Styling === */
-  .ftr {
-    text-align: center;
-    margin-top: calc(var(--gap) * 2);
-    padding-top: var(--gap);
-    border-top: 1px solid var(--border);
-  }
-  .ftr a svg {
-    height: 32px; /* Controls the logo size */
-    width: auto;
-    fill: var(--muted); /* Sets the default logo color */
-    transition: fill 0.2s ease-in-out; /* Smooth color change on hover */
-  }
-  .ftr a:hover svg {
-    fill: var(--primary); /* Changes logo color on hover */
-  }
-</style>
+
+    /* === Footer Styling (modified) === */
+    .ftr {
+      text-align: center;
+      margin-top: calc(var(--gap) * 2);
+      padding-top: var(--gap);
+      border-top: 1px solid var(--border);
+    }
+
+    /* container to place links left + logo center + link right */
+    .ftr .links {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 120px;
+      /* increased spacing between items */
+    }
+
+    .ftr a.ftr-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 4px 8px;
+      border-radius: 6px;
+      transition: color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .ftr a.ftr-link:hover {
+      color: var(--primary);
+      background: rgba(37, 99, 235, 0.06);
+    }
+
+    .ftr a svg {
+      height: 32px;
+      /* Controls the logo size */
+      width: auto;
+      fill: var(--muted);
+      /* Sets the default logo color */
+      transition: fill 0.2s ease-in-out;
+      /* Smooth color change on hover */
+    }
+
+    .ftr a:hover svg {
+      fill: var(--primary);
+      /* Changes logo color on hover */
+    }
+
+
+
+    /* Visual highlight helpers (added/removed in JS) */
+    .data-highlight {
+      border-color: var(--primary) !important;
+      box-shadow: 0 0 0 3px var(--ghost), var(--shadow) !important;
+      transition: all 0.5s ease;
+    }
+
+    .accordion-highlight {
+      border-color: var(--primary) !important;
+      box-shadow: 0 0 0 3px var(--ghost), var(--shadow) !important;
+      transition: all 0.5s ease;
+    }
+
+    /* === Footer Styling === */
+    .ftr {
+      text-align: center;
+      margin-top: calc(var(--gap) * 2);
+      padding-top: var(--gap);
+      border-top: 1px solid var(--border);
+    }
+
+    .ftr a svg {
+      height: 32px;
+      /* Controls the logo size */
+      width: auto;
+      fill: var(--muted);
+      /* Sets the default logo color */
+      transition: fill 0.2s ease-in-out;
+      /* Smooth color change on hover */
+    }
+
+    .ftr a:hover svg {
+      fill: var(--primary);
+      /* Changes logo color on hover */
+    }
+  </style>
 </head>
+
 <body>
   <div class="wrap">
     <div class="hdr">
-      <img src="my_logo.png" alt="MNOA Application Logo"/>
+      <img src="my_logo.png" alt="MNOA Application Logo" />
     </div>
 
     <div class="row">
@@ -178,12 +360,8 @@
           </div>
           <div class="content" style="--pill-max: var(--ta-h);">
             <div class="inner" style="padding:12px 18px;">
-              <textarea
-                id="alphaBox"
-                class="textarea"
-                placeholder="Results will appear here after Analyze"
-                readonly
-              ></textarea>
+              <textarea id="alphaBox" class="textarea" placeholder="Results will appear here after Analyze"
+                readonly></textarea>
             </div>
           </div>
         </div>
@@ -194,11 +372,13 @@
             <span>📊 Overall List Stats</span>
             <span class="hint">(click to expand)</span>
           </div>
-          <div class="content"><div class="inner" style="padding:12px 18px;">
-            <div><strong>Number of med names provided = </strong><span id="stat-count"> </span></div>
-            <div><strong>Number of med names analysed = </strong><span id="stat-overlap"> </span></div>
-            <div><strong>Most Powerful Keystroke = </strong><span id="stat-kpraw"> </span></div>
-            </div></div>
+          <div class="content">
+            <div class="inner" style="padding:12px 18px;">
+              <div><strong>Number of med names provided = </strong><span id="stat-count"> </span></div>
+              <div><strong>Number of med names analysed = </strong><span id="stat-overlap"> </span></div>
+              <div><strong>Most Powerful Keystroke = </strong><span id="stat-kpraw"> </span></div>
+            </div>
+          </div>
         </div>
 
         <div class="pill" id="p-rounds">
@@ -206,9 +386,11 @@
             <span>🔁 Round By Round Stats</span>
             <span class="hint">(click to expand)</span>
           </div>
-          <div class="content"><div class="inner">
-            <pre id="roundStats" style="white-space:pre-wrap;"></pre>
-          </div></div>
+          <div class="content">
+            <div class="inner">
+              <pre id="roundStats" style="white-space:pre-wrap;"></pre>
+            </div>
+          </div>
         </div>
 
         <div class="pill" id="p-kp">
@@ -216,7 +398,8 @@
             <span>⌨️ Keystroke Power by Round</span>
             <span class="hint">(click to expand)</span>
           </div>
-          <div class="content"><div class="inner">
+          <div class="content">
+            <div class="inner">
               <table id="kprawTable" style="width:100%; border-collapse:collapse; font-size:14px;">
                 <thead class="sticky-header">
                   <tr>
@@ -227,7 +410,8 @@
                 </thead>
                 <tbody></tbody>
               </table>
-          </div></div>
+            </div>
+          </div>
         </div>
 
         <div class="pill" id="p-overlaps">
@@ -235,23 +419,35 @@
             <span>🔎 All Overlaps by Round</span>
             <span class="hint">(click to expand)</span>
           </div>
-          <div class="content"><div class="inner">
-            <div id="overlap-box" style="font-family:monospace; font-size:13px; white-space:pre-wrap;"></div>
-          </div></div>
+          <div class="content">
+            <div class="inner">
+              <div id="overlap-box" style="font-family:monospace; font-size:13px; white-space:pre-wrap;"></div>
+            </div>
+          </div>
         </div>
       </aside>
     </div>
 
+
     <footer class="ftr">
-      <a href="https://github.com/SafeMedicationNameSelection/mnoa" target="_blank" rel="noopener noreferrer" aria-label="View source code on GitHub">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" height="32">
-          <title>GitHub Logo</title>
-          <path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3.3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 23.6 31.4 23.6 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/>
-        </svg>
-      </a>
-      <a href="https://www.youtube.com/watch?v=Sh3DQZ1bJhs" target="_blank" rel="noopener noreferrer" aria-label="Video Recap">Video Recap   
-      </a>
+      <div class="links">
+        <a class="ftr-link"
+          href="https://github.com/SafeMedicationNameSelection/mnoa/blob/main/MNOA%20quick%20start%20guide.pdf"
+          aria-label="Quickstart guide (placeholder)">Quickstart guide</a>
+
+        <a class="ftr-github" href="https://github.com/SafeMedicationNameSelection/mnoa" target="_blank"
+          rel="noopener noreferrer" aria-label="View source code on GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" height="32">
+            <title>GitHub Logo</title>
+            <path
+              d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3.3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 23.6 31.4 23.6 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" />
+          </svg>
+        </a>
+
+        <a class="ftr-link" href="https://youtu.be/Sh3DQZ1bJhs" aria-label="Video recap (placeholder)">Video recap</a>
+      </div>
     </footer>
+
 
   </div>
 
@@ -262,7 +458,7 @@
       allAccordions.forEach(id => {
         const pill = document.getElementById(id);
         if (id !== accordionId && pill.classList.contains('open')) {
-            pill.classList.remove('open');
+          pill.classList.remove('open');
         }
       });
       const accordion = document.getElementById(accordionId);
@@ -271,18 +467,18 @@
 
     // --- %KP helpers ---
     // normalizePercent: accepts 0–1 or 0–100 and returns 0–100
-    function normalizePercent(v){
+    function normalizePercent(v) {
       const n = Number(v);
       if (!Number.isFinite(n)) return null;
       return n > 1 ? n : n * 100;
     }
     // fmtPct: prints percent with 2 decimals, or "–"
-    function fmtPct(v){
+    function fmtPct(v) {
       const p = normalizePercent(v);
       return p == null ? "–" : p.toFixed(2);
     }
     // --- end helpers ---
-    
+
     // Button look based on input state
     function updateButtonState() {
       const textarea = document.getElementById("medInput");
@@ -300,11 +496,11 @@
     }
 
     // Run once ready: wire listeners for input -> button state
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const textarea = document.getElementById("medInput");
       textarea.addEventListener('input', updateButtonState);
       textarea.addEventListener('keyup', updateButtonState);
-      textarea.addEventListener('paste', function() {
+      textarea.addEventListener('paste', function () {
         setTimeout(updateButtonState, 10);
       });
       updateButtonState(); // set initial
@@ -329,15 +525,15 @@
     // }
 
     // Main action: read input, call /disambiguate, fill all views
-    async function submitNames(){
+    async function submitNames() {
       const rawInput = document.getElementById("medInput").value;
       // Get the raw list of names to get the *actual* provided count
-      const names = rawInput.split("\n").map(n=>n.trim()).filter(n=>n.length>0);
+      const names = rawInput.split("\n").map(n => n.trim()).filter(n => n.length > 0);
       if (names.length === 0) {
         document.getElementById("alphaBox").value = "Please enter some medication names first.";
         return;
       }
-      
+
       applyHighlights(); // show glow
 
       // Reset UI while loading
@@ -370,7 +566,7 @@
 
         // "Names Provided" is the raw count *before* cleaning.
         const rawNamesCount = names.length;
-        
+
         // "Names Analysed" is the final count *after* cleaning and deduplication.
         const cleanedNamesCount = result.cleaned_names.length;
 
@@ -379,24 +575,24 @@
         if (result.round_stats && result.round_stats.length > 0) {
           // 1. Finding the maximum KPraw value
           const maxKpValue = Math.max(...result.round_stats.map(r => r.KPraw));
-          
+
           // 2. Finding all rounds that have this maximum value
           const topRounds = result.round_stats.filter(r => r.KPraw === maxKpValue);
-          
+
           // 3. Extract just the round numbers from those top rounds
           const topRoundNumbers = topRounds.map(r => r.characters);
-          
+
           // 4. Format the final string for display (e.g., "1, 8")
           mostPowerfulRoundsString = topRoundNumbers.join(', ');
         }
-        
+
         // Update the UI with the *correct* variables
         document.getElementById("stat-count").innerText = rawNamesCount;
         document.getElementById("stat-overlap").innerText = cleanedNamesCount;
         document.getElementById("stat-kpraw").innerText = mostPowerfulRoundsString;
-        
+
         // === END BUG FIX ===
-        
+
         // Rounds text block
         document.getElementById("roundStats").innerText = result.round_stats
           .map(stat =>
@@ -423,7 +619,7 @@
             kpTbody.appendChild(tr);
           });
         }
-        
+
         // Overlaps (group by round)
         const overlapLogsByRound = {};
         result.prefix_logs.forEach(log => {
@@ -457,4 +653,5 @@
     }
   </script>
 </body>
+
 </html>
