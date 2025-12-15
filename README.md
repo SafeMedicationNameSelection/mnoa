@@ -3,6 +3,7 @@
 - Analyzer Developed by: Gaurav Bhatti (2025)
 - Analyzer Designed by: Gaurav Bhatti and Allen Flynn (2025)
 - Overlap Analysis Method from: Allen Flynn, Conor Myers, and Katie Mieure (2023)
+- White Paper with Analysis of Top 200 Medication Names in U.S. for Overlap by: Gaurav Bhatti and Allen Flynn (2025)
 
 ---
 
