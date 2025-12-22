@@ -597,7 +597,7 @@
         document.getElementById("roundStats").innerText = result.round_stats
           .map(stat =>
             `Round ${stat.characters}:
-- Characters: ${Array.isArray(stat.search_terms) ? stat.search_terms.join(", ") : stat.search_terms}
+- Unique Prefixes: ${Array.isArray(stat.search_terms) ? stat.search_terms.join(", ") : stat.search_terms}
 - Total Unresolved: ${stat.unresolved_items}
 - Total Disambiguated: ${stat.disambiguated_names}
 - KPraw: ${stat.KPraw}
